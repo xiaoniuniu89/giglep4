@@ -5,7 +5,8 @@ from django.contrib import messages
 def landing(request):
     return render(request, 'landing/landing.html')
 
-
+def login(request):
+    return render(request, 'landing/login.html')
 
 def sign_up(request):
     if request.method == 'POST':
