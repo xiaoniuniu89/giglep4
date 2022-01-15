@@ -257,3 +257,65 @@ li {
 }
 
 /* ## end landing page cta style ##  */
+
+
+
+
+
+/* ## Media query start ##  */
+
+/* ## tablet sizes ##  */
+
+@media screen and (min-width: 700px ){
+    .header-container {
+        justify-content: space-between;
+    }
+
+    .nav-container {
+        margin-right: 5.5em;
+    }
+
+    .cta-buttons, .cta-txt {
+        text-align: center;
+    }
+
+
+}
+
+/* ## desktop sizes ##  */
+@media screen and (min-width: 1200px ) {
+    .cta-small {
+        display: none;
+    }
+
+    .cta-big {
+        display: block;
+    }
+
+    .cta {
+        
+        display: flex; flex-direction: row-reverse;
+        width: 95%;
+        margin: 2em auto;
+    }
+
+
+    .cta-hero {
+        background-image: url('../img/hero-desktop.png');
+        width: 60%; min-width: 580px; max-width: 850px; max-height: 650px;
+    }
+
+    .cta-txt { text-align: left;}
+
+    .cta-sign-up {
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+        gap: 5em;
+        width: 40%;
+    }
+
+ 
+
+
+}
