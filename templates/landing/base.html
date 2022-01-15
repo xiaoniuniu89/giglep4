@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'landing/css/landing.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Luckiest+Guy&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    {% if title  %}
+        <title>gigle - {{title}}</title>
+    {% else %}
+        <title>gigle</title>
+    {% endif %}
+    
+</head>
+<body>
+        <header class="header-container">
+            <div class="logo-container">
+                <a href="{% url 'landing-home' %}"><span class="heading">Gigle</span></a>
+            </div>
+            <div class="nav-container">
+                <ul class="nav-list">
+                        <li class="nav-item"><a href=""><span class="hover-underline">Login</span></a></li>
+                        <li class="nav-item sign-up"><a href=""><span class="hover-underline">Sign-up</span></a></li>
+                </ul>
+            </div>
+        </header>
+ 
+    {% block content %}{% endblock %}
+
+        <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
