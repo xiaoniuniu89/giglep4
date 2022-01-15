@@ -258,7 +258,58 @@ li {
 
 /* ## end landing page cta style ##  */
 
+/* forms - sign-up, login, update profile etc.  */
 
+.form-wrapper {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    margin: 2em auto;
+}
+
+.form {
+    width: 90%; max-width: 600px;
+    padding: 2em;
+}
+
+form .heading {
+    margin-bottom: .4em;
+}
+
+.form-field, .search-field, .form-field-textarea {
+    width: 90%;
+    margin: .5em 0;
+    padding: .4em;
+    border-radius: 25px;
+    border: .5px solid var(--main-dark);
+}
+
+
+.form-field-textarea {
+    padding: .5em;
+    border-radius: 15px;
+}
+
+.search-field {
+    width: 50%;
+}
+
+form p {
+    padding: .5em;
+}
+
+form button {
+    margin: .5em 0;
+    
+}
+
+.form-field {
+    width: 90%;
+    margin: .5em 0;
+    padding: .3em;
+    border-radius: 25px;
+    border: .5px solid var(--main-dark);
+}
 
 
 
