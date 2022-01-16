@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Musician, Post
+from .models import Musician
 # Register your models here.
 
 admin.site.register(Musician)
-admin.site.register(Post)
+
 
