@@ -1,0 +1,32 @@
+{% extends 'organiser/base.html' %}
+{% block content %}
+
+    <div class="profile-info card">
+        <div class="card-wrapper ">
+            <div class="profile-pic-wrapper">
+                <img class='profile-pic' src="{{user.musician.profile_pic.url}}" alt="">
+            </div>
+            <div class="profile-info-text-wrapper">
+                {% if user.first_name == '' %}
+                    <h1 class='rb-txt txt-space txt-height'>{{user.username}}</h1>
+                {% else %}
+                <h1 class='rb-txt txt-space'>{{user.first_name}} {{user.last_name}}</p>
+                {% endif %}
+                {% if object.location != '' %}
+                    <p class='rb-txt txt-space txt-height'>{{user.musician.location}}</p>
+                {% endif %}
+                {% if user.musician.instrument != '' %}
+                    <p class='rb-txt txt-space txt-height'>{{user.musician.instrument}}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="profile-blurb">
+            {% if user.musician.blurb != '' %}
+                <p class='rb-txt txt-height txt-space'>{{user.musician.blurb}}</p>
+            {% endif %}
+        </div>
+    </div>
+       
+
+
+{% endblock content %}

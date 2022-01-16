@@ -55,7 +55,9 @@ def my_profile(request):
     
     return render(request, 'organiser/my-profile.html', context)
 
-
+class user_profile(DetailView):
+    model = User
+    template_name = 'organiser/profile.html'
     
 class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Post
