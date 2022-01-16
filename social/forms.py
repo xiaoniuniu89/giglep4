@@ -1,6 +1,7 @@
 from django import forms 
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
 
 
 
@@ -29,3 +30,18 @@ class UserLoginForm(AuthenticationForm):
         attrs={'class': 'form-field'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-field'}))
+
+        
+class UserPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-field'}))
+    
+    
+class PasswordChangeForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super(PasswordChangeForm, self).__init__(*args, **kwargs)
+        
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-field'}))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-field'}))
