@@ -361,3 +361,20 @@ class thread_notification(View):
         notification = Notification.objects.get(pk=notification_pk)
         thread = Thread.objects.get(pk=object_pk)
         
+
+class search_user(ListView):
+    model = User
+    # users = User.objects.all()
+    template_name = 'organiser/search_results.html'
+    context_object_name = 'users'
+    
+    def get_queryset(self):
+        try:
+            acc = self.request.GET.get('user',).lstrip().rstrip().split(" ")[0]
+        except KeyError:
+            acc = None
+        if acc:
+            account_list = User.objects.filter(Q(username__icontains=acc) | Q(first_name__icontains=acc) | Q(last_name__icontains=acc))
+        else:
+            account_list = User.objects.filter(username=self.request.user)
+        return account_list
