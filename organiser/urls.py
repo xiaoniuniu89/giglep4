@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url
 from . import views as organiser_views
 from .views import (
     post_create,
@@ -10,6 +11,7 @@ from .views import (
     user_profile,
     list_thread,
     thread_view,
+    change_friends
 )
  
  
@@ -25,6 +27,8 @@ urlpatterns = [
     path('profile/<int:pk>/', user_profile.as_view(), name='profile'),
     path('inbox/', list_thread.as_view(), name='inbox'),
     path('inbox/<int:pk>/', thread_view.as_view(), name='thread'),
+    url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', organiser_views.change_friends, name='change_friends'), 
+
 
 
 
