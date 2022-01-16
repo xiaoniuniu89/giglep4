@@ -176,3 +176,17 @@ class list_thread(View):
         }
         
         return render(request, 'organiser/inbox.html', context)
+
+
+class thread_view(View):
+    def get(self, request, pk, *args, **kwargs):
+        form = MessageForm()
+        thread = Thread.objects.get(pk=pk)
+        message_list = Message.objects.filter(thread__pk__contains=pk)
+        context = {
+            'thread': thread,
+            'message_list': message_list, 
+            'form': form
+        }
+        
+        return render(request, 'organiser/thread.html', context)

@@ -9,6 +9,7 @@ from .views import (
     feed,
     user_profile,
     list_thread,
+    thread_view,
 )
  
  
@@ -23,6 +24,8 @@ urlpatterns = [
     path('feed/<int:post_pk>/comment/delete/<int:pk>/', comment_delete.as_view(), name='comment_delete'),
     path('profile/<int:pk>/', user_profile.as_view(), name='profile'),
     path('inbox/', list_thread.as_view(), name='inbox'),
+    path('inbox/<int:pk>/', thread_view.as_view(), name='thread'),
+
 
 
  ]

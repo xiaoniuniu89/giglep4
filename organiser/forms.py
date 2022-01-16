@@ -1,6 +1,6 @@
 from social.models import Musician
 from django import forms
-from .models import Post, Comment
+from .models import Post, Comment, Thread, Message
 
 
 class MusicianUpdateForm(forms.ModelForm):
@@ -26,3 +26,18 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment']
+
+
+
+class ThreadForm(forms.Form):
+    username = forms.CharField(label='', max_length=100, widget=forms.Textarea(attrs={'rows':1, 'cols':1, 'class': 'form-field-textarea'}))
+    
+class MessageForm(forms.ModelForm):
+    body = forms.CharField(label='', max_length=1000, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
+
+    image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'rb-txt file-upload'}))
+
+    class Meta:
+        model = Message
+        fields = ['body', 'image']
+    
