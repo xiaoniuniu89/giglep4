@@ -10,17 +10,23 @@
         {% for thread in threads.all %}
         <a href="{% url 'thread' thread.pk %}">
             <div class="basic-wrapper-flex card">
-
-
                 {% if thread.receiver == request.user %}
-                    <img class='profile-pic-small' src="{{ thread.user.musician.profile_pic.url }}" alt="">
+                    {% if "placeholder" in user.musician.profile_pic.url %}
+                        <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                    {% else %}
+                        <img class="profile-pic" src=" https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                    {% endif %}
                     {% if thread.user.first_name == '' %}
                         <span class='rb-txt text-height '>{{thread.user.username}}</span>
                     {% else %}
                         <span class='rb-txt text-height '>{{thread.user.first_name}} {{thread.user.last_name}}</span>
                     {% endif %}
                 {% else %}
-                    <img class='profile-pic-small' src="{{ thread.receiver.musician.profile_pic.url }}" alt="">
+                    {% if "placeholder" in user.musician.profile_pic.url %}
+                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                    {% else %}
+                        <img class="profile-pic" src=" https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                    {% endif %}
                     {% if thread.receiver.first_name == '' %}
                         <span class='rb-txt text-height '>{{thread.receiver.username}}</span>
                     {% else %}

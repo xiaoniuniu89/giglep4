@@ -2,63 +2,104 @@
 {% block content %}
 
 
-    <div class="post-btn"><a href=""><button class="btn-small ">Create Post</button></a></div>
+    <div class="post-btn"><a href="{% url 'post-create' %}"><button class="btn-small ">Create Post</button></a></div>
 
     <div class="feed-wrapper">
         <div class="posts-wrapper">
             <h1 class="heading feed-heading">Feed</h1>
-           
-         
-        </div>
             {% for post in page_obj %}
-
-           <div class="post-author-wrapper">
-                {% if user.is_authenticated %}
-                    {% if user.pk == post.author.pk %}
-                        {% if user.first_name == '' %}
-                            <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.username}}</a></p>
-                        {% else %}
-                            <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
-                        {% endif %}
-                    {% else %}
-                        {% if post.author.first_name == '' %}
-                            <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.username}}</a></p>
-                        {% else %}
-                            <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
-                        {% endif %}
-                    {% endif %}
+                {% if post.author in friends or user.pk == post.author.pk %}
+                        <div class="post-wrapper card">
+                            <div class="post-pic-wrapper">
+                                {% if "placeholder" in user.musician.profile_pic.url %}
+                                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                                {% else %}
+                                    <img class="profile-pic" src=" https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                                {% endif %}
+                            </div>
+                            <div class="post-author-wrapper">
+                            {% if user.is_authenticated %}
+                                {% if user.pk == post.author.pk %}
+                                    {% if user.first_name == '' %}
+                                        <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.username}}</a></p>
+                                    {% else %}
+                                        <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
+                                    {% endif %}
+                                {% else %}
+                                    {% if post.author.first_name == '' %}
+                                        <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.username}}</a></p>
+                                    {% else %}
+                                        <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                            <small class="rb-txt">{{post.date_posted}}</small>
+                            <br>
+                            {% if user.pk == post.author.pk %}
+                                <small><a href="{% url 'post-update' post.pk %}">Edit Post | </a></small>
+                                <small><a href="{% url 'post-delete' post.pk %}">Delete Post</a></small>
+                            {% endif %}
+            
+                            </div>
+                            <div class="post-msg">
+                                <p class="rb-txt">{{post.content}}</p>
+                            </div>
+                            <div class="like-dislike">
+                                <div class="">
+                                    <form action="{% url 'like' post.pk %}" method='POST'>
+                                        {% csrf_token %}
+                                        <input type="hidden" name='next' value='{{ request.path }}'>
+                                        <button class="btn-null" type='submit'><i class="far fa-thumbs-up fa-icon"></i><span>{{ post.likes.all.count }}</span></button>
+                                    </form>
+                                </div>
+                                <div class="">
+                                    <form action="{% url 'dislike' post.pk %}" method='POST'>
+                                        <input type="hidden" name='next' value='{{ request.path }}'>
+                                        {% csrf_token %}
+                                        <button class="btn-null" type='submit'><i class="far fa-thumbs-down fa-icon"></i><span>{{ post.dislikes.all.count }}</span></button>
+                                    </form>
+                                </div>
+                                <div class=""><a href="{% url 'post-detail' post.pk %}"><i class="fas fa-icon fa-comments"></i></a></div>
+                            </div>
+                       </div>
                 {% endif %}
-                <small class="rb-txt">{{post.date_posted}}</small>
-                <br>
-                {% if user.pk == post.author.pk %}
-                    <small><a href="{% url 'post-update' post.pk %}">Edit Post | </a></small>
-                    <small><a href="{% url 'post-delete' post.pk %}">Delete Post</a></small>
-                {% endif %}
-
-                </div>
-                <div class="post-msg">
-                    <p class="rb-txt">{{post.content}}</p>
-                </div>
-                 <div class="like-dislike">
-                <div class="">
-                    <form action="{% url 'like' post.pk %}" method='POST'>
-                        {% csrf_token %}
-                        <input type="hidden" name='next' value='{{ request.path }}'>
-                        <button class="btn-null" type='submit'><i class="far fa-thumbs-up fa-icon"></i><span>{{ post.likes.all.count }}</span></button>
-                    </form>
-                </div>
-                <div class="">
-                    <form action="{% url 'dislike' post.pk %}" method='POST'>
-                        <input type="hidden" name='next' value='{{ request.path }}'>
-                        {% csrf_token %}
-                        <button class="btn-null" type='submit'><i class="far fa-thumbs-down fa-icon"></i><span>{{ post.dislikes.all.count }}</span></button>
-                    </form>
-                </div>
-                <div class=""><a href="{% url 'post-detail' post.pk %}"><i class="fas fa-icon fa-comments"></i></a></div>
-            </div>
-
+            
             {% endfor %}
-           
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo;  </a>
+                        <a href="?page={{ page_obj.previous_page_number }}">newer  </a>
+                    {% endif %}
+            
+                    {% if page_obj.has_next %}
+                        <span class="current">
+                            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}  
+                        </span>
+                        <a href="?page={{ page_obj.next_page_number }}">older  </a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <div class="other-users">
+            <h2 class="heading">People you may know</h2>
+            {% if friends.all.count == users.all.count %}
+                <p class="rb-txt">Seems you know everybody!</p>
+            {% endif %}
+            
+            {% for user in users  %}
+                {% if user in friends %}
+                    
+                {% else %}
+                    {% if user.first_name == '' %}
+                        <p class="rb-txt txt-height"><a href="{% url 'profile' user.pk %}">{{user.username}}</a></p>
+                    {% else %}
+                        <p class="rb-txt txt-height"><a href="{% url 'profile' user.pk %}">{{user.first_name}} {{user.last_name}}</a></p>
+                    {% endif %}
+                    <a href="{% url 'change_friends' operation='add' pk=user.pk %}"><button class="btn-primary btn-small">Follow</button></a>
+                {% endif %}
+            {% endfor %}
 
             
         </div>
