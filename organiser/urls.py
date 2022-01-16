@@ -3,6 +3,7 @@ from . import views as organiser_views
 from .views import (
     post_create,
     post_update,
+    post_delete,
 )
  
  
@@ -12,5 +13,7 @@ urlpatterns = [
     path('my-profile/', organiser_views.my_profile, name='my-profile'),
     path('feed/new/', post_create.as_view(), name='post-create'),
     path('feed/<int:pk>/update/', post_update.as_view(), name='post-update'),
+    path('feed/<int:pk>/delete/', post_delete.as_view(), name='post-delete'),
+
  ]
  

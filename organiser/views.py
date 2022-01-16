@@ -81,3 +81,19 @@ class post_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, 
         if self.request.user == post.author:
             return True
         return False 
+
+class post_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/social/feed/'
+    success_message = 'Your post has been deleted ~ historical inaccuracy corrected!'
+   
+   
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(post_delete, self).delete(request, *args, **kwargs)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False 
