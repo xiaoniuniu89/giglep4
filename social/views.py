@@ -1,12 +1,20 @@
 from django.shortcuts import render, redirect
 from .forms import UserSignUpForm
 from django.contrib import messages
+from django.contrib.auth import logout
+
 
 def landing(request):
     return render(request, 'landing/landing.html')
 
 def login(request):
     return render(request, 'landing/login.html')
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, f'Logged out!')
+    return redirect('landing-home')
+
 
 def sign_up(request):
     if request.method == 'POST':
@@ -21,3 +29,4 @@ def sign_up(request):
        
         
     return render(request, 'landing/sign-up.html', {'form': form})
+
