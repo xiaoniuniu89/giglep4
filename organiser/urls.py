@@ -16,6 +16,9 @@ from .views import (
     user_profile_list,
     add_like, 
     dislike,
+    post_notification,
+    follow_notification,
+    thread_notification
 )
  
  
@@ -36,6 +39,9 @@ urlpatterns = [
     url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', organiser_views.change_friends, name='change_friends'), 
     path('feed/<int:pk>/like/', add_like.as_view(), name='like'),
     path('feed/<int:pk>/dislike/', dislike.as_view(), name='dislike'),
+    path('notification/<int:notification_pk>/post/<int:post_pk>/', post_notification.as_view(), name='post_notification'),
+    path('notification/<int:notification_pk>/profile/<int:profile_pk>/', follow_notification.as_view(), name='follow_notification'),
+    path('notification/<int:notification_pk>/thread/<int:object_pk>/', thread_notification.as_view(), name='thread_notification'),
 
 
 

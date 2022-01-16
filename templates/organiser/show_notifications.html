@@ -1,0 +1,72 @@
+{% if notifications.count > 0 %}
+    <li class="nav-item bell"><span ><i class="fas pointer notifications-dropdown-icon fa-icon notification_bell fa-bell"></i></span></li>
+    <li class="nav-item bell hide notifications-dropdown-icon"><span><i class="far fa-icon pointer fa-bell"></i></span></li>
+{% else %}
+    <li class="nav-item bell notifications-dropdown-icon"><span><i class="fas pointer fa-icon fa-bell"></i></span></li>
+    <li class="nav-item bell hide notifications-dropdown-icon"><span><i class="far fa-icon pointer fa-bell"></i></span></li> 
+{% endif %}
+
+<nav class="notification-dropdown ">
+    <ul>
+        {% if notifications.count == 0 %}  <p class="rb-txt txt-padding txt-space">No notifications</p> {% endif %}
+        {% for notification in notifications  %}
+
+            {% if notification.post %}
+                {% if notification.notification_type == 1 %}
+
+                    <li class='nav-item'>
+                        <a class='rb-txt' href="{% url 'post_notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} liked your post</a>
+                        <span class=" rb-txt dropdown-item-close" onclick='removeNotification( `{% url "remove_notification" notification.pk %}`, `{{ request.path }}` )'>&times</span>
+                    </li>
+                
+                {% elif notification.notification_type == 2 %}
+
+                    <li class='nav-item' >
+                        <a class='rb-txt' href="{% url 'post_notification' notification.pk notification.post.pk %}">@{{ notification.from_user }} commented on your post</a>
+                        <span class=" rb-txt dropdown-item-close" onclick='removeNotification( `{% url "remove_notification" notification.pk %}`, `{{ request.path }}` )'>&times</span>
+                    </li>
+
+                {% endif %}
+
+                
+            {% comment %} {% endif %} {% endcomment %}
+
+            {% elif notification.comment %}
+                {% if notification.notification_type == 1 %}
+
+                    <li class='nav-item'>
+                        <a class='rb-txt' href="#">@{{ notification.from_user }} liked your comment</a>
+                        <span class="rb-txt dropdown-item-close" onclick='removeNotification( `{% url "remove_notification" notification.pk %}`, `{{ request.path }}` )'>&times</span>
+                    </li>
+            
+                {% elif notification.notification_type == 2 %}
+                    <li class='nav-item'>
+                        <a class='rb-txt' href="#">@{{ notification.from_user }} replied to your comment</a>
+                        <span class="rb-txt dropdown-item-close" onclick='removeNotification( `{% url "remove_notification" notification.pk %}`, `{{ request.path }}` )'>&times</span>
+                    </li>
+
+                {% endif %}
+                
+            {% elif notification.thread %}
+                <li class='nav-item'>
+                    <a class='rb-txt' href="{% url 'thread_notification' notification.pk notification.thread.pk %}">@{{ notification.from_user }} sent you a message</a>
+                    <span class="rb-txt dropdown-item-close" onclick='removeNotification( `{% url "remove_notification" notification.pk %}`, `{{ request.path }}` )'>&times</span>
+                </li>
+
+
+            
+            {% comment %} {% endif %} {% endcomment %}
+            
+                
+            {% else %}
+                <li class='nav-item'>
+                    <a class='rb-txt' href="{% url 'follow_notification' notification.pk notification.from_user.pk %}">@{{ notification.from_user }} followed you</a>
+                    <span class="rb-txt dropdown-item-close" onclick='removeNotification( `{% url "remove_notification" notification.pk %}`, `{{ request.path }}` )'>&times</span>
+                </li>
+
+            {% endif %}
+
+        {% endfor %}
+    </ul>
+</nav>
+

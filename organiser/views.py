@@ -9,7 +9,7 @@ from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import Post, Comment, Thread, Message, Friend
+from .models import Post, Comment, Thread, Message, Friend, Notification
 from django.views import View
 from django.db.models import Q
 from django.urls.base import reverse_lazy
@@ -333,4 +333,31 @@ class dislike(LoginRequiredMixin, View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
         
+        
+
+class post_notification(View):
+    def get(self, request, notification_pk, post_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        post = Post.objects.get(pk=post_pk)
+        
+        notification.user_has_seen = True
+        notification.save()
+        
+        return redirect('post_detail', pk=post_pk)
+    
+    
+class follow_notification(View):
+    def get(self, request, notification_pk, profile_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        profile = User.objects.get(pk=profile_pk)
+        
+        notification.user_has_seen = True
+        notification.save()
+        
+        return redirect('profile', pk=profile_pk)
+    
+class thread_notification(View):
+    def get(self, request, notification_pk, object_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        thread = Thread.objects.get(pk=object_pk)
         
