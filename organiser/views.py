@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import Post, Comment
 from django.views import View
+from django.urls.base import reverse_lazy
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -138,3 +139,23 @@ class post_detail(LoginRequiredMixin, View):
         }
         
         return render(request, 'organiser/post_detail.html', context)
+
+class comment_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'organiser/comment_confirm_delete.html'
+    success_message = 'Your comment has been deleted!'
+    
+    def get_success_url(self):
+        pk = self.kwargs['post_pk']
+        return reverse_lazy('post-detail', kwargs={'pk': pk})
+   
+   
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(comment_delete, self).delete(request, *args, **kwargs)
+    
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.author:
+            return True
+        return False 

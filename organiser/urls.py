@@ -5,6 +5,7 @@ from .views import (
     post_update,
     post_delete,
     post_detail,
+    comment_delete,
 )
  
  
@@ -16,6 +17,8 @@ urlpatterns = [
     path('feed/<int:pk>/update/', post_update.as_view(), name='post-update'),
     path('feed/<int:pk>/delete/', post_delete.as_view(), name='post-delete'),
     path('feed/<int:pk>/view/', post_detail.as_view(), name='post-detail'),
+    path('feed/<int:post_pk>/comment/delete/<int:pk>/', comment_delete.as_view(), name='comment_delete'),
+
 
 
  ]
