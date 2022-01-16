@@ -4,6 +4,8 @@ from . import views as organiser_views
  
  
 urlpatterns = [      
-    path('', organiser_views.feed, name='feed'),
+    path('feed/', organiser_views.feed, name='feed'),
+    path('my-profile/', organiser_views.my_profile, name='my-profile'),
+
  ]
  

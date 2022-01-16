@@ -1,0 +1,84 @@
+{% extends 'organiser/base.html' %}
+{% block content %}
+    <main>
+        <div class="profile-info card">
+            <div class="card-wrapper">
+                <div class="profile-pic-wrapper">
+                    <img class='profile-pic' src="{{user.musician.profile_pic.url}}" alt="">
+                </div>
+                <div class="profile-info-text-wrapper">
+                    {% if user.first_name == '' %}
+                        <h1 class='rb-txt txt-space txt-height'>{{user.username}}</h1>
+                    {% else %}
+                    <h1 class='rb-txt txt-space'>{{user.first_name}} {{user.last_name}}</p>
+                    {% endif %}
+                    {% if user.musician.location != '' %}
+                        <p class='rb-txt txt-space txt-height'>{{user.musician.location}}</p>
+                    {% endif %}
+                    {% if user.musician.instrument != '' %}
+                        <p class='rb-txt txt-space txt-height'>{{user.musician.instrument}}</p>
+                    {% endif %}
+                </div>
+                <div id="edit-profile">
+                    <i id="edit-profile-modal" class="far pointer fa-icon fa-edit"></i>
+                </div>
+            </div>
+            <div class="profile-blurb">
+                {% if user.musician.blurb != '' %}
+                    <p class='rb-txt txt-height txt-space'>{{user.musician.blurb}}</p>
+                {% endif %}
+            </div>
+        </div>
+
+         
+           
+                   
+            
+           
+        <div id="profile-update-modal" class="form modal">
+            <span id="close-modal"><i class="fas fa-icon fa-times-circle"></i></span>
+            <div class="modal-form-bg form-wrapper form-wrapper-modal">
+                <div class="form">
+                    <form action="" method="POST" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        {% if user_form.errors  %}
+                            {% for field in user_form  %}
+                                {% for error in field.errors  %}
+                                    <p class="urgent">{{error}}</p>
+                                {% endfor %}
+                            {% endfor %} 
+                        {% endif %}
+                        {% if musician_form.errors  %}
+                            {% for field in musician_form  %}
+                                {% for error in field.errors  %}
+                                    <p class="urgent">{{error}}</p>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                        <p class="rb-txt">First Name</p>
+                        {{user_form.first_name}}
+                        <p class="rb-txt">Last Name</p>
+                        {{user_form.last_name}}
+                        <p class="rb-txt">Location</p>
+                        {{musician_form.location}}
+                        <p class="rb-txt">Instrument</p>
+                        {{musician_form.instrument}}
+                        <p class="rb-txt">Blurb</p>
+                        {{musician_form.blurb}}
+                        {% comment %} <p class="rb-txt">Profile Pic</p>
+                        {{musician_form.profile_pic}} {% endcomment %}
+                        <button class="btn btn-primary" type="submit">Update</button>  
+                    </form> 
+                </div>
+            </div>
+        </div>   
+
+    
+
+       
+      
+  
+
+    </main>
+
+{% endblock content %}

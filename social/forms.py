@@ -31,6 +31,14 @@ class UserLoginForm(AuthenticationForm):
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-field'}))
 
+
+class UserUpdateForm(forms.ModelForm):
+    first_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-field'}))
+    last_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-field'}))
+    
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
         
 class UserPasswordResetForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
