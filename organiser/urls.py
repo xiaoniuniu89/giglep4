@@ -11,7 +11,9 @@ from .views import (
     user_profile,
     list_thread,
     thread_view,
-    change_friends
+    change_friends,
+    create_message,
+    user_profile_list,
 )
  
  
@@ -19,6 +21,7 @@ from .views import (
 urlpatterns = [      
     path('feed/', feed.as_view(), name='feed'),
     path('my-profile/', organiser_views.my_profile, name='my-profile'),
+    path('profile_list/', user_profile_list.as_view(), name='user-profile-list'),
     path('feed/new/', post_create.as_view(), name='post-create'),
     path('feed/<int:pk>/update/', post_update.as_view(), name='post-update'),
     path('feed/<int:pk>/delete/', post_delete.as_view(), name='post-delete'),
@@ -27,6 +30,7 @@ urlpatterns = [
     path('profile/<int:pk>/', user_profile.as_view(), name='profile'),
     path('inbox/', list_thread.as_view(), name='inbox'),
     path('inbox/<int:pk>/', thread_view.as_view(), name='thread'),
+    path('inbox/<int:pk>/create_message/', create_message.as_view(), name="create_message"),
     url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', organiser_views.change_friends, name='change_friends'), 
 
 

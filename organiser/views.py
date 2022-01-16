@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, request
 from django.http.response import HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from .forms import MusicianUpdateForm, CommentForm
+from .forms import MusicianUpdateForm, CommentForm, MessageForm
 from django.contrib.auth.models import User
 from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -204,6 +204,32 @@ class thread_view(View):
         
         return render(request, 'organiser/thread.html', context)
 
+class create_message(View):
+    def post(self, request, pk, *args, **kwargs):
+        form = MessageForm(request.POST, request.FILES)
+        thread = Thread.objects.get(pk=pk)
+        if thread.receiver == request.user:
+            receiver = thread.user
+        else: 
+            receiver = thread.receiver
+            
+        if form.is_valid():
+                message = form.save(commit=False)
+                message.thread = thread
+                message.sender_user = request.user
+                message.receiver_user = receiver
+                message.save()
+        
+        notification = Notification.objects.create(
+            notification_type=4,
+            from_user=request.user,
+            to_user=receiver,
+            thread=thread
+        )
+        
+        return redirect('thread', pk=pk)
+
+
 
 def change_friends(request, operation, pk):
     friend = User.objects.get(pk=pk)
@@ -226,3 +252,18 @@ def change_friends(request, operation, pk):
    
            
     return redirect('feed')
+
+class user_profile_list(ListView):
+    model = User
+    template_name = 'organiser/profile_list.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.exclude(id=self.request.user.id)
+
+        try:
+            friend_obj = Friend.objects.get(current_user=self.request.user)
+            context['friends'] = friend_obj.users.all()
+        except Friend.DoesNotExist:
+            context['friends'] = None
+        return context
