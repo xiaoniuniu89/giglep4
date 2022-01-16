@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'landing/css/landing.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'organiser/css/organiser.css' %}">
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Luckiest+Guy&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {% if title  %}
+        <title>gigle - {{title}}</title>
+    {% else %}
+        <title>gigle</title>
+    {% endif %}
+    
+</head>
+<body>
+    <header class="header-container">
+        <div class="logo-container">
+            <a href=><span class="heading">Gigle</span></a>
+        </div>
+       
+        <div class="nav-container nav-small">
+            <nav class="profile-nav">
+                <ul class="nav-list">
+                    <li class="nav-item bell "><span ><i class="fas pointer notifications-dropdown-icon fa-icon notification_bell fa-bell"></i></span></li>
+                    <li class="nav-item profile-dropdown-icon"><span><i class="fas fa-icon pointer fa-bars"></i></span></li>
+                    <li class="nav-item close-dropdown hide profile-dropdown-icon"><span><i class="far fa-icon pointer fa-times-circle"></i></span></li>
+                </ul>
+
+            </nav>
+            <nav class="profile-dropdown">
+                <ul>
+                    <li class="first-nav"><a class='rb-txt' href=""><i class="far fa-icon fa-calendar-alt"></i> Calendar</a></li>
+                    <li><a class='rb-txt' href=""><i class="far fa-icon fa-envelope"></i> Messages</a></li>
+                    <li ><a class='rb-txt' href=""><i class="fas fa-icon fa-user"></i> Profile</a></li>
+                    <li ><a class='rb-txt' href=""><i class="fas fa-icon fa-users"></i> Friends</a></li>
+                    <li><a class='rb-txt' href=""><i class="fas fa-icon  fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+
+        </div>
+        <div class="nav-container nav-big">
+            <ul class="nav-list">
+                <li class="nav-item"><a href=""><i class="far fa-icon fa-calendar-alt"></i></a></li>
+                <li class="nav-item"><a href=""><i class="fas fa-icon fa-users"></i></a></li>
+                <li class="nav-item bell"><span ><i class="fas pointer notifications-dropdown-icon fa-icon notification_bell fa-bell"></i></span></li>
+                <li class="nav-item "><a href=""><span class='hover-underline'><i class="far fa-icon fa-envelope"></i></span></a></li>
+                <li class="nav-item "><a href=""><span class='hover-underline'><i class="fas fa-icon fa-user"></i></span></a></li>
+                <li class="nav-item "><a href="{% url 'logout' %}"><span class='hover-underline'><i class="fas fa-icon  fa-sign-out-alt"></i></span></a></li>
+            </ul>
+        </div>
+        
+        
+    </header>
+  
+   
+
+    {% if messages %}
+        {% for message in messages  %}
+            <div class="alert alert-{{message.tags}}">
+                <p class="txt-space rb-txt">{{message}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+   
+
+    {% block content %}{% endblock %}
+
+    
+
+    
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

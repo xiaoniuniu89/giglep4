@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'social',
+    'organiser',
 ]
 
 SITE_ID = 1

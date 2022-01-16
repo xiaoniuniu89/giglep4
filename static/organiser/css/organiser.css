@@ -1,0 +1,141 @@
+/* mobile first style sheet  */
+/* general styles  */
+:root {
+    --main-dark: #202020;
+    --off-white: #faf9f6;
+    --off-grey: #615766;
+    --dull-grey: #575766;
+    --urgent: #D22730;
+    --purple: #C724B1;
+    --blue: #4D4DFF;
+    --yellow: #E0E722;
+    --orange: #FFAD00;
+    --red: #D22730;
+    --fuschia:  #DB3EB1;
+    --green: #44D62C;
+  }
+
+
+  .padding {
+      padding: 1em;
+  }
+
+  .center {
+      text-align: center;
+  }
+/* header style */
+/* hide desktop nav bar  */
+
+.nav-big {    
+      display: none;
+  }
+
+
+.fa-icon {
+    font-size: 1.5rem;
+}
+
+.header-container {
+    justify-content: space-between;
+}
+
+/* works in conjunction with js function*/
+/* organiser/js/script.js line 1  */
+.profile-dropdown {
+    position: absolute;
+    background-color: var(--main-dark);
+    opacity: .8;
+    top: 0; right: 0;
+    height: 0px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.profile-dropdown li {
+    border-bottom: 1px solid var(--dull-grey);
+}
+
+/* .notification-dropdown {
+    position: absolute;
+    background-color: var(--main-dark);
+    opacity: .8;
+    top: 0; right: 0;
+    height: 0px;
+    overflow: hidden;
+    z-index: 2;
+} */
+
+.notification_bell {
+    color: var(--urgent);
+}
+
+.notification-dropdown li {
+    border-bottom: 1px solid var(--dull-grey);
+}
+
+.dropdown-item-close {
+    font-size: 1.5rem;
+    color: var(--dull-grey);
+    padding: 0 1em;
+    cursor: pointer;
+}
+
+
+/* push first nav item down below header  */
+.first-nav {
+    margin-top: 4em;
+}
+
+.profile-dropdown a {
+    color: var(--off-white);
+    text-decoration: none;
+    display: block;
+    padding: 2em 6em 2em 2em;
+    text-transform: uppercase;
+}
+
+.notification-dropdown a {
+    color: var(--dull-grey);
+    text-decoration: none;
+    display: inline-block;
+    padding: 2em 1em;
+    max-width: 80%;
+}
+
+.bell {
+    position: absolute;
+    top: 19px; right: 60px;
+}
+
+.profile-nav--open {
+    height: auto;
+    max-width: 70%;
+}
+
+.notification-dropdown {
+    position: initial;
+    background-color: var(--yellow);
+    opacity: .8;
+    /* top: 9%; right: 0; */
+    height: 0px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.notification-nav--open {
+    height: auto ;
+    width: 100%;
+    /* max-width: 70%; */
+}
+
+/* moves fa icon on top of drop down menu  */
+.move-forward {
+    color: var(--off-white);
+    z-index: 3;
+}
+
+.hide, .notification-big {
+    display: none;
+}
+
+/* end header style */

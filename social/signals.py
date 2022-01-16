@@ -14,10 +14,3 @@ def create_profile(sender, instance, created, **kwargs):
         Musician.objects.create(user=instance)
         
 
-# @receiver(post_save, sender=User)
-# def create_profile(sender, instance, created, **kwargs):
-#     try:
-#         instance.profile.save()
-#     except ObjectDoesNotExist:
-#         Musician.objects.create(user=instance)
-

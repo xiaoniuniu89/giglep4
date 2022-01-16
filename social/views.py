@@ -30,3 +30,10 @@ def sign_up(request):
         
     return render(request, 'landing/sign-up.html', {'form': form})
 
+
+
+def feed(request):
+    return render(request, 'organiser/feed.html')
+
+
+
