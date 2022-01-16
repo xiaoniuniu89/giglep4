@@ -9,6 +9,7 @@ from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
+from .models import Post
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -48,3 +49,15 @@ def my_profile(request):
     }
     
     return render(request, 'organiser/my-profile.html', context)
+
+
+    
+class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['content']
+    success_url = '/social/'
+    success_message = 'Your post is now live ~ Who controls the present controls the past!'
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # post author is form author set author before post is saved 
+        return super().form_valid(form)
