@@ -9,8 +9,9 @@ from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import Post, Comment
+from .models import Post, Comment, Thread, Message
 from django.views import View
+from django.db.models import Q
 from django.urls.base import reverse_lazy
 from django.views.generic import (
     ListView, 
@@ -166,24 +167,12 @@ class comment_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False 
 
 
-def change_friends(request, operation, pk):
-    friend = User.objects.get(pk=pk)
-    if operation == 'add':
-        Friend.make_friend(request.user, friend)
-        if Thread.objects.filter(user=request.user, receiver=friend).exists():
-            thread = Thread.objects.filter(user=request.user, receiver=friend)[0]
-        elif Thread.objects.filter(user=friend, receiver=request.user).exists():
-            thread = Thread.objects.filter(user=friend, receiver=request.user)[0]
-        else:
-            thread = Thread(
-                        user=request.user, 
-                        receiver=friend
-                    ) 
-            thread.save()
-    elif operation == 'remove':
-        Friend.unfriend(request.user, friend)
+class list_thread(View):
+    def get(self, request, *args, **kwargs):
+        threads = Thread.objects.filter(Q(user=request.user) | Q(receiver=request.user))
         
+        context = {
+            'threads': threads
+        }
         
-    notification = Notification.objects.create(notification_type=3, from_user=request.user, to_user=friend)
-           
-    return redirect('feed')
+        return render(request, 'organiser/inbox.html', context)

@@ -1,0 +1,35 @@
+{% extends 'organiser/base.html' %}
+{% block content %}
+
+    <div class="basic-wrapper ">
+        <h1 class="heading">Your conversations</h1>
+        {% comment %} <form action="{% url 'create_thread' %}" method="GET">
+            <br>
+            <button class="btn " type="submit">Start a new conversation</button>
+        </form> {% endcomment %}
+        {% for thread in threads.all %}
+        <a href="{% url 'thread' thread.pk %}">
+            <div class="basic-wrapper-flex card">
+
+
+                {% if thread.receiver == request.user %}
+                    <img class='profile-pic-small' src="{{ thread.user.musician.profile_pic.url }}" alt="">
+                    {% if thread.user.first_name == '' %}
+                        <span class='rb-txt text-height '>{{thread.user.username}}</span>
+                    {% else %}
+                        <span class='rb-txt text-height '>{{thread.user.first_name}} {{thread.user.last_name}}</span>
+                    {% endif %}
+                {% else %}
+                    <img class='profile-pic-small' src="{{ thread.receiver.musician.profile_pic.url }}" alt="">
+                    {% if thread.receiver.first_name == '' %}
+                        <span class='rb-txt text-height '>{{thread.receiver.username}}</span>
+                    {% else %}
+                        <span class='rb-txt text-height '>{{thread.receiver.first_name}} {{thread.receiver.last_name}}</span>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
