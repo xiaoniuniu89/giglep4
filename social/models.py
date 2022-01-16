@@ -6,7 +6,7 @@ from cloudinary.models import CloudinaryField
 # extends user model
 class Musician(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # delete profile for musician and not user account 
-    profile_pic = CloudinaryField('image', default='default_pic.jpg')
+    profile_pic = CloudinaryField('image', default='placeholder')
     instrument = models.CharField(default='', max_length=50)
     location = models.CharField(default='', max_length=50)
     blurb = models.TextField(default='', max_length=100)

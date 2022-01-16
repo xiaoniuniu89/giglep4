@@ -3,9 +3,11 @@
     <main>
         <div class="profile-info card">
             <div class="card-wrapper">
-                <div class="profile-pic-wrapper">
-                    <img class='profile-pic' src="{{user.musician.profile_pic.url}}" alt="">
-                </div>
+                {% if "placeholder" in user.musician.profile_pic.url %}
+                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                {% else %}
+                    <img class="profile-pic" src=" https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                {% endif %}
                 <div class="profile-info-text-wrapper">
                     {% if user.first_name == '' %}
                         <h1 class='rb-txt txt-space txt-height'>{{user.username}}</h1>

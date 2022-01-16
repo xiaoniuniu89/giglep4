@@ -35,7 +35,7 @@ def my_profile(request):
             user_form.save()
             musician_form.save()
             messages.success(request, 'Profile has been updated successfully')
-            return HttpResponseRedirect('/organiser/my-profile')
+            return HttpResponseRedirect('/social/my-profile')
             
     else:
         user_form = UserUpdateForm(instance=request.user)
