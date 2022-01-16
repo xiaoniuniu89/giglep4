@@ -1,6 +1,6 @@
 from social.models import Musician
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 
 class MusicianUpdateForm(forms.ModelForm):
@@ -19,3 +19,10 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['content']
         
+
+
+class CommentForm(forms.ModelForm):
+    comment = forms.CharField(max_length=100, required=False, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
+    class Meta:
+        model = Comment
+        fields = ['comment']

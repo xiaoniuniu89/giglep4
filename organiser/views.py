@@ -3,13 +3,14 @@ from django.http import HttpResponseRedirect, request
 from django.http.response import HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from .forms import MusicianUpdateForm
+from .forms import MusicianUpdateForm, CommentForm
 from django.contrib.auth.models import User
 from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import Post
+from .models import Post, Comment
+from django.views import View
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -97,3 +98,43 @@ class post_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False 
+
+
+class post_detail(LoginRequiredMixin, View):
+    def get(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+        form = CommentForm()
+        
+        comments = Comment.objects.filter(post=post).order_by('-date_posted')
+
+ 
+        
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments,
+        }
+        
+        return render(request, 'organiser/post_detail.html', context)
+    
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+        
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.author = request.user
+            new_comment.post = post
+            new_comment.save()
+            
+        comments = Comment.objects.filter(post=post).order_by('-date_posted')
+        
+ 
+        
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments
+        }
+        
+        return render(request, 'organiser/post_detail.html', context)
