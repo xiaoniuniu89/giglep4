@@ -23,9 +23,12 @@ from django.views.generic import (
 # Create your views here.
 
 
+class feed(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'organiser/feed.html'
+    paginate_by = 6
 
-def feed(request):
-    return render(request, 'organiser/feed.html')
+
 
 
 @login_required

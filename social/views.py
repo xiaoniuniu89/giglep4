@@ -32,8 +32,6 @@ def sign_up(request):
 
 
 
-def feed(request):
-    return render(request, 'organiser/feed.html')
 
 
 

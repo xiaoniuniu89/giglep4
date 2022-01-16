@@ -10,7 +10,37 @@
            
          
         </div>
-       
+            {% for post in page_obj %}
+
+           <div class="post-author-wrapper">
+                {% if user.is_authenticated %}
+                    {% if user.pk == post.author.pk %}
+                        {% if user.first_name == '' %}
+                            <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.username}}</a></p>
+                        {% else %}
+                            <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
+                        {% endif %}
+                    {% else %}
+                        {% if post.author.first_name == '' %}
+                            <p class="rb-txt"><a href="">{{post.author.username}}</a></p>
+                        {% else %}
+                            <p class="rb-txt"><a href="">{{post.author.first_name}} {{post.author.last_name}}</a></p>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                <small class="rb-txt">{{post.date_posted}}</small>
+                <br>
+                {% if user.pk == post.author.pk %}
+                    <small><a href="{% url 'post-update' post.pk %}">Edit Post | </a></small>
+                    <small><a href="{% url 'post-delete' post.pk %}">Delete Post</a></small>
+                {% endif %}
+
+                </div>
+                <div class="post-msg">
+                    <p class="rb-txt">{{post.content}}</p>
+                </div>
+
+            {% endfor %}
            
 
             
