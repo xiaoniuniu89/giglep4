@@ -21,9 +21,5 @@ urlpatterns = [
     path('feed/<int:pk>/view/', post_detail.as_view(), name='post-detail'),
     path('feed/<int:post_pk>/comment/delete/<int:pk>/', comment_delete.as_view(), name='comment_delete'),
     path('profile/<int:pk>/', user_profile.as_view(), name='profile'),
-
-
-
-
  ]
  

@@ -164,3 +164,26 @@ class comment_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == comment.author:
             return True
         return False 
+
+
+def change_friends(request, operation, pk):
+    friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, friend)
+        if Thread.objects.filter(user=request.user, receiver=friend).exists():
+            thread = Thread.objects.filter(user=request.user, receiver=friend)[0]
+        elif Thread.objects.filter(user=friend, receiver=request.user).exists():
+            thread = Thread.objects.filter(user=friend, receiver=request.user)[0]
+        else:
+            thread = Thread(
+                        user=request.user, 
+                        receiver=friend
+                    ) 
+            thread.save()
+    elif operation == 'remove':
+        Friend.unfriend(request.user, friend)
+        
+        
+    notification = Notification.objects.create(notification_type=3, from_user=request.user, to_user=friend)
+           
+    return redirect('feed')
