@@ -39,6 +39,23 @@
                 <div class="post-msg">
                     <p class="rb-txt">{{post.content}}</p>
                 </div>
+                 <div class="like-dislike">
+                <div class="">
+                    <form action="{% url 'like' post.pk %}" method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name='next' value='{{ request.path }}'>
+                        <button class="btn-null" type='submit'><i class="far fa-thumbs-up fa-icon"></i><span>{{ post.likes.all.count }}</span></button>
+                    </form>
+                </div>
+                <div class="">
+                    <form action="{% url 'dislike' post.pk %}" method='POST'>
+                        <input type="hidden" name='next' value='{{ request.path }}'>
+                        {% csrf_token %}
+                        <button class="btn-null" type='submit'><i class="far fa-thumbs-down fa-icon"></i><span>{{ post.dislikes.all.count }}</span></button>
+                    </form>
+                </div>
+                <div class=""><a href="{% url 'post-detail' post.pk %}"><i class="fas fa-icon fa-comments"></i></a></div>
+            </div>
 
             {% endfor %}
            

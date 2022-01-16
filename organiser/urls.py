@@ -14,6 +14,8 @@ from .views import (
     change_friends,
     create_message,
     user_profile_list,
+    add_like, 
+    dislike,
 )
  
  
@@ -32,6 +34,8 @@ urlpatterns = [
     path('inbox/<int:pk>/', thread_view.as_view(), name='thread'),
     path('inbox/<int:pk>/create_message/', create_message.as_view(), name="create_message"),
     url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', organiser_views.change_friends, name='change_friends'), 
+    path('feed/<int:pk>/like/', add_like.as_view(), name='like'),
+    path('feed/<int:pk>/dislike/', dislike.as_view(), name='dislike'),
 
 
 
