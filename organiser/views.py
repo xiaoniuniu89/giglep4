@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, request
 from django.http.response import HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
@@ -9,7 +9,7 @@ from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import Post, Comment, Thread, Message
+from .models import Post, Comment, Thread, Message, Friend
 from django.views import View
 from django.db.models import Q
 from django.urls.base import reverse_lazy
@@ -59,6 +59,19 @@ def my_profile(request):
 class user_profile(DetailView):
     model = User
     template_name = 'organiser/profile.html'
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.exclude(id=self.request.user.id)
+        context['threads'] = Thread.objects.filter(user=self.request.user)
+        
+        try:
+            friend_obj = Friend.objects.get(current_user=self.request.user)
+            context['friends'] = friend_obj.users.all()
+        except Friend.DoesNotExist:
+            context['friends'] = None
+        return context
     
 class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Post

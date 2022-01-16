@@ -27,3 +27,5 @@ $('#edit-profile').on('click', function(){
 $('#close-modal').on('click', function(){
     $('#profile-update-modal').css('display', 'none')
 })
+
+
