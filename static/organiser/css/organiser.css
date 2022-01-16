@@ -139,3 +139,86 @@
 }
 
 /* end header style */
+
+/* profile  */
+
+
+.profile-info {
+    width: 95%; margin: 2em auto;
+    max-width: 600px;
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-pic-wrapper, .post-pic-wrapper {
+    width: 30%;
+    display: flex; justify-content: center;
+}
+
+.profile-pic, .profile-pic-small {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    border: 3px solid var(--main-dark);
+}
+
+.profile-pic-small {
+    width: 4em; height: 4em;
+}
+
+.profile-info-text-wrapper {
+    width: 60%;
+    padding: .5em;
+}
+
+.profile-info-text-wrapper p {
+    padding: .3em 0;
+}
+
+.profile-blurb {
+    margin: 0 auto;
+    padding: 1em 1.5em;
+    width: 90%;
+}
+
+
+.edit-profile {
+    cursor: pointer;
+}
+
+/* modal  */
+
+/* The Modal (background) */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: var(--main-dark); /* Fallback color */
+    opacity: .95;
+}
+  
+  /* Modal Content/Box */
+  .modal-form-bg {
+    background-color: var(--off-white);
+    z-index: 2;
+    margin: 15% auto; /* 15% from the top and centered */
+    border: 1px solid var(--dull-grey);
+    width: 100%; /* Could be more or less, depending on screen size */
+  }
+
+  
+  /* The Close Button */
+  #close-modal {
+    color: var(--off-white);
+    float: right;
+    cursor: pointer;
+  }
