@@ -61,3 +61,23 @@ class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user  # post author is form author set author before post is saved 
         return super().form_valid(form)
+
+
+
+class post_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['content']
+    success_url = '/social/feed/'
+    success_message = 'Your post has been corrected ~ Who controls the past controls the future !'
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # post author is form author set author before post is saved 
+        return super().form_valid(form)
+    
+    
+    # test user is author
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False 
