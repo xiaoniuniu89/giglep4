@@ -140,6 +140,87 @@
 
 /* end header style */
 
+/* feed  */
+
+.feed-heading {
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+.post-btn button {
+    display: block;
+    margin: 2em auto 0;
+}
+
+.feed-wrapper {
+    width: 95%;
+    margin: 1em auto;
+    max-width: 600px;
+    /* background-color: yellow; */
+}
+
+.post-wrapper {
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    margin: 2.5em auto;
+}
+
+.card {
+    background-color: white;
+    padding: 1em;
+    box-shadow: -1px 1px 2px var(--off-grey);
+    border-radius: 5px;
+}
+
+.post-author-wrapper {
+    width: 70%;
+    padding: 1em;
+    margin: 0 auto;
+}
+
+.post-author-wrapper:nth-child(1) {
+    padding: .5em;
+}
+
+
+.post-msg {
+    width: 100%;
+    padding: 1em;
+}
+
+.like-dislike {
+    width: 80%;
+    gap: 3em;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.other-users p {
+    margin: 1em 0;
+}
+
+.other-users {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.pagination {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 1em 0 3em;
+}
+
+
+
+/* end feed  */
+
+
 /* profile  */
 
 

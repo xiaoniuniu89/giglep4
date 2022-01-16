@@ -91,6 +91,8 @@ a {
     color: var(--blue);
 }
 
+
+
 .urgent-alert {
     background-color: var(--urgent);
 }
@@ -137,10 +139,15 @@ a {
     gap: 2.5em;
 }
 
+
 .white-card {
     background-color: white;
     box-shadow: -2px 2px 2px var(grey);
 }
+
+ 
+
+
 
 /* ## end base style ##  */
 
@@ -252,6 +259,7 @@ li {
 
 /* ## end landing page cta style ##  */
 
+
 /* forms - sign-up, login, update profile etc.  */
 
 .form-wrapper {
@@ -304,8 +312,6 @@ form button {
     border-radius: 25px;
     border: .5px solid var(--main-dark);
 }
-
-
 
 /* ## Media query start ##  */
 
@@ -360,7 +366,13 @@ form button {
         width: 40%;
     }
 
- 
+    .search-small {
+        display: none;
+    }
+
+    .search-large {
+        display: initial;
+    }
 
 
 }
