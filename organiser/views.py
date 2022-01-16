@@ -55,7 +55,7 @@ def my_profile(request):
 class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Post
     fields = ['content']
-    success_url = '/social/'
+    success_url = '/social/feed/'
     success_message = 'Your post is now live ~ Who controls the present controls the past!'
     
     def form_valid(self, form):
