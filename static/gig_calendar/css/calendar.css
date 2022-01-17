@@ -1,0 +1,75 @@
+:root {
+    --main-dark: #202020;
+    --off-white: #fefefe;
+    --dull-grey: #575766;
+    --urgent: #D22730;
+    --purple: #C724B1;
+    --blue: #4D4DFF;
+    --yellow: #E0E722;
+    --orange: #FFAD00;
+    --red: #D22730;
+    --fuschia:  #DB3EB1;
+    --green: #44D62C;
+  }
+
+
+
+.cal-wrapper {
+    width: 98%;
+    margin: 2em auto;
+    position: relative;
+}
+
+.fa-arrow-alt-circle-left {
+    position: absolute;
+    top: .6em; left: 2.6em;
+}
+
+.cal-btn-r {
+    position: absolute;
+    top: .9em; right: 2.6em;
+} 
+
+.fa-calendar-plus {
+  padding: 0 .1em;
+}
+
+  .calendar {
+    width: 98%;
+    font-family: 'Special Elite', cursive;
+    margin: 2em auto;
+  }
+  
+  /* .calendar tr, .calendar td {
+    border: 1px solid var(--dull-grey);
+  } */
+  
+  .calendar th {
+    padding: .7em;
+    text-align: center;
+    /* font-size: 18px; */
+  }
+
+
+  
+  .calendar td {
+    width: 7em;
+    height: 6em;
+    padding: .4em 0 ;
+    text-align: center;
+  }
+  
+  .month {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 1.5rem;
+  }
+  
+  .date {
+    font-size: 1rem;
+    margin: 0 auto;
+  }
+  
+  ul {
+    height: 100%;
+ 
+  }
