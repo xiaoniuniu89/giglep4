@@ -360,6 +360,14 @@ class thread_notification(View):
     def get(self, request, notification_pk, object_pk, *args, **kwargs):
         notification = Notification.objects.get(pk=notification_pk)
         thread = Thread.objects.get(pk=object_pk)
+
+
+class remove_notification(View):
+    def delete(self, request, notification_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        notification.user_has_seen = True
+        notification.save()
+        return HttpResponse('success', content_type='text/plain')
         
 
 class search_user(ListView):
