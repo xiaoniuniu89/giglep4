@@ -13,6 +13,8 @@ class MusicianUpdateForm(forms.ModelForm):
         fields = ['instrument', 'location', 'blurb', 'profile_pic']
 
 
+
+
 class PostForm(forms.ModelForm):
     content = forms.CharField(max_length=100, required=False, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
     class Meta:
