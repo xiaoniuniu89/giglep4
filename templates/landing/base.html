@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if user.is_authenticated %}
+        <link rel="stylesheet" type="text/css" href="{% static 'organiser/css/organiser.css' %}">
+    {% endif %}
     <link rel="stylesheet" type="text/css" href="{% static 'landing/css/landing.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,27 +15,71 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
     {% if title  %}
-        <title>gigle - {{title}}</title>
+        <title>gig book - {{title}}</title>
     {% else %}
-        <title>gigle</title>
+        <title>gig book</title>
     {% endif %}
     
 </head>
 <body>
+    {% if user.is_authenticated %}
+        <header class="header-container">
+            <div class="logo-container">
+                <a href="{% url 'feed' %}"><span class="heading">Gigle</span></a>
+            </div>
+            <div class="nav-container nav-small">
+                <nav class="profile-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item "><a href="#"><span><i class="fas fa-icon fa-bell"></i></span></a></li>
+                        <li class="nav-item profile-dropdown-icon"><span><i class="fas fa-icon pointer fa-user-circle"></i></span></li>
+                        <li class="nav-item hide profile-dropdown-icon"><span><i class="far fa-icon pointer fa-times-circle"></i></span></li>
+                    </ul>
+                </nav>
+                <nav class="profile-dropdown">
+                    <ul>
+                        <li class="first-nav"><a href="{% url 'my-profile' %}">Press-kit</a></li>
+                        <li><a href="#">Messages</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="nav-container nav-big">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="{% url 'cal:calendar' %}"><i class="far fa-icon fa-calendar-alt"></i></a></li>
+                    <li class="nav-item"><a href="#"><i class="fas fa-icon fa-tasks"></i></a></li>
+                    <li class="nav-item"><a href="{% url 'user-profile-list' %}"><i class="fas fa-icon fa-users"></i></a></li>
+                    <li class="nav-item "><a href="#"><li class="nav-item "><span class='hover-underline'><i class="fas fa-icon fa-bell"></i></span></a></li>
+                    <li class="nav-item "><a href="#"><span class='hover-underline'><i class="fas fa-icon fa-comments"></i></span></a></li>
+                    <li class="nav-item "><a href="{% url 'my-profile'%}"><span class='hover-underline'><i class="fas fa-icon fa-user"></i></span></a></li>
+                    <li class="nav-item "><a href="{% url 'logout' %}"><span class='hover-underline'><i class="fas fa-icon  fa-sign-out-alt"></i></span></a></li>
+                    
+                </ul>
+            </div>
+        </header>
+    
+    {% else %}
         <header class="header-container">
             <div class="logo-container">
                 <a href="{% url 'landing-home' %}"><span class="heading">Gigle</span></a>
             </div>
             <div class="nav-container">
                 <ul class="nav-list">
-                        <li class="nav-item"><a href=""><span class="hover-underline">Login</span></a></li>
-                        <li class="nav-item sign-up"><a href=""><span class="hover-underline">Sign-up</span></a></li>
+                        <li class="nav-item"><a href="{% url 'login' %}"><span class="hover-underline">Login</span></a></li>
+                        <li class="nav-item sign-up"><a href="{% url 'sign-up' %}"><span class="hover-underline">Sign-up</span></a></li>
                 </ul>
             </div>
         </header>
- 
+    {% endif %}
+
+    {% if messages %}
+        {% for message in messages  %}
+            <div class="alert alert-{{message.tags}}">
+                <p class="txt-space rb-txt">{{message}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}{% endblock %}
 
-        <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'organiser/js/script.js' %}"></script>
 </body>
 </html>
