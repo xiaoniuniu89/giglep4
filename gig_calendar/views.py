@@ -51,3 +51,16 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
+
+
+class event_create(SuccessMessageMixin, LoginRequiredMixin, CreateView): #LoginRequiredMixin add this later
+    model = Event
+    fields = ['title', 'date', 'description']
+    success_url = '/calendar/'
+    success_message = 'Event added!'
+    
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # event author is form author set author before post is saved 
+        return super().form_valid(form)
+
