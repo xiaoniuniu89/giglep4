@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('social.urls')),
     path('social/', include('organiser.urls')),
+    path('calendar/', include('gig_calendar.urls')),
 ]
