@@ -14,7 +14,7 @@
                     {% if "placeholder" in user.musician.profile_pic.url %}
                         <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
                     {% else %}
-                        <img class="profile-pic" src=" https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                        <img class="profile-pic" src=" {{ user.musician.profile_pic.url }}">
                     {% endif %}
                     {% if thread.user.first_name == '' %}
                         <span class='rb-txt text-height '>{{thread.user.username}}</span>

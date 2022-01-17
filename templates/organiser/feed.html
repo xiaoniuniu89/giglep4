@@ -11,11 +11,11 @@
                 {% if post.author in friends or user.pk == post.author.pk %}
                         <div class="post-wrapper card">
                             <div class="post-pic-wrapper">
-                                {% if "placeholder" in user.musician.profile_pic.url %}
-                                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
-                                {% else %}
-                                    <img class="profile-pic" src=" https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
-                                {% endif %}
+                            {% if "placeholder" in user.musician.profile_pic.url %}
+                                <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                            {% else %}
+                                <img class="profile-pic" src=" {{ user.musician.profile_pic.url }}">
+                            {% endif %}
                             </div>
                             <div class="post-author-wrapper">
                             {% if user.is_authenticated %}
@@ -85,8 +85,8 @@
         <div class="other-users">
             <h2 class="heading">People you may know</h2>
                 {% if friends.all.count == users.all.count %}
-                <p class="rb-txt">Seems you know everybody!</p>
-            {% endif %}
+                    <p class="rb-txt">Seems you know everybody!</p>
+                {% endif %}
             
             {% for user in users  %}
                 {% if user in friends %}
