@@ -28,6 +28,36 @@ class feed(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'organiser/feed.html'
     paginate_by = 6
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super(feed, self).get_context_data(**kwargs)
+        
+        context['users'] = User.objects.exclude(id=self.request.user.id)
+        try:
+            friend_obj = Friend.objects.get(current_user=self.request.user)
+            friends = friend_obj.users.all()
+            context['friends'] = friends
+        except Friend.DoesNotExist:
+            context['friends'] = None
+            
+        # context['posts'] = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
+
+        return context
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        users = User.objects.exclude(id=self.request.user.id)
+        try:
+            friend_obj = Friend.objects.get(current_user=self.request.user)
+            friends = friend_obj.users.all()
+            # context['friends'] = friends
+        except Friend.DoesNotExist:
+            pass
+            friends = []
+        filter_list = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
+        return filter_list
+    
 
 
 
@@ -64,7 +94,8 @@ class user_profile(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(id=self.request.user.id)
-        context['threads'] = Thread.objects.filter(user=self.request.user)
+        context['threads'] = Thread.objects.filter(Q(user=self.request.user) | Q(receiver=self.request.user))
+      
         
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
@@ -148,6 +179,8 @@ class post_detail(LoginRequiredMixin, View):
             new_comment.save()
             
         comments = Comment.objects.filter(post=post).order_by('-date_posted')
+        notification = Notification.objects.create(notification_type=2, from_user=request.user, to_user=post.author, post=post)
+
         
  
         
@@ -249,6 +282,7 @@ def change_friends(request, operation, pk):
         Friend.unfriend(request.user, friend)
         
         
+    notification = Notification.objects.create(notification_type=3, from_user=request.user, to_user=friend)
    
            
     return redirect('feed')

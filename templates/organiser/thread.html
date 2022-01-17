@@ -18,20 +18,20 @@
         <div class="basic-wrapper chat-height card">
             {% for message in message_list  %}
                 {% if message.sender_user == request.user %}
-                    {% if message.image %}
+                    <!-- {% if message.image %}
                         <div>
                             <img src="{{ message.image.url }}" class='msg-img sent-img' alt="">
                         </div>
-                    {% endif %}
+                    {% endif %} -->
                     <div class="sent-msg">
                         <span class='rb-txt txt-space txt-height'>{{message.body}}</span>
                     </div>
                 {% else %}
-                    {% if message.image %}
+                    <!-- {% if message.image %}
                         <div class='msg-img-container'>
                             <img src="{{ message.image.url }}" class='received-img msg-img' alt="">
                         </div>
-                    {% endif %}
+                    {% endif %} -->
                     <div class="received-msg">
                         <span class='rb-txt txt-space txt-height'>{{message.body}}</span>
                     </div>
@@ -46,7 +46,7 @@
         <form action="{% url 'create_message' thread.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.body}}
-            {{form.image}}
+            <!-- {{form.image}} -->
             <button class="btn btn-primary" type="submit">Send Message</button>
         </form>
     </div>
