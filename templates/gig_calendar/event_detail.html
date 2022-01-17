@@ -1,0 +1,18 @@
+{% extends 'organiser/base.html' %}
+{% block content %}
+
+
+<main>
+    <div class="basic-wrapper card">
+        <h1 class="rb-txt txt-height txt-padding">{{object.title}}</h1>
+       
+        <br>
+        <small class="rb-txt txt-height txt-padding">date: {{object.date}}</small>
+        <br>
+        <p class="rb-txt txt-space txt-height txt-padding">{{object.description}}</p rb-txt>
+    </div>
+</main>
+
+
+
+{% endblock content %}

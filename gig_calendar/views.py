@@ -64,3 +64,7 @@ class event_create(SuccessMessageMixin, LoginRequiredMixin, CreateView): #LoginR
         form.instance.author = self.request.user  # event author is form author set author before post is saved 
         return super().form_valid(form)
 
+
+class event_detail_view(DetailView):
+    model = Event
+
