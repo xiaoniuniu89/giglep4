@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'social',
     'organiser',
+    'gig_calendar',
 ]
 
 SITE_ID = 1
