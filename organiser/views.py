@@ -98,7 +98,11 @@ class user_profile(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(id=self.request.user.id)
-        context['threads'] = Thread.objects.filter(Q(user=self.request.user) | Q(receiver=self.request.user))
+        try:
+            context['threads'] = Thread.objects.filter(Q(user=self.request.user) | Q(receiver=self.request.user))
+
+        except Thread.DoesNotExist:
+            context['threads'] = None
       
         
         try:
@@ -297,6 +301,7 @@ class user_profile_list(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(id=self.request.user.id)
+        
 
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)

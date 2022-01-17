@@ -31,17 +31,20 @@
         </div>
     </div>
         <div class="basic-wrapper-flex">
-            {% for thread in threads %}
-                {% if thread.receiver == user or thread.receiver == request.user %}
-                    {% if thread.receiver == request.user and thread.user == request.user   %}
-                    {% else %}
+            {% if threads %}
+                {% for thread in threads %}
+                    {% if thread.user == request.user and thread.receiver == user  %}
+                        <a href="{% url 'thread' thread.pk %}">
+                        <button class="btn-primary btn-small">Chat</button>
+                        </a>
+                    {% elif thread.receiver == request.user and thread.user == user %}
                         <a href="{% url 'thread' thread.pk %}">
                         <button class="btn-primary btn-small">Chat</button>
                         </a>
                     {% endif %}
-                {% endif %}
-            
-            {% endfor %}
+                {% endfor %}
+                    
+            {% endif %}
             
             {% if user in friends %}
                 <a href="{% url 'change_friends' operation='remove' pk=user.pk %}"><button class="btn-primary btn-small">Unfollow</button></a>
