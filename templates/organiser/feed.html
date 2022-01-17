@@ -7,14 +7,14 @@
     <div class="feed-wrapper">
         <div class="posts-wrapper">
             <h1 class="heading feed-heading">Feed</h1>
-            {% for post in page_obj %}
-                {% if post.author in friends or user.pk == post.author.pk %}
+            {% for post in posts %}
+                
                         <div class="post-wrapper card">
                             <div class="post-pic-wrapper">
-                            {% if "placeholder" in user.musician.profile_pic.url %}
+                            {% if "placeholder" in post.author.musician.profile_pic.url %}
                                 <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
                             {% else %}
-                                <img class="profile-pic" src=" {{ user.musician.profile_pic.url }}">
+                                <img class="profile-pic" src=" {{ post.author.musician.profile_pic.url }}">
                             {% endif %}
                             </div>
                             <div class="post-author-wrapper">
@@ -62,7 +62,7 @@
                                 <div class=""><a href="{% url 'post-detail' post.pk %}"><i class="fas fa-icon fa-comments"></i></a></div>
                             </div>
                        </div>
-                {% endif %}
+                
             
             {% endfor %}
             <div class="pagination">

@@ -41,7 +41,8 @@ class feed(LoginRequiredMixin, ListView):
         except Friend.DoesNotExist:
             context['friends'] = None
             
-        # context['posts'] = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
+        context['posts'] = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
+        # context['poster'] = posts.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
 
         return context
     
@@ -216,7 +217,6 @@ class comment_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class list_thread(View):
     def get(self, request, *args, **kwargs):
         threads = Thread.objects.filter(Q(user=request.user) | Q(receiver=request.user))
-        
         context = {
             'threads': threads
         }

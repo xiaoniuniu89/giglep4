@@ -11,7 +11,7 @@
             {% if "placeholder" in user.musician.profile_pic.url %}
                     <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
             {% else %}
-                <img class="profile-pic" src="{{ user.musician.profile_pic.url }}">
+                <img class="profile-pic" src="{{ post.author.musician.profile_pic.url }}">
             {% endif %}
         </div>
         <div class="post-author-wrapper">
