@@ -68,3 +68,40 @@ class event_create(SuccessMessageMixin, LoginRequiredMixin, CreateView): #LoginR
 class event_detail_view(DetailView):
     model = Event
 
+
+class event_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView): #LoginRequiredMixin UserPassesTestMixin and test_func
+    model = Event
+    id = Event.pk
+    fields = ['title', 'date', 'description']
+    success_url = '/calendar/'
+    success_message = 'Event updated!'
+    
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # event author is form author set author before post is saved 
+        return super().form_valid(form)
+    
+    
+    # test user is author
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False 
+    
+    
+class event_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView): #UserPassesTestMixin
+    model = Event
+    success_url = '/calendar/'
+    success_message = 'Event Deleted!'
+   
+   
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(event_delete, self).delete(request, *args, **kwargs)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
