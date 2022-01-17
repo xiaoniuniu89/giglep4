@@ -35,7 +35,7 @@ class ThreadForm(forms.Form):
 class MessageForm(forms.ModelForm):
     body = forms.CharField(label='', max_length=1000, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
 
-    # image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'rb-txt file-upload'}))
+    image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'rb-txt file-upload'}))
 
     class Meta:
         model = Message
