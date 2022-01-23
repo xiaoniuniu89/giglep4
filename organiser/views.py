@@ -403,6 +403,11 @@ class thread_notification(View):
         notification = Notification.objects.get(pk=notification_pk)
         thread = Thread.objects.get(pk=object_pk)
 
+        notification.user_has_seen = True
+        notification.save()
+        
+        return redirect('thread', pk=object_pk)
+
 
 class remove_notification(View):
     def delete(self, request, notification_pk, *args, **kwargs):
