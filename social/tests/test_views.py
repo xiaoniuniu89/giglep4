@@ -55,7 +55,6 @@ class TestViews(TestCase):
 
         self.assertEquals(response.status_code, 302)
         self.assertRedirects(response, '/login/')
-
         self.assertEquals(self.user1.musician.user.username, 'test')
 
     def test_sign_up_POST_no_data(self):
