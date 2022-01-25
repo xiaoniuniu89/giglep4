@@ -46,7 +46,7 @@
 
  ## <p id="typography">Typography</p> 
 
-- [Mountains of Christmas](https://fonts.google.com/specimen/Mountains+of+Christmas?query=christmas+) is used throughout the site.
+
 
 ## <p id="color">Color</p> 
 
@@ -68,9 +68,22 @@ Wireframes can be found [here]()
 
  ## <p id="landing">Sign-up / Login</p> 
 
+ The sign-up, login and password reset all use built-in features of the django webframework to handle authentication and form validation. 
+
+ The styles of the forms are all custom styles.
+
+- Sign up section
 
 
- <img src="">
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1643096835/Screenshot_from_2022-01-25_07-42-57_usmwqg.png">
+
+ - login section
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1643096835/Screenshot_from_2022-01-25_07-45-03_vosilr.png">
+
+ - password reset system for forgotten passwords 
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1643096835/Screenshot_from_2022-01-25_07-45-12_yzukof.png">
 
 
 ## <p id="feed">Social Feed </p> 
