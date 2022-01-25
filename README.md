@@ -1,108 +1,204 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+## Table of contents
+- <a href="#about">About</a> 
+- <a href="#ux">UX Design</a>
+  - <a a href="#user-stories">User Stories</a>
+  - <a href="#typography">Typography</a>
+  - <a href="#color">Color</a>
+  - <a href="#wireframes">Wireframes</a>
+- <a href="#features">Features</a>
+  - <a href="#landing">Sign-Up/Login</a>
+  - <a href="#feed">Social Feed</a>
+  - <a href="#calendar">Calendar</a>
+  - <a href="#msg">Messages</a>
+  - <a href="#profile">User Profile</a>
+  - <a href="#features-left">Features Left to Impliment</a>
+- <a href="#tech">Technologies Used</a>
+- <a href="#test">Testing</a>
+- <a href="#deployment">Deployment</a>
+- <a href="#credits">Credits</a>
 
-Welcome Daniel Callaghan,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+<section id="about">
 
-## Gitpod Reminders
+# About 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+ Gigle is a social media app for working musicians. Users can connect with other musicians, send provate messages, book events on their own calendar, post what they are thinking in the social feed and like/comment other user posts. 
+<span style="color:red">Gigle is still in development</span>.
 
-`python3 -m http.server`
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1643095598/Screenshot_from_2022-01-17_13-42-36_lz8lh0.png">
+ 
+ 
+ The site is deployed here:
+ 
+ - https://p4gigle.herokuapp.com/ 
 
-A blue button should appear to click: _Make Public_,
+</section>
 
-Another blue button should appear to click: _Open Browser_.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+<section id="ux">
 
-A blue button should appear to click: _Make Public_,
+# UX Design
 
-Another blue button should appear to click: _Open Browser_.
+## <p id="user-stories"> User Stories</p>
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
-To log into the Heroku toolbelt CLI:
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+ ## <p id="typography">Typography</p> 
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- [Mountains of Christmas](https://fonts.google.com/specimen/Mountains+of+Christmas?query=christmas+) is used throughout the site.
 
-------
+## <p id="color">Color</p> 
 
-## Release History
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+</section>
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## <p id="wireframes">Wireframes</p> 
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+Wireframes can be found [here]()
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+</section>
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+<section id="features">
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+# Features
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+ ## <p id="landing">Sign-up / Login</p> 
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+ <img src="">
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## <p id="feed">Social Feed </p> 
 
-------
 
-## FAQ about the uptime script
 
-**Why have you added this script?**
+ <img src="">
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
 
-**How will this affect me?**
+ ## <p id="calendar">Calendar </p> 
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+ <img src="">
 
-**So….?**
+ ## <p id="msg">Messages </p> 
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
 
-**Can I opt out?**
+ <img src="">
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+## <p id="profile">User Profile </p> 
 
-**Anything more?**
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
----
+ <img src="">
 
-Happy coding!
+
+
+## <p id="features-left">Features left to impliment</p> 
+
+
+
+</section>
+
+<section id="tech">
+
+# Technologies Used 
+
+[Gitpod](https://www.gitpod.io) 
+- IDE (Intigrated Development Environment)
+
+[Github](https://www.github.com)
+- remote repository hosting platform
+
+[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) | [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | [Jquery](https://jquery.com/) | [python](https://www.python.org/) | [django](https://www.djangoproject.com/)
+
+- Languages, libraries and framework
+ Used to make the site
+
+[Chrome Dev Tools](https://developer.chrome.com/docs/devtools/)
+- Used to check site responsiveness
+
+[Jigsaw](https://jigsaw.w3.org/css-validator/)
+- Check for CSS errors
+
+[HTML Validator](https://validator.w3.org/)
+- Check for HTML errors
+
+[jshint](https://jshint.com/)
+- check for JavaScript errors
+
+[Font Awesome](https://fontawesome.com/)
+- for Icons 
+
+[Balsamiq](https://balsamiq.com/)
+- to make wireframes
+
+[Website Responsive Test](http://responsivetesttool.com/)
+- to check responsivness on different devices
+
+# Testing <p id="test"></p>
+
+Testing can be found in this file: [Testing](TESTING.md)
+
+</section>
+
+# Deployment <p id="deployment"></p>
+
+The site is deployed on git hub pages. The link is here:
+
+https://xiaoniuniu89.github.io/santa-letters/
+
+Steps to deploy the site:
+
+
+How to fork the repository
+- Go to [github.com](https://www.github.com) and login.
+- Click santa-letters
+- in the top right of the page click the "fork" button
+- you will now have a copy of the repository in your github account.
+
+How to clone the repository
+- Go to [github.com](https://www.github.com)
+- Log in to account
+- Click repositories
+- Click santa-letters fork
+- Click the green code button that says Clone or download 
+- to copy from HTTPS copy URL link "HTTPS". 
+- open terminal
+- go to directory where you want to save the files
+- type git clone and paste the link
+- press enter and the clone will be created
+
+
+More detailed instructions can be found [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository#cloning-a-repository-to-github-desktop)
+
+
+# Credits <p id="credits"></p>
+
+## Content
+
+### Media
+<br>
+
+#### Images
+
+
+
+<br>
+
+
+
+#### Videos
+
+
+<br>
+
+### Text
+
+- text written by
