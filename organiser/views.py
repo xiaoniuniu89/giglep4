@@ -258,11 +258,11 @@ class create_message(View):
             receiver = thread.receiver
             
         if form.is_valid():
-                message = form.save(commit=False)
-                message.thread = thread
-                message.sender_user = request.user
-                message.receiver_user = receiver
-                message.save()
+            message = form.save(commit=False)
+            message.thread = thread
+            message.sender_user = request.user
+            message.receiver_user = receiver
+            message.save()
         
         notification = Notification.objects.create(
             notification_type=4,

@@ -14,17 +14,17 @@ from .views import (
     change_friends,
     create_message,
     user_profile_list,
-    add_like, 
+    add_like,
     dislike,
     post_notification,
     follow_notification,
     thread_notification,
     remove_notification,
-    search_user, 
+    search_user,
 
 )
 
-urlpatterns = [      
+urlpatterns = [
     path('feed/', feed.as_view(), name='feed'),
     path('my-profile/', organiser_views.my_profile, name='my-profile'),
     path('profile_list/', user_profile_list.as_view(), name='user-profile-list'),
@@ -37,7 +37,7 @@ urlpatterns = [
     path('inbox/', list_thread.as_view(), name='inbox'),
     path('inbox/<int:pk>/', thread_view.as_view(), name='thread'),
     path('inbox/<int:pk>/create_message/', create_message.as_view(), name="create_message"),
-    url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', organiser_views.change_friends, name='change_friends'), 
+    url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', organiser_views.change_friends, name='change_friends'),
     path('feed/<int:pk>/like/', add_like.as_view(), name='like'),
     path('feed/<int:pk>/dislike/', dislike.as_view(), name='dislike'),
     path('notification/<int:notification_pk>/post/<int:post_pk>/', post_notification.as_view(), name='post_notification'),
