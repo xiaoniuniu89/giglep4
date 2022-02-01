@@ -38,10 +38,14 @@ class feed(LoginRequiredMixin, ListView):
             friend_obj = Friend.objects.get(current_user=self.request.user)
             friends = friend_obj.users.all()
             context['friends'] = friends
+            friend_suggestion = User.objects.exclude(id__in = friends).exclude(id=self.request.user.id)
+            context['user_you_may_know'] = friend_suggestion.all()[:4]
             context['posts'] = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
 
         except Friend.DoesNotExist:
             context['friends'] = None
+            friend_suggestion = User.objects.exclude(id=self.request.user.id)
+            context['user_you_may_know'] = friend_suggestion.all()[:4]
             context['posts'] = Post.objects.filter(author=self.request.user)
             
         # context['posts'] = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
