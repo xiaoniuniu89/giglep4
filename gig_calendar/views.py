@@ -65,7 +65,7 @@ class event_create(SuccessMessageMixin, LoginRequiredMixin, CreateView): #LoginR
         return super().form_valid(form)
 
 
-class event_detail_view(DetailView):
+class event_detail_view(LoginRequiredMixin, DetailView):
     model = Event
 
 
