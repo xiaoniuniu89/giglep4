@@ -65,8 +65,16 @@ class event_create(SuccessMessageMixin, LoginRequiredMixin, CreateView): #LoginR
         return super().form_valid(form)
 
 
-class event_detail_view(LoginRequiredMixin, DetailView):
+class event_detail_view(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Event
+
+
+    # test user is author
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False 
 
 
 class event_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView): #LoginRequiredMixin UserPassesTestMixin and test_func
