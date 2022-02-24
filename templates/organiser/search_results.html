@@ -1,7 +1,7 @@
 {% extends 'organiser/base.html' %}
 {% block content %}
     {% for user in users %}
-    <div class="profile-info">
+    <div class="profile-info card">
         <div class="card-wrapper">
             <div class="profile-pic-wrapper">
                 {% if "placeholder" in comment.author.musician.profile_pic.url %}
