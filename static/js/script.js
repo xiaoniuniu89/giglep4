@@ -19,7 +19,7 @@ $('.notifications-dropdown-icon').on('click', function() {
 
 
 
-// open and close modal 
+// open and close modal to edit profile 
 
 $('#edit-profile').on('click', function(){
     $('#profile-update-modal').css('display', 'block')
@@ -29,7 +29,7 @@ $('#close-modal').on('click', function(){
     $('#profile-update-modal').css('display', 'none')
 })
 
-
+// for notifications 
 
 function getCookie(name) {
     let cookieValue = null;
