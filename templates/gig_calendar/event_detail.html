@@ -3,6 +3,8 @@
 
 
 <main>
+    <br>
+    <p class='rb-txt txt-space'><a href="{% url 'cal:calendar' %}"><i class="fas fa-icon fa-chevron-left"></i>Back to Calendar</a></p>
     <div class="basic-wrapper card">
         <h1 class="rb-txt txt-height txt-padding">{{object.title}}</h1>
         <small class="rb-txt"><a href="{% url 'cal:event-update' event.pk %}">Edit | </a></small>

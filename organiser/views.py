@@ -201,7 +201,8 @@ class post_detail(LoginRequiredMixin, View):
             new_comment.save()
             
         comments = Comment.objects.filter(post=post).order_by('-date_posted')
-        notification = Notification.objects.create(notification_type=2, from_user=request.user, to_user=post.author, post=post)
+        if not Notification.objects.filter(Q(post=post) & Q(from_user=request.user) & Q (user_has_seen = False)).exists():
+            notification = Notification.objects.create(notification_type=2, from_user=request.user, to_user=post.author, post=post)
 
         
  
@@ -273,13 +274,14 @@ class create_message(View):
             message.sender_user = request.user
             message.receiver_user = receiver
             message.save()
-        
-        notification = Notification.objects.create(
-            notification_type=4,
-            from_user=request.user,
-            to_user=receiver,
-            thread=thread
-        )
+        if not Notification.objects.filter(Q(thread=thread) & Q (user_has_seen = False)).exists():
+            notification = Notification.objects.create(
+                notification_type=4,
+                from_user=request.user,
+                to_user=receiver,
+                thread=thread
+            )
+            
         
         return redirect('thread', pk=pk)
 
@@ -301,9 +303,9 @@ def change_friends(request, operation, pk):
             thread.save()
     elif operation == 'remove':
         Friend.unfriend(request.user, friend)
-        
-        
-    notification = Notification.objects.create(notification_type=3, from_user=request.user, to_user=friend)
+    
+    if not Notification.objects.filter(Q(notification_type=3) & Q(from_user=request.user) & Q(to_user=friend) & Q(user_has_seen = False)).exists():    
+        notification = Notification.objects.create(notification_type=3, from_user=request.user, to_user=friend)
    
            
     return redirect('feed')
@@ -399,7 +401,7 @@ class post_notification(View):
         notification.user_has_seen = True
         notification.save()
         
-        return redirect('post_detail', pk=post_pk)
+        return redirect('post-detail', pk=post_pk)
     
     
 class follow_notification(View):
