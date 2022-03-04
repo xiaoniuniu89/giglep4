@@ -281,8 +281,7 @@ form .heading {
     margin-bottom: .4em;
 }
 
-.form-field, .search-field, .form-field-textarea {
-    width: 90%;
+.search-field, .form-field-textarea{
     margin: .5em 0;
     padding: .4em;
     border-radius: 25px;
@@ -293,7 +292,9 @@ form .heading {
 .form-field-textarea {
     padding: .5em;
     border-radius: 15px;
+    width: 100%;
 }
+
 
 .search-field {
     width: 50%;
@@ -315,6 +316,8 @@ form button {
     border-radius: 25px;
     border: .5px solid var(--main-dark);
 }
+
+
 
 /* ## Media query start ##  */
 

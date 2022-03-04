@@ -14,6 +14,7 @@ from django.views.generic import (
 )
 from .models import Event
 from .utils import Calendar
+from .forms import EventForm
 
 
 class CalendarView(LoginRequiredMixin, ListView):
@@ -63,6 +64,11 @@ class event_create(SuccessMessageMixin, LoginRequiredMixin, CreateView): #LoginR
     def form_valid(self, form):
         form.instance.author = self.request.user  # event author is form author set author before post is saved 
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = EventForm()
+        return context
 
 
 class event_detail_view(LoginRequiredMixin, UserPassesTestMixin, DetailView):
