@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, request
+import random
 from django.http.response import HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
@@ -39,7 +40,10 @@ class feed(LoginRequiredMixin, ListView):
             friends = friend_obj.users.all()
             context['friends'] = friends
             friend_suggestion = User.objects.exclude(id__in = friends).exclude(id=self.request.user.id)
-            context['user_you_may_know'] = friend_suggestion.all()[:4]
+            try:
+                context['user_you_may_know'] = random.sample(list(friend_suggestion), 4)
+            except ValueError as e:
+                context['user_you_may_know'] = random.sample(list(friend_suggestion), len(friend_suggestion))
             context['posts'] = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
 
         except Friend.DoesNotExist:
