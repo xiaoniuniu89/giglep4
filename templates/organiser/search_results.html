@@ -1,44 +1,46 @@
 {% extends 'organiser/base.html' %}
 {% block content %}
     {% for user in users %}
-    <div class="profile-info card">
-        <div class="card-wrapper">
-            <div class="profile-pic-wrapper">
-                {% if "placeholder" in user.musician.profile_pic.url %}
-                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
-                {% else %}
-                    <img class="profile-pic" src="{{ user.musician.profile_pic.url }}">
-                {% endif %}
-            </div>
-            <div class="profile-info-text-wrapper">
-                {% if request.user.pk == user.pk  %}
-                    {% if user.first_name == '' %}
-                        <h1 class='rb-txt txt-space txt-height'><a href="{% url 'my-profile' %}">{{user.username}}</a></h1>
+        {% if request.user.pk == user.pk  %}
+            <a href="{% url 'my-profile' %}">
+        {% else %}
+            <a href="{% url 'profile' user.pk %}">
+        {% endif %}
+        <div class="profile-info card">
+            <div class="card-wrapper">
+                <div class="profile-pic-wrapper">
+                    {% if "placeholder" in user.musician.profile_pic.url %}
+                        <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
                     {% else %}
-                        <h1 class='rb-txt txt-space'><a href="{% url 'my-profile' %}">{{user.first_name}} {{user.last_name}}</a></p>
+                        <img class="profile-pic" src="{{ user.musician.profile_pic.url }}">
                     {% endif %}
-                {% else %}
-                    {% if user.first_name == '' %}
-                        <h1 class='rb-txt txt-space txt-height'><a href="{% url 'profile' user.pk %}">{{user.username}}</a></h1>
+                </div>
+                <div class="profile-info-text-wrapper">
+                    {% if request.user.pk == user.pk  %}
+                        {% if user.first_name == '' %}
+                            <h1 class='rb-txt txt-space txt-height'>{{user.username}}</h1>
+                        {% else %}
+                            <h1 class='rb-txt txt-space'>{{user.first_name}} {{user.last_name}}</h1>
+                        {% endif %}
                     {% else %}
-                    <h1 class='rb-txt txt-space'><a href="{% url 'profile' user.pk %}">{{user.first_name}} {{user.last_name}}</a></p>
+                        {% if user.first_name == '' %}
+                            <h1 class='rb-txt txt-space txt-height'>{{user.username}}</h1>
+                        {% else %}
+                        <h1 class='rb-txt txt-space'>{{user.first_name}} {{user.last_name}}</h1>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                {% if user.musician.location != '' %}
-                    <p class='rb-txt txt-space txt-height'>{{user.musician.location}}</p>
-                {% endif %}
-                {% if user.musician.instrument != '' %}
-                    <p class='rb-txt txt-space txt-height'>{{user.musician.instrument}}</p>
-                {% endif %}
+                    {% if user.musician.location != '' %}
+                        <small class='rb-txt txt-space txt-height'>{{user.musician.location}}</small>
+                    {% endif %}
+                    {% if user.musician.instrument != '' %}
+                        <small class='rb-txt txt-space txt-height'>{{user.musician.instrument}}</small>
+                    {% endif %}
+                </div>
+            
             </div>
-           
+            
         </div>
-        <div class="profile-blurb">
-            {% if user.musician.blurb != '' %}
-                <p class='rb-txt txt-height txt-space'>{{user.musician.blurb}}</p>
-            {% endif %}
-        </div>
-    </div>
+        </a>
 
     {% endfor %}
 
