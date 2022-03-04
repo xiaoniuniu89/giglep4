@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, request
 from django.http.response import HttpResponse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from .forms import MusicianUpdateForm, CommentForm, MessageForm
+from .forms import MusicianUpdateForm, CommentForm, MessageForm, PostForm
 from django.contrib.auth.models import User
 from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -121,7 +121,13 @@ class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     fields = ['content']
     success_url = '/social/feed/'
     success_message = 'Your post is now live ~ Who controls the present controls the past!'
-    
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = PostForm()
+        return context
+
     def form_valid(self, form):
         form.instance.author = self.request.user  # post author is form author set author before post is saved 
         return super().form_valid(form)
