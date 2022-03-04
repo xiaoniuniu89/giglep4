@@ -11,5 +11,6 @@ urlpatterns = [
     path('event/<int:pk>/', calendar_views.event_detail_view.as_view(), name='event_detail'),
     path('event/<int:pk>/update/', calendar_views.event_update.as_view(), name='event-update'),
     path('event/<int:pk>/delete/', calendar_views.event_delete.as_view(), name='event-delete'),
+    path('event-list/<slug:slug_year>/<slug:slug_month>/<slug:slug_day>/', calendar_views.event_list_view.as_view(), name='event-list'),
 ]
 
