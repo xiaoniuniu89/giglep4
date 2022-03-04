@@ -1,9 +1,3 @@
-// This code is to render the DM starting at bottom
-// from latest mesg sent / received
-const chatWindow = document.getElementById("chat");
-chatWindow.scrollTop = chatWindow.scrollHeight;
-
-
 // to open profile dropdown menu
 // organiser.css line 33 
 $('.profile-dropdown-icon').on('click', function() {
@@ -17,6 +11,7 @@ $('.profile-dropdown-icon').on('click', function() {
 
 // to open and close the notification menu
 $('.notifications-dropdown-icon').on('click', function() {
+    console.log('clicked')
     $('.notification-dropdown').toggleClass('notification-nav--open', 500)
     $('.bell').toggleClass('hide')
     $('.cover-bell').toggleClass('hide')
