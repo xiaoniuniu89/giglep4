@@ -1,3 +1,9 @@
+// This code is to render the DM starting at bottom
+// from latest mesg sent / received
+const chatWindow = document.getElementById("chat");
+chatWindow.scrollTop = chatWindow.scrollHeight;
+
+
 // to open profile dropdown menu
 // organiser.css line 33 
 $('.profile-dropdown-icon').on('click', function() {
@@ -61,5 +67,10 @@ function removeNotification(removeNotificationURL, redirectURL) {
     xmlhttp.setRequestHeader("X-CSRFToken", csrftoken);
     xmlhttp.send();
 }
+
+
+
+
+
 
 

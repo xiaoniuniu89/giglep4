@@ -15,7 +15,7 @@
             <p>No messages</p>
         </div>
     {% else %}
-        <div class="basic-wrapper chat-height card">
+        <div id="chat" class="basic-wrapper chat-height card">
             {% for message in message_list  %}
                 {% if message.sender_user == request.user %}
                     <!-- {% if message.image %}
