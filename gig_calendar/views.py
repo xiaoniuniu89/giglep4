@@ -76,6 +76,19 @@ class event_detail_view(LoginRequiredMixin, UserPassesTestMixin, DetailView):
             return True
         return False 
 
+class event_list_view(LoginRequiredMixin, ListView):
+    model = Event
+
+    template_name = 'gig_calendar/event_list.html'
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super(event_list_view, self).get_context_data(**kwargs)
+        
+        context["events"] = Event.objects.filter(date__year=self.kwargs["slug_year"], date__month=self.kwargs["slug_month"], date__day=self.kwargs["slug_day"], author=self.request.user)
+        return context
+
+
 
 class event_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView): #LoginRequiredMixin UserPassesTestMixin and test_func
     model = Event

@@ -21,9 +21,14 @@ class Calendar(HTMLCalendar):
 		events_per_day = events.filter(date__day=day)
 		d = ''
 		
-		for event in events_per_day:
-			d += f'<li class="event-big"><a href="{ reverse_lazy("cal:event_detail", args=(event.pk,)) }">{event.title}</a></li>'
-			d += f'<li class="event-small"><a href="{ reverse_lazy("cal:event_detail", args=(event.pk,)) }"> . </a></li>'
+		if len(events_per_day) > 1:
+			d += f'<li class="event-big"><a href="{ reverse_lazy("cal:event-list", kwargs={"slug_year": self.year, "slug_month": self.month, "slug_day": day}) }">{len(events_per_day)} events</a></li>'
+			d += f'<li class="event-small"><a href="{ reverse_lazy("cal:event-list", kwargs={"slug_year": self.year, "slug_month": self.month, "slug_day": day}) }">..</a></li>'
+
+		else:
+			for event in events_per_day:
+				d += f'<li class="event-big"><a href="{ reverse_lazy("cal:event_detail", args=(event.pk,)) }">{event.title}</a></li>'
+				d += f'<li class="event-small"><a href="{ reverse_lazy("cal:event_detail", args=(event.pk,)) }"> . </a></li>'
 
 		if day != 0:
 			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
