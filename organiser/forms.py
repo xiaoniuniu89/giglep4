@@ -16,7 +16,7 @@ class MusicianUpdateForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
-    content = forms.CharField(max_length=100, required=False, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
+    content = forms.CharField(max_length=100, required=True, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
     class Meta:
         model = Post
         fields = ['content']
@@ -24,7 +24,7 @@ class PostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    comment = forms.CharField(max_length=100, required=False, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
+    comment = forms.CharField(max_length=100, required=True, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
     class Meta:
         model = Comment
         fields = ['comment']

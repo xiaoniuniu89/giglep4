@@ -2,9 +2,11 @@
 {% block content %}
     <main>
 
-     
+     <br>
+    <p class='rb-txt txt-space'><a href="{% url 'feed' %}"><i class="fas fa-icon fa-chevron-left"></i>Back to Feed</a></p>
         
         <div class='form-wrapper'>
+             
             <div class="form">
                 <form action="" method="POST">
                     {% csrf_token %}
