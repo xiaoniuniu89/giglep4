@@ -20,6 +20,7 @@ from .views import (
     follow_notification,
     thread_notification,
     remove_notification,
+    event_notification,
     search_user,
 
 )
@@ -43,6 +44,7 @@ urlpatterns = [
     path('notification/<int:notification_pk>/post/<int:post_pk>/', post_notification.as_view(), name='post_notification'),
     path('notification/<int:notification_pk>/profile/<int:profile_pk>/', follow_notification.as_view(), name='follow_notification'),
     path('notification/<int:notification_pk>/thread/<int:object_pk>/', thread_notification.as_view(), name='thread_notification'),
+    path('notification/<int:notification_pk>/event/<int:object_pk>/', event_notification.as_view(), name='event_notification'),
     path('notification/delete/<int:notification_pk>/', remove_notification.as_view(), name='remove_notification'),
     path('search/', search_user.as_view(), name='search'),
 

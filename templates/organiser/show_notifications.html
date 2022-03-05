@@ -31,6 +31,14 @@
                 
             {% comment %} {% endif %} {% endcomment %}
 
+            {% elif notification.event %}
+             <li class='nav-item'>
+                        <a class='rb-txt' href="{% url 'event_notification' notification.pk notification.event.pk %}">@{{ notification.from_user }} invited you to an event</a>
+                        <span class=" rb-txt dropdown-item-close" onclick='removeNotification( `{% url "remove_notification" notification.pk %}`, `{{ request.path }}` )'>&times</span>
+                    </li>
+            
+
+
             {% elif notification.comment %}
                 {% if notification.notification_type == 1 %}
 

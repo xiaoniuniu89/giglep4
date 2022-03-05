@@ -83,6 +83,16 @@
       display: none;
   }
 
+
+.fa-external-link-alt {
+  position: absolute;
+  right: 5%;
+}
+
+.relative-card {
+  position: relative;
+}
+
 @media screen and (min-width: 700px){
     .calendar {
         width: 80%;

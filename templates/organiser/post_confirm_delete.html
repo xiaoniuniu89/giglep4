@@ -10,7 +10,7 @@
                     {% csrf_token %}
                     <h1 class='heading'>Are you sure?</h1>
                     <button class="btn btn-primary" type="submit">Delete</button>
-                    <a href='{% url 'feed' %}' class="btn btn-primary" >Cancel</a>
+                    <a href="{% url 'feed' %}" class="btn btn-primary" >Cancel</a>
                 </form>
             </div>
         </div>

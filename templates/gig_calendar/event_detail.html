@@ -4,8 +4,11 @@
 
 <main>
     <br>
-    <p class='rb-txt txt-space'><a href="{% url 'cal:calendar' %}"><i class="fas fa-icon fa-chevron-left"></i>Back to Calendar</a></p>
-    <div class="basic-wrapper card">
+    <p class='rb-txt txt-space'><a href="{% url 'cal:calendar' %}"><i class="fas fa-chevron-left"></i>Back to Calendar</a></p>
+    <div class="basic-wrapper card relative-card">
+        <a href="{% url 'cal:event_share' event.pk %}">
+            <i class="fas fa-icon fa-external-link-alt"></i>
+        </a>
         <h1 class="rb-txt txt-height txt-padding">{{object.title}}</h1>
         <small class="rb-txt"><a href="{% url 'cal:event-update' event.pk %}">Edit | </a></small>
         <small class="rb-txt"><a href="{% url 'cal:event-delete' event.pk %}">Delete</a></small>

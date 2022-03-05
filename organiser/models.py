@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from gig_calendar.models import Event
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import related 
 from django.utils import timezone
@@ -59,12 +60,13 @@ class Friend(models.Model):
 
 
 class Notification(models.Model):
-    #1 = like, 2 = comment, 3 = follow, 4= direct message
+    #1 = like, 2 = comment, 3 = follow, 4= direct message, 5=event
     notification_type = models.IntegerField()
     to_user = models.ForeignKey(User, related_name='notification_to', on_delete=models.CASCADE, null=True)
     from_user = models.ForeignKey(User, related_name='notification_from', on_delete=models.CASCADE, null=True)
     post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     thread = models.ForeignKey('Thread', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+    event = models.ForeignKey('gig_calendar.Event', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
     date = models.DateTimeField(default=timezone.now)
     user_has_seen = models.BooleanField(default=False)
