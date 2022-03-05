@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime, timedelta, date 
 from django.utils.safestring import mark_safe
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect, request
 from django.contrib import messages
 import calendar
+from django.views import View
 from django.views.generic import (
     ListView, 
     DetailView, 
@@ -16,7 +18,7 @@ from django.views.generic import (
 from .models import Event
 from .utils import Calendar
 from .forms import EventForm
-from organiser.models import User, Friend
+from organiser.models import User, Friend, Notification
 
 
 class CalendarView(LoginRequiredMixin, ListView):
@@ -156,19 +158,71 @@ class event_share(TemplateView):
         
    
 
-class event_share_confirm(TemplateView):
+class event_share_confirm(View):
     model = Event
     # model = User
     template_name = 'gig_calendar/event_share_confirm.html'
-    
-    def get_context_data(self, **kwargs):
-        # context = super(event_share, self).get_context_data(**kwargs)
-        context = super().get_context_data(**kwargs)
-        context['from_user'] = User.objects.get(id=self.request.user.id)
-        event = Event.objects.get(pk=kwargs['event_pk'])
-        context['event'] = event
-        to_user = User.objects.get(pk=kwargs['user_pk'])
-        context['to_user'] = to_user
-        return context
+
+
+    def get(self, request, *args, **kwargs):
         
+        context = {
+            'to_user': User.objects.get(pk=kwargs['user_pk']),
+            'event': Event.objects.get(pk=kwargs['event_pk']),
+            'from_user': User.objects.get(id=self.request.user.id)
+        }
+
+        return render(request, 'gig_calendar/event_share_confirm.html', context)
+
+            
+
+    def post(self, request, *args, **kwargs):
+        to_user =  User.objects.get(pk=kwargs['user_pk'])
+        event = Event.objects.get(pk=kwargs['event_pk'])
+        from_user = User.objects.get(id=self.request.user.id)
+
+        notification = Notification.objects.create(
+            notification_type=5,
+            from_user=from_user,
+            to_user=to_user,
+            event=event
+        )
+
+        return redirect('cal:calendar')
     
+    # def get_context_data(self, **kwargs):
+    #     # context = super(event_share, self).get_context_data(**kwargs)
+    #     context = super().get_context_data(**kwargs)
+    #     context['from_user'] = User.objects.get(id=self.request.user.id)
+    #     event = Event.objects.get(pk=kwargs['event_pk'])
+    #     context['event'] = event
+    #     to_user = User.objects.get(pk=kwargs['user_pk'])
+    #     context['to_user'] = to_user
+    #     return context
+        
+class event_invite(View):
+    model = Event
+    # model = User
+    template_name = 'gig_calendar/event_invite.html'
+
+
+    def get(self, request, *args, **kwargs):
+        
+        context = {
+            'event': Event.objects.get(pk=kwargs['pk']),
+        }
+
+        return render(request, 'gig_calendar/event_invite.html', context)
+
+            
+
+    def post(self, request, *args, **kwargs):
+        event = Event.objects.get(pk=kwargs['pk'])
+        Event.objects.create(
+            author=self.request.user,
+            title=event.title,
+            description=event.description,
+            date=event.date
+        )
+
+        return redirect('cal:calendar')

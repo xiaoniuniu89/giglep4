@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import Post, Comment, Thread, Message, Friend, Notification
+from gig_calendar.models import Event
 from django.views import View
 from django.db.models import Q
 from django.urls.base import reverse_lazy
@@ -423,6 +424,15 @@ class thread_notification(View):
         notification.save()
         
         return redirect('thread', pk=object_pk)
+
+class event_notification(View):
+    def get(self, request, notification_pk, object_pk, *args, **kwargs):
+        notification = Notification.objects.get(pk=notification_pk)
+        event = Event.objects.get(pk=object_pk)
+        notification.user_has_seen = True
+        notification.save()
+        
+        return redirect('cal:event_invite', pk=object_pk)
 
 
 class remove_notification(View):
