@@ -31,7 +31,7 @@
             <form action="{% url 'search' %}" method="get">
                 <input id="al-search" type="text" placeholder="search user..."
                        name="user" value="{{ request.GET.account }}"
-                       class="search-field" />
+                       class="search-field" required/>
                 <button type="submit"
                         class="btn-small btn-primary" />Search</button>
             </form>
