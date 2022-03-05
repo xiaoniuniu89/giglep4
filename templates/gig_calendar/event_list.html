@@ -3,8 +3,10 @@
 
 
 <main>
+    <br>
+    <p class='rb-txt txt-space'><a href="{% url 'cal:calendar' %}"><i class="fas fa-icon fa-chevron-left"></i>Back to Calendar</a></p>
     {% for event in events %}
-        <main>
+      
             <a href="{% url 'cal:event_detail' event.pk %}">
             <div class="basic-wrapper card">
                 <h1 class="rb-txt txt-height txt-padding">{{event.title}}</h1>
