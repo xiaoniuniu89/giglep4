@@ -47,7 +47,8 @@
             </nav>
             <nav class="profile-dropdown">
                 <ul>
-                    <li class="first-nav"><a class='rb-txt' href="{% url 'cal:calendar' %}"><i class="far fa-icon fa-calendar-alt"></i> Calendar</a></li>
+                    <li class="first-nav"><a class="rb-txt" href="{% url 'feed' %}"><i class="fas fa-icon fa-home"></i>Home</a></li>
+                    <li c><a class='rb-txt' href="{% url 'cal:calendar' %}"><i class="far fa-icon fa-calendar-alt"></i> Calendar</a></li>
                     <li><a class='rb-txt' href="{% url 'inbox' %}"><i class="far fa-icon fa-envelope"></i> Messages</a></li>
                     <li ><a class='rb-txt' href="{% url 'my-profile' %}"><i class="fas fa-icon fa-user"></i> Profile</a></li>
                     <li ><a class='rb-txt' href="{% url 'user-profile-list' %}"><i class="fas fa-icon fa-users"></i> Friends</a></li>
@@ -58,6 +59,7 @@
         </div>
         <div class="nav-container nav-big">
             <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'feed' %}"><i class="fas fa-icon fa-home"></i></a></li>
                 <li class="nav-item"><a href="{% url 'cal:calendar' %}"><i class="far fa-icon fa-calendar-alt"></i></a></li>
                 <li class="nav-item"><a href="{% url 'user-profile-list' %}"><i class="fas fa-icon fa-users"></i></a></li>
                 <li class="nav-item bell"><span ><i class="fas pointer notifications-dropdown-icon fa-icon notification_bell fa-bell"></i></span></li>
