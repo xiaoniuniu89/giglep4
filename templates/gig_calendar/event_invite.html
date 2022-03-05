@@ -4,19 +4,25 @@
 
 <main>
     <br>
-    <p class='rb-txt txt-space'><a href="{% url 'cal:calendar' %}"><i class="fas fa-icon fa-chevron-left"></i>Back to Calendar</a></p>
-    <div class="basic-wrapper card">
-        <h1 class="rb-txt txt-height txt-padding">{{event.title}}</h1>
-        <br>
-        <small class="rb-txt txt-height txt-padding">date: {{event.date}}</small>
-        <br>
-        <p class="rb-txt txt-space txt-height txt-padding">{{event.description}}</p rb-txt>
-    </div>
+    <p class='rb-txt txt-space'><a href="{% url 'cal:calendar' %}"><i class="fas fa-icon fa-chevron-left"></i>Calendar</a></p>
+    
     <div class='form-wrapper'>
             <div class="form">
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <h1 class='heading'>{{event.author}} has invited you to this event.</h1>
+                    {% if event.author.first_name == '' %}
+                        <h1 class='heading'>{{event.author}} has invited you to an event.</h1>
+                    {% else %}
+                        <h1 class='heading txt-space'>{{event.author.first_name}} {{event.author.last_name}} has invited you to an event</h1>
+                    {% endif %}
+                        
+                    <div class="basic-wrapper card">
+                        <h2 class="rb-txt txt-height txt-padding">{{event.title}}</h2>
+                        <br>
+                        <small class="rb-txt txt-height txt-padding">date: {{event.date}}</small>
+                        <br>
+                        <p class="rb-txt txt-space txt-height txt-padding">{{event.description}}</p rb-txt>
+                    </div>
                     <button class="btn btn-primary" type="submit">Accept</button>
                     <a href="{% url 'feed' %}" class="btn btn-primary" >Decline</a>
                 </form>

@@ -2,22 +2,26 @@
 {% block content %}
 
    <main>
-
-     
-        
-        <div class='form-wrapper'>
-            <div class="form">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <h1 class='heading'>Share Event </h1>
-                    <button class="btn btn-primary" type="submit">Confirm</button>
-                    <a href="{% url 'cal:calendar' %}" class="btn btn-primary" >Cancel</a>
-                </form>
-            </div>
+    <div class='form-wrapper'>
+        <div class="form">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% if to_user.first_name == '' %}
+                    <h1 class='heading'>Share Event with {{to_user}}</h1>
+                {% else %}
+                    <h1 class='heading txt-space'>Share Event with {{to_user.first_name}} {{to_user.last_name}}</h1>
+                {% endif %}
+                <div class="basic-wrapper card relative-card">
+                    <h2 class="rb-txt txt-height txt-padding">{{event.title}}</h2>
+                    <small class="rb-txt txt-height txt-padding">date: {{event.date}}</small>
+                    <br>
+                    <p class="rb-txt txt-space txt-height txt-padding">{{event.description}}</p rb-txt>
+                </div>
+                <button class="btn btn-primary" type="submit">Confirm</button>
+                <a href="{% url 'cal:calendar' %}" class="btn btn-primary" >Cancel</a>
+            </form>
         </div>
-
-        from:{{from_user.username}} |
-        to : {{to_user.username}}
+    </div>
 
     </main>
 

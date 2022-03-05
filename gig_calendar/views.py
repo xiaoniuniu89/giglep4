@@ -112,8 +112,6 @@ class event_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin,
         form.instance.author = self.request.user  # event author is form author set author before post is saved 
         return super().form_valid(form)
     
-    
-    # test user is author
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
@@ -140,11 +138,9 @@ class event_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView): #UserPa
 
 class event_share(TemplateView):
     model = Event
-    # model = User
     template_name = 'gig_calendar/event_share.html'
     
     def get_context_data(self, **kwargs):
-        # context = super(event_share, self).get_context_data(**kwargs)
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(id=self.request.user.id)
         event = Event.objects.get(pk=kwargs['pk'])
@@ -158,11 +154,9 @@ class event_share(TemplateView):
         
    
 
-class event_share_confirm(View):
+class event_share_confirm(SuccessMessageMixin, View):
     model = Event
-    # model = User
     template_name = 'gig_calendar/event_share_confirm.html'
-
 
     def get(self, request, *args, **kwargs):
         
@@ -187,22 +181,15 @@ class event_share_confirm(View):
             to_user=to_user,
             event=event
         )
-
+        if to_user.first_name == '':
+            messages.success(request, f'Event shared with {to_user.username}!')
+        else:
+            messages.success(request, f'Event shared with {to_user.first_name}!')
         return redirect('cal:calendar')
     
-    # def get_context_data(self, **kwargs):
-    #     # context = super(event_share, self).get_context_data(**kwargs)
-    #     context = super().get_context_data(**kwargs)
-    #     context['from_user'] = User.objects.get(id=self.request.user.id)
-    #     event = Event.objects.get(pk=kwargs['event_pk'])
-    #     context['event'] = event
-    #     to_user = User.objects.get(pk=kwargs['user_pk'])
-    #     context['to_user'] = to_user
-    #     return context
         
 class event_invite(View):
     model = Event
-    # model = User
     template_name = 'gig_calendar/event_invite.html'
 
 
@@ -225,4 +212,5 @@ class event_invite(View):
             date=event.date
         )
 
-        return redirect('cal:calendar')
+        messages.success(request, 'Event added to calendar!')
+        return redirect('feed')
