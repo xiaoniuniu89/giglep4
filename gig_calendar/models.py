@@ -8,7 +8,7 @@ from django.conf import settings
 
 class Event(models.Model):
     author = models.ForeignKey(User, on_delete=CASCADE, default=None)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=20)
     description = models.TextField(default='')
     date = models.DateField(("Date"), default=datetime.date.today)
     
