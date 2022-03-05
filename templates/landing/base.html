@@ -34,7 +34,7 @@
             <div class="nav-container">
                 <ul class="nav-list">
                     {% if user.is_authenticated %}
-                        <li class="nav-item "><a href="{% url 'my-profile'%}"><span class='hover-underline'><i class="fas fa-icon fa-user"></i></span></a></li>
+                        <li class="nav-item"><a href="{% url 'feed' %}"><i class="fas fa-icon fa-home"></i></a></li>
                         <li class="nav-item "><a href="{% url 'logout' %}"><span class='hover-underline'><i class="fas fa-icon  fa-sign-out-alt"></i></span></a></li>
                     {% else %}
                         <li class="nav-item"><a href="{% url 'login' %}"><span class="hover-underline">Login</span></a></li>
