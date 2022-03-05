@@ -10,11 +10,13 @@ from django.views.generic import (
     DetailView, 
     CreateView,
     UpdateView,
-    DeleteView
+    DeleteView,
+    TemplateView
 )
 from .models import Event
 from .utils import Calendar
 from .forms import EventForm
+from organiser.models import User, Friend
 
 
 class CalendarView(LoginRequiredMixin, ListView):
@@ -132,3 +134,41 @@ class event_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView): #UserPa
         if self.request.user == post.author:
             return True
         return False
+
+
+class event_share(TemplateView):
+    model = Event
+    # model = User
+    template_name = 'gig_calendar/event_share.html'
+    
+    def get_context_data(self, **kwargs):
+        # context = super(event_share, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.exclude(id=self.request.user.id)
+        event = Event.objects.get(pk=kwargs['pk'])
+        context['event'] = event
+        try:
+            friend_obj = Friend.objects.get(current_user=self.request.user)
+            context['friends'] = friend_obj.users.all()
+        except Friend.DoesNotExist:
+            context['friends'] = None
+        return context
+        
+   
+
+class event_share_confirm(TemplateView):
+    model = Event
+    # model = User
+    template_name = 'gig_calendar/event_share_confirm.html'
+    
+    def get_context_data(self, **kwargs):
+        # context = super(event_share, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        context['from_user'] = User.objects.get(id=self.request.user.id)
+        event = Event.objects.get(pk=kwargs['event_pk'])
+        context['event'] = event
+        to_user = User.objects.get(pk=kwargs['user_pk'])
+        context['to_user'] = to_user
+        return context
+        
+    
