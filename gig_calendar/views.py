@@ -107,6 +107,13 @@ class event_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin,
     fields = ['title', 'date', 'description']
     success_url = '/calendar/'
     success_message = 'Event updated!'
+
+    def get_context_data(self, **kwargs):
+        pk = self.kwargs['pk']
+        event = Event.objects.get(pk=pk)
+        context = super().get_context_data(**kwargs)
+        context["form"] = EventForm(instance=event)
+        return context
     
     
     def form_valid(self, form):
