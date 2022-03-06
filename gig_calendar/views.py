@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect, request
 from django.contrib import messages
+from django.db.models import Q
 import calendar
 from django.views import View
 from django.views.generic import (
@@ -194,9 +195,12 @@ class event_invite(View):
 
 
     def get(self, request, *args, **kwargs):
+        event = Event.objects.get(pk=kwargs['pk'])
+        user_events = Event.objects.filter(Q(date=event.date) & Q(author=request.user))
         
         context = {
-            'event': Event.objects.get(pk=kwargs['pk']),
+            'event': event,
+            'user_events': user_events
         }
 
         return render(request, 'gig_calendar/event_invite.html', context)
