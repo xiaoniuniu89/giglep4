@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect, request
 from django.contrib import messages
+from django.db.models import Q
 import calendar
 from django.views import View
 from django.views.generic import (
@@ -106,6 +107,13 @@ class event_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin,
     fields = ['title', 'date', 'description']
     success_url = '/calendar/'
     success_message = 'Event updated!'
+
+    def get_context_data(self, **kwargs):
+        pk = self.kwargs['pk']
+        event = Event.objects.get(pk=pk)
+        context = super().get_context_data(**kwargs)
+        context["form"] = EventForm(instance=event)
+        return context
     
     
     def form_valid(self, form):
@@ -194,9 +202,12 @@ class event_invite(View):
 
 
     def get(self, request, *args, **kwargs):
+        event = Event.objects.get(pk=kwargs['pk'])
+        user_events = Event.objects.filter(Q(date=event.date) & Q(author=request.user))
         
         context = {
-            'event': Event.objects.get(pk=kwargs['pk']),
+            'event': event,
+            'user_events': user_events
         }
 
         return render(request, 'gig_calendar/event_invite.html', context)

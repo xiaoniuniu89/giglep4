@@ -144,6 +144,13 @@ class post_update(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, 
     fields = ['content']
     success_url = '/social/feed/'
     success_message = 'Your post has been corrected ~ Who controls the past controls the future !'
+
+    def get_context_data(self, **kwargs):
+        pk = self.kwargs['pk']
+        post = Post.objects.get(pk=pk)
+        context = super().get_context_data(**kwargs)
+        context["form"] = PostForm(instance=post)
+        return context
     
     def form_valid(self, form):
         form.instance.author = self.request.user  # post author is form author set author before post is saved 
