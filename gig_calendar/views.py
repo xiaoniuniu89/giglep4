@@ -144,7 +144,7 @@ class event_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView): #UserPa
         return False
 
 
-class event_share(TemplateView):
+class event_share(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     model = Event
     template_name = 'gig_calendar/event_share.html'
     
@@ -159,10 +159,18 @@ class event_share(TemplateView):
         except Friend.DoesNotExist:
             context['friends'] = None
         return context
+
+    def test_func(self, **kwargs):
+        event = Event.objects.get(pk=self.kwargs['pk'])
+        if self.request.user == event.author:
+            return True
+        return False
+
+    
         
    
 
-class event_share_confirm(SuccessMessageMixin, View):
+class event_share_confirm(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, View):
     model = Event
     template_name = 'gig_calendar/event_share_confirm.html'
 
@@ -175,6 +183,16 @@ class event_share_confirm(SuccessMessageMixin, View):
         }
 
         return render(request, 'gig_calendar/event_share_confirm.html', context)
+
+    def test_func(self, **kwargs):
+        event = Event.objects.get(pk=self.kwargs['event_pk'])
+        to_user = User.objects.get(pk=self.kwargs['user_pk'])
+        from_user = User.objects.get(id=self.request.user.id)
+        friends = Friend.objects.get(current_user=from_user).users.all()
+        # friends = friend_obj.users.all()
+        if self.request.user == event.author and to_user in friends:
+            return True
+        return False
 
             
 
@@ -225,3 +243,5 @@ class event_invite(View):
 
         messages.success(request, 'Event added to calendar!')
         return redirect('feed')
+
+

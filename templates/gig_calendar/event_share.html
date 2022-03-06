@@ -1,12 +1,8 @@
 {% extends 'organiser/base.html' %}
 {% block content %}
-    {% for user in users %}
+    {% for user in friends %}
         <div class="basic-wrapper">
-            {% if request.user.pk == user.pk  %}
-                <a href="{% url 'my-profile' %}">
-            {% else %}
-                <a href="{% url 'cal:event_share_confirm' event.pk user.pk %}">
-            {% endif %}
+            <a href="{% url 'cal:event_share_confirm' event.pk user.pk %}">
             <div class="profile-info card">
                 <div class="card-wrapper">
                     <div class="profile-pic-wrapper">
