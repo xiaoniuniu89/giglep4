@@ -10,6 +10,7 @@ from social.forms import UserUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator
 from .models import Post, Comment, Thread, Message, Friend, Notification
 from gig_calendar.models import Event
 from django.views import View
@@ -27,9 +28,10 @@ from django.views.generic import (
 
 
 class feed(LoginRequiredMixin, ListView):
+    paginate_by = 6
     model = Post
     template_name = 'organiser/feed.html'
-    paginate_by = 6
+    
     
     
     def get_context_data(self, **kwargs):
@@ -246,9 +248,14 @@ class comment_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class list_thread(View):
     def get(self, request, *args, **kwargs):
-        threads = Thread.objects.filter(Q(user=request.user) | Q(receiver=request.user))
+        threads_obj = Thread.objects.filter(Q(user=request.user) | Q(receiver=request.user))
+        paginator = Paginator(threads_obj, 6) 
+
+        page_number = request.GET.get('page')
+        threads = paginator.get_page(page_number)
         context = {
-            'threads': threads
+            'threads': threads,
+            
         }
         
         return render(request, 'organiser/inbox.html', context)
@@ -321,6 +328,7 @@ def change_friends(request, operation, pk):
 class user_profile_list(ListView):
     model = User
     template_name = 'organiser/profile_list.html'
+    # paginate_by = 6
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -329,9 +337,15 @@ class user_profile_list(ListView):
 
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
-            context['friends'] = friend_obj.users.all()
+            friends = friend_obj.users.all()
+            # context['friends'] = friends
         except Friend.DoesNotExist:
-            context['friends'] = None
+            # context['friends'] = None
+            friends = None
+        paginator = Paginator(friends, 6) 
+
+        page_number = self.request.GET.get('page')
+        context['friends'] = paginator.get_page(page_number)
         return context
 
 

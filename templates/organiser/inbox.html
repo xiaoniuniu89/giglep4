@@ -7,7 +7,7 @@
             <br>
             <button class="btn " type="submit">Start a new conversation</button>
         </form> {% endcomment %}
-        {% for thread in threads.all %}
+        {% for thread in threads %}
         <a href="{% url 'thread' thread.pk %}">
             <div class="basic-wrapper-flex card">
                 {% if thread.receiver == request.user %}
@@ -38,5 +38,21 @@
         </a>
         {% endfor %}
     </div>
+    <div class="pagination">
+                <span class="step-links">
+                    {% if threads.has_previous %}
+                        <a href="?threads=1">&laquo;  </a>
+                        <a href="?page={{ threads.previous_page_number }}">next  </a>
+                    {% endif %}
+            
+                    {% if threads.has_next %}
+                        <span class="current">
+                            {{ threads.number }} / {{ threads.paginator.num_pages }}  
+                        </span>
+                        <a href="?page={{ threads.next_page_number }}">prev  </a>
+                        <a href="?page={{ threads.paginator.num_pages }}">&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
 
 {% endblock content %}
