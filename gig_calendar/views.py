@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect, request
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.db.models import Q
 import calendar
 from django.views import View
@@ -155,9 +156,14 @@ class event_share(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         context['event'] = event
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
-            context['friends'] = friend_obj.users.all()
+            friends = friend_obj.users.all()
         except Friend.DoesNotExist:
-            context['friends'] = None
+            friends = None
+
+        paginator = Paginator(friends, 6)
+
+        page_number = self.request.GET.get('page')
+        context['friends'] = paginator.get_page(page_number)
         return context
 
     def test_func(self, **kwargs):

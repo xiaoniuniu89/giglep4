@@ -248,7 +248,7 @@ class comment_delete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class list_thread(View):
     def get(self, request, *args, **kwargs):
-        threads_obj = Thread.objects.filter(Q(user=request.user) | Q(receiver=request.user))
+        threads_obj = Thread.objects.filter(Q(user=request.user) | Q(receiver=request.user)).order_by()
         paginator = Paginator(threads_obj, 6) 
 
         page_number = request.GET.get('page')
@@ -342,7 +342,7 @@ class user_profile_list(ListView):
         except Friend.DoesNotExist:
             # context['friends'] = None
             friends = None
-        paginator = Paginator(friends, 6) 
+        paginator = Paginator(friends, 6)
 
         page_number = self.request.GET.get('page')
         context['friends'] = paginator.get_page(page_number)
@@ -466,7 +466,6 @@ class remove_notification(View):
 
 class search_user(ListView):
     model = User
-    # users = User.objects.all()
     template_name = 'organiser/search_results.html'
     context_object_name = 'users'
     
