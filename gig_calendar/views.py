@@ -195,7 +195,6 @@ class event_share_confirm(LoginRequiredMixin, UserPassesTestMixin, SuccessMessag
         to_user = User.objects.get(pk=self.kwargs['user_pk'])
         from_user = User.objects.get(id=self.request.user.id)
         friends = Friend.objects.get(current_user=from_user).users.all()
-        # friends = friend_obj.users.all()
         if self.request.user == event.author and to_user in friends:
             return True
         return False

@@ -17,7 +17,6 @@ class Calendar(HTMLCalendar):
 	# formats a day as a td
 	# filter events by day
 	def formatday(self, day, events):
-		# events = Event.objects.filter(author)
 		events_per_day = events.filter(date__day=day)
 		d = ''
 		

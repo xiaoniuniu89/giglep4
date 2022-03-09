@@ -55,8 +55,6 @@ class feed(LoginRequiredMixin, ListView):
             context['user_you_may_know'] = friend_suggestion.all()[:4]
             context['posts'] = Post.objects.filter(author=self.request.user)
             
-        # context['posts'] = Post.objects.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
-        # context['poster'] = posts.filter(Q (author=self.request.user) | Q (author__in =  friends)).order_by('-date_posted')
 
         return context
     
@@ -66,7 +64,6 @@ class feed(LoginRequiredMixin, ListView):
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
             friends = friend_obj.users.all()
-            # context['friends'] = friends
         except Friend.DoesNotExist:
             pass
             friends = []
@@ -328,7 +325,6 @@ def change_friends(request, operation, pk):
 class user_profile_list(ListView):
     model = User
     template_name = 'organiser/profile_list.html'
-    # paginate_by = 6
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -338,9 +334,7 @@ class user_profile_list(ListView):
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
             friends = friend_obj.users.all()
-            # context['friends'] = friends
         except Friend.DoesNotExist:
-            # context['friends'] = None
             friends = None
         paginator = Paginator(friends, 6)
 

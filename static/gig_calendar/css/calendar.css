@@ -40,14 +40,11 @@
     margin: 2em auto;
   }
   
-  /* .calendar tr, .calendar td {
-    border: 1px solid var(--dull-grey);
-  } */
+
   
   .calendar th {
     padding: .7em;
     text-align: center;
-    /* font-size: 18px; */
   }
 
 

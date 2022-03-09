@@ -55,15 +55,6 @@
     border-bottom: 1px solid var(--dull-grey);
 }
 
-/* .notification-dropdown {
-    position: absolute;
-    background-color: var(--main-dark);
-    opacity: .8;
-    top: 0; right: 0;
-    height: 0px;
-    overflow: hidden;
-    z-index: 2;
-} */
 
 .notification_bell {
     color: var(--urgent);
@@ -116,7 +107,6 @@
     position: initial;
     background-color: var(--yellow);
     opacity: .8;
-    /* top: 9%; right: 0; */
     height: 0px;
     overflow: hidden;
     z-index: 2;
@@ -125,7 +115,6 @@
 .notification-nav--open {
     height: auto ;
     width: 100%;
-    /* max-width: 70%; */
 }
 
 /* moves fa icon on top of drop down menu  */
