@@ -337,7 +337,7 @@ class user_profile_list(ListView):
 
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
-            friends = friend_obj.users.all()
+            friends = friend_obj.users.all().order_by('username')
             # context['friends'] = friends
         except Friend.DoesNotExist:
             # context['friends'] = None
