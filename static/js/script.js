@@ -30,6 +30,8 @@ $('#close-modal').on('click', function(){
 })
 
 // for notifications 
+// Help from this tutorial
+// https://www.youtube.com/watch?v=_JKWYkz597c&t=4s
 
 function getCookie(name) {
     let cookieValue = null;
