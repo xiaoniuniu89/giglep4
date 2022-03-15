@@ -331,6 +331,9 @@ class thread_view(View):
     """
     This is the DM view - each thread is associated with a
     message list that is displayed here
+    With help from:
+    https://www.youtube.com/watch?v=oxrQdZ5KqW0&list=
+    PLPSM8rIid1a3TkwEmHyDALNuHhqiUiU5A&index=15
     """
     def get(self, request, pk, *args, **kwargs):
         form = MessageForm()

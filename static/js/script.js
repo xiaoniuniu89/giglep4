@@ -49,6 +49,8 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Help from this tutorial
+// https://www.youtube.com/watch?v=_JKWYkz597c&t=4s
 
 function removeNotification(removeNotificationURL, redirectURL) {
     const csrftoken = getCookie('csrftoken');
