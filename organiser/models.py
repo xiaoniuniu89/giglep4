@@ -31,6 +31,8 @@ class Thread(models.Model):
     receiver = models.ForeignKey(User, on_delete=models.CASCADE,
                                  related_name='+')
 
+
+class Message(models.Model):
     """ Model for individual messages in a thread """
     thread = models.ForeignKey('Thread', related_name='+',
                                on_delete=models.CASCADE, blank=True, null=True)
