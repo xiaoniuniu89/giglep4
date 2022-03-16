@@ -1,7 +1,11 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views as social_views
-from .forms import UserLoginForm, UserPasswordResetForm, PasswordChangeForm
+from .forms import (
+    UserLoginForm,
+    UserPasswordResetForm,
+    PasswordChangeForm
+    )
 
 
 # views for landing page
