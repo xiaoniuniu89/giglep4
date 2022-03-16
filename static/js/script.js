@@ -30,6 +30,8 @@ $('#close-modal').on('click', function(){
 })
 
 // for notifications 
+// Help from this tutorial
+// https://www.youtube.com/watch?v=_JKWYkz597c&t=4s
 
 function getCookie(name) {
     let cookieValue = null;
@@ -47,6 +49,8 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Help from this tutorial
+// https://www.youtube.com/watch?v=_JKWYkz597c&t=4s
 
 function removeNotification(removeNotificationURL, redirectURL) {
     const csrftoken = getCookie('csrftoken');

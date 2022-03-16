@@ -156,7 +156,7 @@ class event_share(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         context['event'] = event
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
-            friends = friend_obj.users.all()
+            friends = friend_obj.users.all().order_by('username')
         except Friend.DoesNotExist:
             friends = None
 

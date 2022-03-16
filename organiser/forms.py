@@ -1,45 +1,88 @@
 from django import forms
-from .models import Post, Comment, Thread, Message
 from social.models import Musician
+from .models import Post, Comment, Message
 
 
 class MusicianUpdateForm(forms.ModelForm):
-    instrument = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-field'}))
-    location = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-field'}))
-    blurb = forms.CharField(max_length=100, required=False, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
+    """
+    One part of form that updates
+    the user profile - second part
+    comes from user update form
+    """
+    instrument = forms.CharField(
+        required=False, widget=forms.TextInput(
+            attrs={'class': 'form-field'}))
+    location = forms.CharField(
+        required=False, widget=forms.TextInput(
+            attrs={'class': 'form-field'}))
+    blurb = forms.CharField(
+        max_length=100,
+        required=False,
+        widget=forms.Textarea(attrs={
+            'rows': 4,
+            'cols': 15,
+            'class': 'form-field-textarea'
+        }))
 
     class Meta:
+        """ Form fields """
         model = Musician
         fields = ['instrument', 'location', 'blurb', 'profile_pic']
 
 
-
-
 class PostForm(forms.ModelForm):
-    content = forms.CharField(max_length=100, required=True, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
+    """
+    Customised form for posts
+    """
+    content = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.Textarea(attrs={
+            'rows': 4,
+            'cols': 15,
+            'class': 'form-field-textarea'
+        }))
+
     class Meta:
+        """ Form fields """
         model = Post
         fields = ['content']
 
 
-
 class CommentForm(forms.ModelForm):
-    comment = forms.CharField(max_length=100, required=True, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
+    """
+    Customised form for comments
+    """
+    comment = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.Textarea(attrs={
+            'rows': 4,
+            'cols': 15,
+            'class': 'form-field-textarea'
+        }))
+
     class Meta:
+        """ Form Fields """
         model = Comment
         fields = ['comment']
 
 
-
-class ThreadForm(forms.Form):
-    username = forms.CharField(label='', max_length=100, widget=forms.Textarea(attrs={'rows':1, 'cols':1, 'class': 'form-field-textarea'}))
-
 class MessageForm(forms.ModelForm):
-    body = forms.CharField(label='', max_length=1000, widget=forms.Textarea(attrs={'rows':4, 'cols':15, 'class': 'form-field-textarea'}))
-
-    image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'rb-txt file-upload'}))
+    """
+    Customised form for messages
+    used to write DMs
+    """
+    body = forms.CharField(
+        label='',
+        max_length=1000,
+        widget=forms.Textarea(attrs={
+            'rows': 4,
+            'cols': 15,
+            'class': 'form-field-textarea'
+        }))
 
     class Meta:
+        """ Form Fields """
         model = Message
         fields = ['body']
-    
