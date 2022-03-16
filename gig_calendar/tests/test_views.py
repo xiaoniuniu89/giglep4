@@ -9,12 +9,14 @@ from gig_calendar.views import(
     event_update,
     event_delete,
 )
-import json
 
 
 class TestViews(TestCase):
+    """ docstring """
+
 
     def setUp(self):
+        """ docstring """
         self.client = Client()
         self.calendar_url = reverse('cal:calendar')
         self.create_event_url = reverse('cal:event-create')
@@ -65,10 +67,3 @@ class TestViews(TestCase):
         request.user = self.user1
         response = event_delete.as_view()(request, pk=self.event.pk)
         self.assertEquals(response.status_code, 200)
-
-        
-     
-
-
-    
-

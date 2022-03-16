@@ -24,6 +24,10 @@ from organiser.models import User, Friend, Notification
 
 
 class CalendarView(LoginRequiredMixin, ListView):
+    """
+    Uses calendar class from utils.py to display
+    a html calendar with users events
+    """
     model = Event
     template_name = 'gig_calendar/calendar.html'
 
