@@ -4,9 +4,12 @@ from django.contrib.auth.models import User
 from social.models import Musician
 
 class TestViews(TestCase):
+    """ docstring """
+
 
 
     def setUp(self):
+        """ docstring """
         self.client = Client()
         self.landing_url = reverse('landing-home')
         self.login_url = reverse('login')
