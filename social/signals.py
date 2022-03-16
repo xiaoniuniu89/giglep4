@@ -13,7 +13,7 @@ from .models import Musician
 def create_profile(sender, instance, created, **kwargs):
     """
     When a user creates profile, django will use this
-    signalto create a musician profile for the user
+    signal to create a musician profile for the user
     """
     try:
         instance.musician.save()
