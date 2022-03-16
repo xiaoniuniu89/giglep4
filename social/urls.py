@@ -6,7 +6,7 @@ from .forms import UserLoginForm, UserPasswordResetForm, PasswordChangeForm
 
 # views for landing page
 # handles landing, sign-up, login/logout,
-# pass reset
+# pass reset all handked by django auth
 
 urlpatterns = [
     path('', social_views.landing, name='landing-home'),
