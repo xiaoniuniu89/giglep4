@@ -1,4 +1,5 @@
 import calendar
+import random
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, redirect
 from django.utils.safestring import mark_safe
@@ -198,20 +199,41 @@ class event_share(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['users'] = User.objects.exclude(id=self.request.user.id)
+        friend_suggestion = User.objects.exclude(id=self.request.user.id)
+        if len(friend_suggestion) < 4:
+            friend_s_length = len(friend_suggestion)
+        else:
+            friend_s_length = 4
         # get event id from url
         event = Event.objects.get(pk=kwargs['pk'])
         context['event'] = event
         # get friends list to choose who to pass event to
+        # check has friends
         try:
             friend_obj = Friend.objects.get(current_user=self.request.user)
             friends = friend_obj.users.all().order_by('username')
+            if len(friends) == 0:
+                # 0 if user had at least 1 friend that they unfollowed
+                context['user_you_may_know'] = random.sample(
+                    list(friend_suggestion), friend_s_length
+                )
+            else:
+                # paginate the results
+                paginator = Paginator(friends, 6)
+                page_number = self.request.GET.get('page')
+                context['friends'] = paginator.get_page(page_number)
+
         except Friend.DoesNotExist:
-            friends = None
-        # paginate the results
-        paginator = Paginator(friends, 6)
-        page_number = self.request.GET.get('page')
-        context['friends'] = paginator.get_page(page_number)
+            # friends object never existed
+            context['user_you_may_know'] = random.sample(list(
+                    friend_suggestion), friend_s_length)
+
+        except TypeError:
+            # friends object is empty if user has never had a friend
+            # may also return a type error in this case
+            context['user_you_may_know'] = random.sample(list(
+                    friend_suggestion), friend_s_length)
+
         return context
 
     # test user wrote the event

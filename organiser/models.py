@@ -82,6 +82,9 @@ class Friend(models.Model):
         )
         friend.users.remove(new_friend)
 
+    def __str__(self):
+        return f'{self.current_user}\'s friends'
+
 
 class Notification(models.Model):
     """
