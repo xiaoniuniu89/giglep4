@@ -57,7 +57,7 @@ class feed(LoginRequiredMixin, ListView):
             # return posts
             context['posts'] = Post.objects.filter(
                 Q(author=self.request.user) | Q(
-                    author__in=friends)).order_by('-date_posted')
+                    author__in=friends))
 
         except Friend.DoesNotExist:
             # if user has no friends
@@ -65,7 +65,6 @@ class feed(LoginRequiredMixin, ListView):
             friend_suggestion = User.objects.exclude(id=self.request.user.id)
             context['user_you_may_know'] = friend_suggestion.all()[:4]
             context['posts'] = Post.objects.filter(author=self.request.user)
-
         return context
 
 
