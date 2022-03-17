@@ -21,6 +21,10 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.author}\'s post'
 
+    class Meta:
+        """ordering by date posted - newest first"""
+        ordering = ['-date_posted']
+
 
 class Comment(models.Model):
     """ Model for commenting in posts detail view """
@@ -28,6 +32,9 @@ class Comment(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.author}\'s comment on {self.post}\'s post'
 
 
 class Thread(models.Model):
@@ -40,6 +47,9 @@ class Thread(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
     receiver = models.ForeignKey(User, on_delete=models.CASCADE,
                                  related_name='+')
+
+    def __str__(self):
+        return f'Chat history between {self.user} and {self.receiver}'
 
 
 class Message(models.Model):
@@ -58,6 +68,9 @@ class Message(models.Model):
     body = models.CharField(max_length=1000)
     date = models.DateTimeField(default=timezone.now)
     is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'message between {self.sender_user} and {self.receiver_user}'
 
 
 class Friend(models.Model):
@@ -109,3 +122,6 @@ class Notification(models.Model):
                               related_name='+', blank=True, null=True)
     date = models.DateTimeField(default=timezone.now)
     user_has_seen = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'Type {self.notification_type} Notification from {self.from_user} to {self.to_user}'
