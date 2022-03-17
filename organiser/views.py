@@ -69,67 +69,6 @@ class feed(LoginRequiredMixin, ListView):
         return context
 
 
-@login_required
-def my_profile(request):
-    """
-    logic to handle logged in user profile
-    it uses two forms - user and musician -
-    to update users information
-    """
-    if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        musician_form = MusicianUpdateForm(
-            request.POST, request.FILES, instance=request.user.musician)
-
-        if user_form.is_valid() and musician_form.is_valid():
-            user_form.save()
-            musician_form.save()
-            messages.success(
-                request, 'Profile has been updated successfully')
-            return HttpResponseRedirect('/social/my-profile')
-
-    else:
-        # on errors, prev filled in data or on first loading
-        user_form = UserUpdateForm(instance=request.user)
-        musician_form = MusicianUpdateForm(instance=request.user.musician)
-
-    context = {
-        'user_form': user_form,
-        'musician_form': musician_form,
-    }
-
-    return render(request, 'organiser/my-profile.html', context)
-
-
-class user_profile(DetailView):
-    """
-    Used to display profile of any user
-    other than currently logged in user
-    """
-    model = User
-    template_name = 'organiser/profile.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['users'] = User.objects.exclude(id=self.request.user.id)
-        try:
-            # if friends will display a chat button
-            context['threads'] = Thread.objects.filter(
-                Q(user=self.request.user) | Q(receiver=self.request.user))
-
-        except Thread.DoesNotExist:
-            context['threads'] = None
-
-        try:
-            # if friends: will display an unfollow/chat button
-            friend_obj = Friend.objects.get(current_user=self.request.user)
-            context['friends'] = friend_obj.users.all()
-        except Friend.DoesNotExist:
-            # if not friend will display a follow button only
-            context['friends'] = None
-        return context
-
-
 class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     """
     Post create logic - uses create view to handle heavy lifting
@@ -302,6 +241,255 @@ class comment_delete(
         return False
 
 
+class add_like(LoginRequiredMixin, View):
+    """
+    Handles logic to add likes
+    on a post - will check if user has liked
+    or dislike already before updating
+    A lot of help from the following tutorial
+
+    https://www.youtube.com/watch?v=NRexdRbvd6o&list=
+    PLPSM8rIid1a3TkwEmHyDALNuHhqiUiU5A&index=7
+
+    """
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+        is_dislike = False
+
+        for dislike in post.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if is_dislike:
+            post.dislikes.remove(request.user)
+
+        is_like = False
+
+        for like in post.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if not is_like:
+            post.likes.add(request.user)
+
+        if is_like:
+            post.likes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+
+class dislike(LoginRequiredMixin, View):
+    """
+    Handles logic to remove likes
+    on a post - will check if user has liked
+    or dislike already before updating
+    A lot of help from the following tutorial
+
+    https://www.youtube.com/watch?v=NRexdRbvd6o&list=
+    PLPSM8rIid1a3TkwEmHyDALNuHhqiUiU5A&index=7
+    """
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+
+        is_like = False
+
+        for like in post.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if is_like:
+            post.likes.remove(request.user)
+
+        is_dislike = False
+
+        for dislike in post.dislikes.all():
+            if dislike == request.user:
+                is_dislike = True
+                break
+
+        if not is_dislike:
+            post.dislikes.add(request.user)
+
+        if is_dislike:
+            post.dislikes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+def change_friends(request, operation, pk):
+    """
+    Logic to handle follow and unfollow
+    if user clicks follow the operation pass
+    add as operation and vice versa
+    Also includes logic to create a new thread
+    when a user first follows someone or is
+    followed by someone else
+    """
+
+    friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, friend)
+        # if there is a thread return it
+        if Thread.objects.filter(
+            user=request.user,
+            receiver=friend
+        ).exists():
+            thread = Thread.objects.filter(
+                user=request.user, receiver=friend)[0]
+        elif Thread.objects.filter(
+            user=friend, receiver=request.user
+        ).exists():
+            thread = Thread.objects.filter(
+                user=friend, receiver=request.user)[0]
+        else:
+            # if there is no thread, make one
+            thread = Thread(
+                        user=request.user,
+                        receiver=friend
+                    )
+            thread.save()
+    elif operation == 'remove':
+        Friend.unfriend(request.user, friend)
+
+    # create 1 notification - avoid problem
+    # of user following and unfollowing many
+    # times
+    if not Notification.objects.filter(Q(
+        notification_type=3) & Q(
+            from_user=request.user) & Q(
+                to_user=friend) & Q(
+                    user_has_seen=False)).exists():
+        notification = Notification.objects.create(
+            notification_type=3,
+            from_user=request.user,
+            to_user=friend)
+
+    return redirect('feed')
+
+class search_user(ListView):
+    """
+    Will display a list of users from searchbar search term
+    and display in a list - users are searchable by username
+    and first and last name
+
+    Help from the following tutorial
+
+    https://www.youtube.com/watch?v=yDJZk761Iik&list=
+    PLPSM8rIid1a3TkwEmHyDALNuHhqiUiU5A&index=8
+    """
+    model = User
+    template_name = 'organiser/search_results.html'
+    context_object_name = 'users'
+
+    def get_queryset(self):
+        try:
+            acc = self.request.GET.get('user',).lstrip().rstrip().split(
+                " ")[0]
+        except KeyError:
+            # if no user logged in
+            acc = None
+        if acc:
+            account_list = User.objects.filter(Q(
+                username__icontains=acc) | Q(
+                    first_name__icontains=acc) | Q(last_name__icontains=acc))
+        else:
+            account_list = User.objects.filter(username=self.request.user)
+        return account_list
+
+
+
+
+@login_required
+def my_profile(request):
+    """
+    logic to handle logged in user profile
+    it uses two forms - user and musician -
+    to update users information
+    """
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        musician_form = MusicianUpdateForm(
+            request.POST, request.FILES, instance=request.user.musician)
+
+        if user_form.is_valid() and musician_form.is_valid():
+            user_form.save()
+            musician_form.save()
+            messages.success(
+                request, 'Profile has been updated successfully')
+            return HttpResponseRedirect('/social/my-profile')
+
+    else:
+        # on errors, prev filled in data or on first loading
+        user_form = UserUpdateForm(instance=request.user)
+        musician_form = MusicianUpdateForm(instance=request.user.musician)
+
+    context = {
+        'user_form': user_form,
+        'musician_form': musician_form,
+    }
+
+    return render(request, 'organiser/my-profile.html', context)
+
+
+class user_profile_list(ListView):
+    """
+    Logic for displaying logged in user friends list
+    """
+    model = User
+    template_name = 'organiser/profile_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.exclude(
+            id=self.request.user.id)
+
+        try:
+            friend_obj = Friend.objects.get(
+                current_user=self.request.user)
+            friends = friend_obj.users.all().order_by(
+                'username')
+        except Friend.DoesNotExist:
+            friends = None
+        paginator = Paginator(friends, 6)
+
+        page_number = self.request.GET.get('page')
+        context['friends'] = paginator.get_page(page_number)
+        return context
+
+
+class user_profile(DetailView):
+    """
+    Used to display profile of any user
+    other than currently logged in user
+    """
+    model = User
+    template_name = 'organiser/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.exclude(id=self.request.user.id)
+        try:
+            # if friends will display a chat button
+            context['threads'] = Thread.objects.filter(
+                Q(user=self.request.user) | Q(receiver=self.request.user))
+
+        except Thread.DoesNotExist:
+            context['threads'] = None
+
+        try:
+            # if friends: will display an unfollow/chat button
+            friend_obj = Friend.objects.get(current_user=self.request.user)
+            context['friends'] = friend_obj.users.all()
+        except Friend.DoesNotExist:
+            # if not friend will display a follow button only
+            context['friends'] = None
+        return context
+
+
 class list_thread(View):
 
     """
@@ -382,163 +570,6 @@ class create_message(View):
             )
 
         return redirect('thread', pk=pk)
-
-
-def change_friends(request, operation, pk):
-    """
-    Logic to handle follow and unfollow
-    if user clicks follow the operation pass
-    add as operation and vice versa
-    Also includes logic to create a new thread
-    when a user first follows someone or is
-    followed by someone else
-    """
-
-    friend = User.objects.get(pk=pk)
-    if operation == 'add':
-        Friend.make_friend(request.user, friend)
-        # if there is a thread return it
-        if Thread.objects.filter(
-            user=request.user,
-            receiver=friend
-        ).exists():
-            thread = Thread.objects.filter(
-                user=request.user, receiver=friend)[0]
-        elif Thread.objects.filter(
-            user=friend, receiver=request.user
-        ).exists():
-            thread = Thread.objects.filter(
-                user=friend, receiver=request.user)[0]
-        else:
-            # if there is no thread, make one
-            thread = Thread(
-                        user=request.user,
-                        receiver=friend
-                    )
-            thread.save()
-    elif operation == 'remove':
-        Friend.unfriend(request.user, friend)
-
-    # create 1 notification - avoid problem
-    # of user following and unfollowing many
-    # times
-    if not Notification.objects.filter(Q(
-        notification_type=3) & Q(
-            from_user=request.user) & Q(
-                to_user=friend) & Q(
-                    user_has_seen=False)).exists():
-        notification = Notification.objects.create(
-            notification_type=3,
-            from_user=request.user,
-            to_user=friend)
-
-    return redirect('feed')
-
-
-class user_profile_list(ListView):
-    """
-    Logic for displaying logged in user friends list
-    """
-    model = User
-    template_name = 'organiser/profile_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['users'] = User.objects.exclude(
-            id=self.request.user.id)
-
-        try:
-            friend_obj = Friend.objects.get(
-                current_user=self.request.user)
-            friends = friend_obj.users.all().order_by(
-                'username')
-        except Friend.DoesNotExist:
-            friends = None
-        paginator = Paginator(friends, 6)
-
-        page_number = self.request.GET.get('page')
-        context['friends'] = paginator.get_page(page_number)
-        return context
-
-
-class add_like(LoginRequiredMixin, View):
-    """
-    Handles logic to add likes
-    on a post - will check if user has liked
-    or dislike already before updating
-    A lot of help from the following tutorial
-
-    https://www.youtube.com/watch?v=NRexdRbvd6o&list=
-    PLPSM8rIid1a3TkwEmHyDALNuHhqiUiU5A&index=7
-
-    """
-    def post(self, request, pk, *args, **kwargs):
-        post = Post.objects.get(pk=pk)
-        is_dislike = False
-
-        for dislike in post.dislikes.all():
-            if dislike == request.user:
-                is_dislike = True
-                break
-
-        if is_dislike:
-            post.dislikes.remove(request.user)
-
-        is_like = False
-
-        for like in post.likes.all():
-            if like == request.user:
-                is_like = True
-                break
-
-        if not is_like:
-            post.likes.add(request.user)
-
-        if is_like:
-            post.likes.remove(request.user)
-
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
-
-
-class dislike(LoginRequiredMixin, View):
-    """
-    Handles logic to remove likes
-    on a post - will check if user has liked
-    or dislike already before updating
-    A lot of help from the following tutorial
-
-    https://www.youtube.com/watch?v=NRexdRbvd6o&list=
-    PLPSM8rIid1a3TkwEmHyDALNuHhqiUiU5A&index=7
-    """
-    def post(self, request, pk, *args, **kwargs):
-        post = Post.objects.get(pk=pk)
-
-        is_like = False
-
-        for like in post.likes.all():
-            if like == request.user:
-                is_like = True
-                break
-
-        if is_like:
-            post.likes.remove(request.user)
-
-        is_dislike = False
-
-        for dislike in post.dislikes.all():
-            if dislike == request.user:
-                is_dislike = True
-                break
-
-        if not is_dislike:
-            post.dislikes.add(request.user)
-
-        if is_dislike:
-            post.dislikes.remove(request.user)
-
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
 
 
 class post_notification(View):
@@ -647,34 +678,3 @@ class remove_notification(View):
         notification.user_has_seen = True
         notification.save()
         return HttpResponse('success', content_type='text/plain')
-
-
-class search_user(ListView):
-    """
-    Will display a list of users from searchbar search term
-    and display in a list - users are searchable by username
-    and first and last name
-
-    Help from the following tutorial
-
-    https://www.youtube.com/watch?v=yDJZk761Iik&list=
-    PLPSM8rIid1a3TkwEmHyDALNuHhqiUiU5A&index=8
-    """
-    model = User
-    template_name = 'organiser/search_results.html'
-    context_object_name = 'users'
-
-    def get_queryset(self):
-        try:
-            acc = self.request.GET.get('user',).lstrip().rstrip().split(
-                " ")[0]
-        except KeyError:
-            # if no user logged in
-            acc = None
-        if acc:
-            account_list = User.objects.filter(Q(
-                username__icontains=acc) | Q(
-                    first_name__icontains=acc) | Q(last_name__icontains=acc))
-        else:
-            account_list = User.objects.filter(username=self.request.user)
-        return account_list
