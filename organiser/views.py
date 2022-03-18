@@ -276,7 +276,7 @@ class add_like(LoginRequiredMixin, View):
         if is_like:
             post.likes.remove(request.user)
 
-        next = request.POST.get('next', '/')
+        next = request.POST.get('next', 'feed/')
         return HttpResponseRedirect(next)
 
 
