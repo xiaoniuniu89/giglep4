@@ -85,7 +85,7 @@
     <div class="search-bar search-small">
         <form action="{% url 'search' %}" method="get">
             <input id="al-search" type="text" placeholder="search user..."
-                   name="user" value="{{ request.GET.account }}"
+                   name="user"
                    class="search-field" />
             <button type="submit"
                     class="btn-small btn-primary" />Search</button>
@@ -93,7 +93,7 @@
     </div>
 
     {% block content %}{% endblock %}
-    
     <script src="{% static 'js/script.js' %}"></script>
+
 </body>
 </html>
