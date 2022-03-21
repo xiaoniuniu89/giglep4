@@ -24,5 +24,5 @@ urlpatterns = [
     path('calendar/', include('gig_calendar.urls')),
 ]
 
-handler404 = 'social.views.my_custom_page_not_found_view'
+handler404 = 'social.views.handle_404'
 # handler500= 'social.views.handle_500'

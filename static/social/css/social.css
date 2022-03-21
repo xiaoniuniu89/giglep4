@@ -329,17 +329,27 @@ form button {
 }
 
 .error-hero {
-    width: 90%;
-    max-height: 600px;
-    margin: 1em auto;
+    width: 80%;
+    height: 450px !important;
+    margin: 2em auto;
 }
 
 .error-txt {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     text-align: center;
+    padding: 1em;
+}
+
+.error-p {
+    width: 100%; 
+    margin: 0 auto;
+}
+
+.error-txt p {
+    padding: .5em;
 }
 
 
@@ -413,18 +423,16 @@ form button {
     }
     
     .error-wrapper {
-    flex-direction: row;
-    gap: 3em;
+    width: 90%;
+    max-width: 1200px;
     }
 
     .error-hero {
-        width: 30%;
+        max-width: 300px;
     }
 
     .error-txt {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
+        width: 40%;
     }
 
 }

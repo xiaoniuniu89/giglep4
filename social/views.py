@@ -45,7 +45,7 @@ def sign_up(request):
     return render(request, 'social/sign-up.html', {'form': form})
 
 
-def my_custom_page_not_found_view(request, exception):
+def handle_404(request, exception):
     return render(request, 'social/404.html')
 
 def handle_500(request):
