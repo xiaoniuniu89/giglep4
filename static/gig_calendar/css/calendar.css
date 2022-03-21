@@ -12,11 +12,9 @@
     --green: #44D62C;
   }
 
-
-
 .cal-wrapper {
-    width: 98%;
-    margin: 2em auto;
+    width: 100%; min-height: 850px;
+    margin: 2em auto 0;
     position: relative;
 }
 
@@ -34,55 +32,47 @@
   padding: 0 .1em;
 }
 
-  .calendar {
-    width: 98%;
-    font-family: 'Special Elite', cursive;
-    margin: 2em auto;
-  }
-  
-  /* .calendar tr, .calendar td {
-    border: 1px solid var(--dull-grey);
-  } */
-  
-  .calendar th {
-    padding: .7em;
+.calendar {
+  width: 98%;
+  font-family: 'Special Elite', cursive;
+  margin: 2em auto 0;
+}
+
+.calendar th {
+  padding: .7em;
+  text-align: center;
+}
+
+.calendar td {
+  width: 7em;
+  height: 6em;
+  padding: .4em 0 ;
+  text-align: center;
+}
+
+.month {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.5rem;
+}
+
+.date {
+  font-size: 1rem;
+  margin: 0 auto;
+}
+
+ul {
+  height: 100%;
+
+}
+
+.event-small {
     text-align: center;
-    /* font-size: 18px; */
-  }
-
-
   
-  .calendar td {
-    width: 7em;
-    height: 6em;
-    padding: .4em 0 ;
-    text-align: center;
-  }
-  
-  .month {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 1.5rem;
-  }
-  
-  .date {
-    font-size: 1rem;
-    margin: 0 auto;
-  }
-  
-  ul {
-    height: 100%;
- 
-  }
+}
 
-  .event-small {
-      text-align: center;
-    
-  }
-
-  .event-big {
-      display: none;
-  }
-
+.event-big {
+    display: none;
+}
 
 .fa-external-link-alt {
   position: absolute;
@@ -91,6 +81,12 @@
 
 .relative-card {
   position: relative;
+}
+
+.cal-footer {
+  margin-top: auto;
+  position: absolute; bottom: 0;
+  margin: 0;
 }
 
 @media screen and (min-width: 700px){
@@ -131,7 +127,6 @@
         right: 24em;
     }
 
-
   }
 
   @media screen and (min-width: 1400px) {
@@ -153,8 +148,6 @@
         font-size: 12px;
       }
     
-    
-      
       .calendar td {
         width: 1.8em;
         height: 40px;
@@ -190,7 +183,5 @@
       top: 0; right: 15px;
       font-size: 1.2rem;
     }
-
     
   }
-

@@ -88,11 +88,48 @@
                    name="user"
                    class="search-field" />
             <button type="submit"
-                    class="btn-small btn-primary" />Search</button>
+                    class="btn-small btn-primary">Search</button>
         </form>
     </div>
-
+   
     {% block content %}{% endblock %}
+    {% if title != 'calendar' %}
+        <footer class="footer">
+            <div class="footer-site-nav">
+                <h3 class="heading">Site Navigation</h3>
+                <div class="footer-nav-links">
+                    <ul>
+                        <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
+                        <li class="nav-item"><a href="{% url 'cal:calendar' %}">Calendar</a></li>
+                        <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</li>
+                    </ul>
+                    <ul>
+                        <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</span></a></li>
+                        <li class="nav-item "><a href="{% url 'my-profile'%}">Profile</a></li>
+                        <li class="nav-item "><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    {% else %}
+        <footer class="cal-footer">
+            <div class="footer-site-nav">
+                <h3 class="heading">Site Navigation</h3>
+                <div class="footer-nav-links">
+                    <ul>
+                        <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
+                        <li class="nav-item"><a href="{% url 'cal:calendar' %}">Calendar</a></li>
+                        <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</li>
+                    </ul>
+                    <ul>
+                        <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</span></a></li>
+                        <li class="nav-item "><a href="{% url 'my-profile'%}">Profile</a></li>
+                        <li class="nav-item "><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    {% endif %}
     <script src="{% static 'js/script.js' %}"></script>
 
 </body>

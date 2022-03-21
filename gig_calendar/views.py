@@ -42,6 +42,7 @@ class CalendarView(LoginRequiredMixin, ListView):
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
+        context['title'] = 'calendar'
         return context
 
 
