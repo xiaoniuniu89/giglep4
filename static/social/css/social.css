@@ -329,8 +329,9 @@ form button {
 }
 
 .error-hero {
-    width: 100%;
+    width: 90%;
     max-height: 600px;
+    margin: 1em auto;
 }
 
 .error-txt {
