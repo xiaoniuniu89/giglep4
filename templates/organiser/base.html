@@ -96,7 +96,7 @@
     {% if title != 'calendar' %}
         <footer class="footer">
             <div class="footer-site-nav">
-                <h3 class="heading">Site Navigation</h3>
+                <h3 class="heading">Gigle</h3>
                 <div class="footer-nav-links">
                     <ul>
                         <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
@@ -110,11 +110,16 @@
                     </ul>
                 </div>
             </div>
+            <div class="basic-wrapper-flex">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-icon fa-facebook"></i></a>
+                <a href="https://twitter.com/?lang=en" target="_blank"><i class="fab fa-icon fa-twitter"></i></a>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-icon fa-youtube"></i></a>
+            </div>
         </footer>
     {% else %}
         <footer class="cal-footer">
             <div class="footer-site-nav">
-                <h3 class="heading">Site Navigation</h3>
+                <h3 class="heading">Gigle</h3>
                 <div class="footer-nav-links">
                     <ul>
                         <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
@@ -127,6 +132,11 @@
                         <li class="nav-item "><a href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 </div>
+            </div>
+            <div class="basic-wrapper-flex">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-icon fa-facebook"></i></a>
+                <a href="https://twitter.com/?lang=en" target="_blank"><i class="fab fa-icon fa-twitter"></i></a>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-icon fa-youtube"></i></a>
             </div>
         </footer>
     {% endif %}
