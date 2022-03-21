@@ -8,7 +8,7 @@
 
     <div class="post-wrapper">
         <div class="post-pic-wrapper">
-            {% if "placeholder" in user.musician.profile_pic.url %}
+            {% if "placeholder" in post.author.musician.profile_pic.url %}
                     <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
             {% else %}
                 <img class="profile-pic" src="{{ post.author.musician.profile_pic.url }}">
@@ -93,7 +93,24 @@
                 <p class="rb-txt">{{comment.comment}}</p>
             </div>
         </div>
+        
         {% endfor %}
+        <div class="pagination">
+        <span class="step-links">
+            {% if comments.has_previous %}
+                <a href="?comments=1">&laquo;  </a>
+                <a href="?page={{ comments.previous_page_number }}">newer  </a>
+            {% endif %}
+    
+            {% if comments.has_next %}
+                <span class="current">
+                    {{ comments.number }} / {{ comments.paginator.num_pages }}  
+                </span>
+                <a href="?page={{ comments.next_page_number }}">older  </a>
+                <a href="?page={{ comments.paginator.num_pages }}">&raquo;</a>
+            {% endif %}
+        </span>
+    </div>
     </div>
 
 </main>

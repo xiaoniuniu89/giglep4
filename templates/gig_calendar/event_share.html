@@ -96,9 +96,6 @@
                 {% if friends.has_previous %}
                     <a href="?page=1">&laquo;  </a>
                     <a href="?page={{ friends.previous_page_number }}"> prev  </a>
-                    <span class="current">
-                        {{friends.number }} / {{ friends.paginator.num_pages }}  
-                    </span>
                 {% endif %}
 
                 {% if friends.has_next %}

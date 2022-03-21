@@ -7,7 +7,7 @@
     <div class="feed-wrapper">
         <div class="posts-wrapper">
             <h1 class="heading feed-heading">Feed</h1>
-            {% for post in posts %}
+            {% for post in page_obj %}
                 
                         <div class="post-wrapper card">
                             <div class="post-pic-wrapper">
@@ -72,9 +72,6 @@
                     {% if page_obj.has_previous %}
                         <a href="?page=1">&laquo;  </a>
                         <a href="?page={{ page_obj.previous_page_number }}">newer  </a>
-                        <span class="current">
-                            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}  
-                        </span>
                     {% endif %}
             
                     {% if page_obj.has_next %}

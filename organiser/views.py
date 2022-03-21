@@ -55,6 +55,7 @@ class feed(LoginRequiredMixin, ListView):
                 context['user_you_may_know'] = random.sample(list(
                     friend_suggestion), len(friend_suggestion))
             # return posts
+            
             context['posts'] = Post.objects.filter(
                 Q(author=self.request.user) | Q(
                     author__in=friends))
@@ -168,6 +169,12 @@ class post_detail(LoginRequiredMixin, View):
         comments = Comment.objects.filter(
             post=post).order_by('-date_posted')
 
+        paginator = Paginator(comments, 6)
+
+        page_number = self.request.GET.get('page')
+        comments = paginator.get_page(page_number)
+        
+
         context = {
             'post': post,
             'form': form,
@@ -187,9 +194,7 @@ class post_detail(LoginRequiredMixin, View):
             new_comment.author = request.user
             new_comment.post = post
             new_comment.save()
-
-        comments = Comment.objects.filter(post=post).order_by(
-            '-date_posted')
+            return redirect('post-detail', pk=post.pk)
 
         # to give 1 notification for multiple unseen comments
         # from same user on same post
@@ -201,12 +206,6 @@ class post_detail(LoginRequiredMixin, View):
                 from_user=request.user,
                 to_user=post.author,
                 post=post)
-
-        context = {
-            'post': post,
-            'form': form,
-            'comments': comments
-        }
 
         return render(request, 'organiser/post_detail.html', context)
 
@@ -383,7 +382,7 @@ class search_user(ListView):
     model = User
     template_name = 'organiser/search_results.html'
     context_object_name = 'users'
-
+   
     def get_queryset(self):
         try:
             acc = self.request.GET.get('user',).lstrip().rstrip().split(
