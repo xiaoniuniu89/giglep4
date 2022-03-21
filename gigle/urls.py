@@ -23,3 +23,6 @@ urlpatterns = [
     path('social/', include('organiser.urls')),
     path('calendar/', include('gig_calendar.urls')),
 ]
+
+handler404= 'social.views.handle_404'
+handler500 = 'social.views.handle_500'

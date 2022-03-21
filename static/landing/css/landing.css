@@ -317,7 +317,27 @@ form button {
     border: .5px solid var(--main-dark);
 }
 
+/* error pages  */
 
+.error-wrapper {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.error-hero {
+    width: 100%;
+}
+
+.error-txt {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+/* end error pages  */
 
 /* ## Media query start ##  */
 
@@ -334,6 +354,21 @@ form button {
 
     .cta-buttons, .cta-txt {
         text-align: center;
+    }
+
+    .error-wrapper {
+    flex-direction: row;
+    gap: 3em;
+}
+
+    .error-hero {
+        width: 30%;
+    }
+
+    .error-txt {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
     }
 
 

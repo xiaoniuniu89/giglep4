@@ -6,14 +6,14 @@ from .forms import UserSignUpForm
 
 def landing(request):
     """ landing home page view"""
-    return render(request, 'landing/landing.html')
+    return render(request, 'social/landing.html')
 
 
 def login(request):
     """
     login view, uses django auth views
     """
-    return render(request, 'landing/login.html')
+    return render(request, 'social/login.html')
 
 
 def logout_view(request):
@@ -42,4 +42,11 @@ def sign_up(request):
     else:
         form = UserSignUpForm()
 
-    return render(request, 'landing/sign-up.html', {'form': form})
+    return render(request, 'social/sign-up.html', {'form': form})
+
+
+def handle_404(request, exception):
+    return render(request, 'social/404.html')
+
+def handle_500(request):
+    return render(request, 'social/500.html')
