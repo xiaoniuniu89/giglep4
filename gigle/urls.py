@@ -24,5 +24,13 @@ urlpatterns = [
     path('calendar/', include('gig_calendar.urls')),
 ]
 
+# error handle pages
+# page not found
 handler404 = 'social.views.handle_404'
-# handler500= 'social.views.handle_500'
+# server error
+handler500= 'social.views.handle_500'
+# permission error
+handler403 = 'social.views.handle_403'
+# bad request error
+handler400 = 'social.views.handle_400'
+

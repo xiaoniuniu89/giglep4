@@ -46,7 +46,19 @@ def sign_up(request):
 
 
 def handle_404(request, exception):
+    """custom 404 page"""
     return render(request, 'social/404.html')
 
 def handle_500(request):
+    """custom server error page"""
     return render(request, 'social/500.html')
+
+def handle_403(request, exception):
+    """custom 403 page"""
+    return render(request, 'social/403.html')
+
+def handle_400(request, exception):
+    """custom 400 bad request page"""
+    return render(request, 'social/400.html')
+
+

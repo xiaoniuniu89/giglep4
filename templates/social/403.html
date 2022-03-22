@@ -1,0 +1,30 @@
+{% extends 'social/base.html' %}
+{% block content %}
+  <main>
+    <div class="error-wraper">
+      <div class="error-txt">
+        <div class="error-heading">
+          <h1 class="heading">STOP!!!! </h1>
+        </div>
+        <div class="error-p">
+          <p class='rb-txt txt-space'>You don't have permission to view this resource</p>
+          <p class='rb-txt txt-space'>Here are some suggestions in the meantime...</p>
+        </div>
+        <div class="footer-nav-links">
+            <ul>
+                <li class="nav-item"><a class="btn-small btn-primary" href="{% url 'feed' %}">Feed</a></li>
+                <li class="nav-item"><a class="btn-small btn-primary" href="{% url 'cal:calendar' %}">Calendar</a></li>
+            </ul>
+            <ul>
+                <li class="nav-item"><a class="btn-small btn-primary" href="{% url 'user-profile-list' %}">Friends</a></li>
+                <li class="nav-item"><a class="btn-small btn-primary" href="{% url 'my-profile'%}">Profile</a></li>
+            </ul>
+          </div>
+      </div>
+      <div class="error-hero">
+        <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1647935567/hand-print-1751319_lypsk4.svg" alt="A hand signaling to stop">
+      </div>
+    </div>
+  </main>
+
+{% endblock content %}
