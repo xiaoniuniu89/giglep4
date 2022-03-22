@@ -60,5 +60,3 @@ def handle_403(request, exception):
 def handle_400(request, exception):
     """custom 400 bad request page"""
     return render(request, 'social/400.html')
-
-

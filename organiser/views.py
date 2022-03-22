@@ -513,7 +513,7 @@ class list_thread(View):
         return render(request, 'organiser/inbox.html', context)
 
 
-class thread_view(View):
+class thread_view(UserPassesTestMixin, View):
     """
     This is the DM view - each thread is associated with a
     message list that is displayed here
@@ -532,6 +532,18 @@ class thread_view(View):
         }
 
         return render(request, 'organiser/thread.html', context)
+    
+     # test user is in thread
+    def test_func(self):
+        pk = self.kwargs['pk']
+        thread = Thread.objects.get(pk=pk)
+        if self.request.user == thread.user:
+            return True
+        elif self.request.user == thread.receiver:
+            return True
+        return False
+
+
 
 
 class create_message(View):
