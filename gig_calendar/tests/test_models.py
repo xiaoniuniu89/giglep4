@@ -24,3 +24,4 @@ class TestModels(TestCase):
     def test_user_has_event(self):
         """test users can create events"""
         self.assertEquals(self.event.author, self.user1)
+        self.assertEquals(Event.objects.all().count(), 1)
