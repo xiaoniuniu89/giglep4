@@ -24,13 +24,13 @@ class TestViews(TestCase):
         """test landing page response code"""
         response = self.client.get(self.landing_url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'landing/landing.html')
+        self.assertTemplateUsed(response, 'social/landing.html')
 
     def test_login_GET(self):
         """test login page response code"""
         response = self.client.get(self.login_url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'landing/login.html')
+        self.assertTemplateUsed(response, 'social/login.html')
 
     def test_logout_GET(self):
         """test logout page response code"""
@@ -42,7 +42,7 @@ class TestViews(TestCase):
         """test sign up page get response code"""
         response = self.client.get(self.sign_up_url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'landing/sign-up.html')
+        self.assertTemplateUsed(response, 'social/sign-up.html')
 
     def test_sign_up_POST(self):
         """test sign up page post response code"""

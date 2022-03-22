@@ -21,6 +21,10 @@ from organiser.views import (
     change_friends,
     search_user,
     my_profile,
+    user_profile_list,
+    user_profile,
+    list_thread,
+
 )
 
 class TestViews(TestCase):
@@ -72,6 +76,11 @@ class TestViews(TestCase):
             post = self.post1
         )
 
+        self.thread = Thread.objects.create(
+            user=self.user1,
+            receiver=self.user2
+        )
+
 
         # urls
         self.feed_url = reverse('feed')
@@ -94,6 +103,11 @@ class TestViews(TestCase):
                 'operation': 'remove', 'pk': self.user2.pk})
         self.search_user_url = reverse('search')
         self.my_profile_url = reverse('my-profile')
+        # looking at user1 friend list
+        self.user_profile_list_url = reverse('user-profile-list')
+        # user1 looking at user 2 profile
+        self.user_profile_url = reverse('profile', args=[2])
+        self.list_thread_url = reverse('inbox')
 
     # feed
     def test_feed_get(self):
@@ -269,14 +283,48 @@ class TestViews(TestCase):
         """ test my profile post/ update profile """
         response = self.client.post(self.my_profile_url, {
             'first_name': 'test',
-            'second_name': 'ing',
+            'last_name': 'ing',
             'instrument': 'python',
-            'location': 'the cloud'
+            'location': 'the cloud',
         }, follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertRedirects(response, self.my_profile_url)
-        self.assertEquals(self.user1.musician.location, 'the cloud')
-        
-        
+        # self.assertEquals(self.user1.musician.instrument, 'python')
 
+    # user profile list
+    def test_user_profile_list_get(self):
+        """ test friends list get """
+        request = self.factory.get(self.user_profile_list_url)
+        request.user = self.user1
+        response = user_profile_list.as_view()(request)
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue(
+            self.user2 in response.context_data[
+                'friends'])
+
+    # user profile
+    def test_user_profile_get(self):
+        """ test friends list get """
+        request = self.factory.get(self.user_profile_url)
+        request.user = self.user1
+        response = user_profile.as_view()(request, pk=self.user2.pk)
+        self.assertEquals(response.status_code, 200)
+        # true because user1 is looking at user 2 profile
+        self.assertTrue(
+            self.user2 in response.context_data[
+                'friends'])
+
+    # user inbox
+    def test_inbox_get(self):
+        """ test inbox get """
+        # request = self.factory.get(self.list_thread_url)
+        # request.user = self.user1
+        # response = list_thread.as_view()(request)
+        response = self.client.get(self.list_thread_url)
+        self.assertEquals(response.status_code, 200)
+        # testing a profile card containing user2s username is present in the html
+        self.assertTrue(bytes(self.user2.username, encoding='utf8') in response.content)
+
+
+    
 
