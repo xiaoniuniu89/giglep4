@@ -1,3 +1,4 @@
+import datetime
 from django.test import TestCase, Client, RequestFactory
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -24,6 +25,9 @@ from organiser.views import (
     user_profile_list,
     user_profile,
     list_thread,
+    thread_view,
+    create_message,
+    post_notification,
 
 )
 
@@ -76,9 +80,25 @@ class TestViews(TestCase):
             post = self.post1
         )
 
+        self.com_not = Notification.objects.create(
+            notification_type=2,
+            post=self.comment.post,
+            to_user=self.user1,
+            from_user=self.user2,
+            user_has_seen=False
+        )
+
         self.thread = Thread.objects.create(
             user=self.user1,
             receiver=self.user2
+        )
+
+        self.message = Message.objects.create(
+            thread=self.thread,
+            sender_user=self.user1,
+            receiver_user=self.user2,
+            body="this is a test message",
+            is_read=False
         )
 
 
@@ -108,6 +128,11 @@ class TestViews(TestCase):
         # user1 looking at user 2 profile
         self.user_profile_url = reverse('profile', args=[2])
         self.list_thread_url = reverse('inbox')
+        self.thread_url = reverse('thread', args=[1])
+        self.create_message_url = reverse('create_message', args=[1])
+        self.post_notification_url = reverse(
+            'post_notification', kwargs={
+                'notification_pk': 1, 'post_pk': self.post1.pk})
 
     # feed
     def test_feed_get(self):
@@ -289,7 +314,7 @@ class TestViews(TestCase):
         }, follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertRedirects(response, self.my_profile_url)
-        # self.assertEquals(self.user1.musician.instrument, 'python')
+        self.assertEquals(response.context['user'].musician.instrument, 'python')
 
     # user profile list
     def test_user_profile_list_get(self):
@@ -317,13 +342,54 @@ class TestViews(TestCase):
     # user inbox
     def test_inbox_get(self):
         """ test inbox get """
-        # request = self.factory.get(self.list_thread_url)
-        # request.user = self.user1
-        # response = list_thread.as_view()(request)
         response = self.client.get(self.list_thread_url)
         self.assertEquals(response.status_code, 200)
-        # testing a profile card containing user2s username is present in the html
-        self.assertTrue(bytes(self.user2.username, encoding='utf8') in response.content)
+        self.assertTrue(self.thread in response.context['threads'])
+        # testing a profile card containing user2s username
+        # is present in the html
+        self.assertTrue(bytes(
+            self.user2.username, encoding='utf8') in response.content)
+
+    # thread DM
+    def test_thread_get(self):
+        """ test thread get """
+        response = self.client.get(self.thread_url, pk=self.thread.pk)
+        self.assertEquals(response.status_code, 200)
+        # testing message in thread
+        self.assertTrue(self.message in response.context['message_list'])
+
+    # creating message
+    def test_create_message_post(self):
+        """ test create a new message """
+        response = self.client.post(self.create_message_url, {
+            'body': 'test'}, pk=self.thread.pk, follow=True)
+        self.assertEquals(response.status_code, 200)
+        # 1 from setup and 1 just created
+        self.assertEquals(response.context['message_list'].count(), 2)
+
+
+    # notifications 
+    def test_post_notification_comment(self):
+        """ test comment on post notification """
+        response = self.client.get(self.post_notification_url, notification_pk=self.com_not.pk, post_pk=self.post1.pk, follow=True)
+        # post renders and redirects to post detail page
+        self.assertEquals(response.status_code, 200)
+        self.assertRedirects(response, self.post_detail_url)
+
+    def test_post_notification_like(self):
+        """ test comment on post notification """
+        response = self.client.get(self.post_notification_url, notification_pk=self.like_not.pk, post_pk=self.post1.pk, follow=True)
+        # post renders and redirects to post detail page
+        self.assertEquals(response.status_code, 200)
+        self.assertRedirects(response, self.post_detail_url)
+
+
+
+    
+        
+
+
+
 
 
     
