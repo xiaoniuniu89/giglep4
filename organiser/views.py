@@ -30,7 +30,6 @@ class feed(LoginRequiredMixin, ListView):
     paginates posts by 6 per page
     also displays 4 random users to follow
     """
-    paginate_by = 6
     model = Post
     template_name = 'organiser/feed.html'
 
@@ -56,9 +55,16 @@ class feed(LoginRequiredMixin, ListView):
                     friend_suggestion), len(friend_suggestion))
             # return posts
             
-            context['posts'] = Post.objects.filter(
+            posts = Post.objects.filter(
                 Q(author=self.request.user) | Q(
                     author__in=friends))
+
+
+            paginator = Paginator(posts, 6)
+
+            page_number = self.request.GET.get('page')
+            posts = paginator.get_page(page_number)
+            context['posts'] = posts
 
         except Friend.DoesNotExist:
             # if user has no friends
@@ -66,6 +72,7 @@ class feed(LoginRequiredMixin, ListView):
             friend_suggestion = User.objects.exclude(id=self.request.user.id)
             context['user_you_may_know'] = friend_suggestion.all()[:4]
             context['posts'] = Post.objects.filter(author=self.request.user)
+            print('no friends')
         return context
 
 
@@ -455,7 +462,19 @@ class user_profile_list(ListView):
         paginator = Paginator(friends, 6)
 
         page_number = self.request.GET.get('page')
-        context['friends'] = paginator.get_page(page_number)
+        try:
+            context['friends'] = paginator.get_page(page_number)
+        # incase len is 0
+        except TypeError:
+            context['friends'] = None
+        if not friends or len(friends) == 0:
+            friend_suggestion = User.objects.exclude(id=self.request.user.id)
+            if len(friend_suggestion) < 4:
+                friend_s_length = len(friend_suggestion)
+            else:
+                friend_s_length = 4
+            context['user_you_may_know'] = random.sample(list(
+                    friend_suggestion), friend_s_length)
         return context
 
 

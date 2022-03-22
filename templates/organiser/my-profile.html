@@ -1,6 +1,9 @@
 {% extends 'organiser/base.html' %}
 {% block content %}
     <main>
+        <div class="basic-wrapper">
+            <h2 class="heading">My Profile</h2>
+        </div>
         <div class="profile-info card profile-card">
             <div class="card-wrapper">
                 {% if "placeholder" in user.musician.profile_pic.url %}
