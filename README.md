@@ -121,33 +121,78 @@ Wireframes can be found [here]()
 
 ## <p id="feed">Social Feed </p> 
 
+The social page is the page the user sees when they log into the site. From here users can create posts, get friend suggestions and see posts of other users in their feed which they can like/dislike.
 
+- feed page
 
- <img src="">
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648068983/Screenshot_from_2022-03-23_20-55-33_wons39.png"/>
 
+ - create/edit post page 
 
- ## <p id="calendar">Calendar </p> 
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648069465/Screenshot_from_2022-03-23_21-03-58_y4albw.png"/>
+ - post detail/comment page
 
-
-
- <img src="">
-
- ## <p id="msg">Messages </p> 
-
-
- <img src="">
-
-
-## <p id="profile">User Profile </p> 
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648069391/Screenshot_from_2022-03-23_21-02-35_v4iaev.png"/>
 
 
 
- <img src="">
+ ## <p id="profile">User Profile </p> 
+
+- user profile page with update profile modal
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648070761/Screenshot_from_2022-03-23_21-24-51_fhxulv.png"/>
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648070791/Screenshot_from_2022-03-23_21-25-00_zjxger.png"/>
+
+ - This is the profile of any user who is not the logged in user
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648070944/Screenshot_from_2022-03-23_21-28-38_kjksja.png"/>
+
+ - This is the users friend list. The design of this page is very similar to the inbox displaying conversations between the user and friends and also the search results page.
+
+- user list display 
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071093/Screenshot_from_2022-03-23_21-30-46_u2cwzf.png"/>
+
+ ## <p id="msg">Messages </p>
+ Users who are friend can have private conversations. The logged in user is displayed on the right in green text.
+
+ - DM page
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071262/Screenshot_from_2022-03-23_21-33-58_cyauze.png"/>
+
+
+ ## <p id="calendar">Calendar </p>
+ The calendar acs a schedular. Users can add events, multiple events in a single day create a list view of the events. Users can share events to other users also.
+
+
+- calendar
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071559/Screenshot_from_2022-03-23_21-38-49_h9ipne.png">
+
+ - add/edit event
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071675/Screenshot_from_2022-03-23_21-40-38_gixpxm.png"/>
+
+ - event detail
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071831/Screenshot_from_2022-03-23_21-43-18_zihi6q.png"/>
+
+  - accept event invite
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071916/Screenshot_from_2022-03-23_21-44-45_iwl6ov.png"/>
 
 
 
-## <p id="features-left">Features left to impliment</p> 
+## <p id="features-left">Features left to impliment</p>
 
+- ability to send and display pdf's of music charts.
+- set list maker with pdf's, optimised for tablet view.
+- band manager page were pdfs can be updated in real time and added to the users set list.
+- kanban board for every event should user need to organise their practice.
+- group chats for bands.
+- ability to store press materials such as pdf of bio and photos that canbe shared with agents.
+- application to issue statements and bills
+- geo locations and google maps to link eents to venue
 
 
 </section>
