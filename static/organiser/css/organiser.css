@@ -135,7 +135,7 @@
 
 /* end header style */
 
-.footer, .cal-footer {
+.footer {
     width: 100%;
     margin-top: 3em;
     background-color: #292c2f;
@@ -170,11 +170,11 @@ footer a {
     padding: .5em .2em;
 }
 
-.footer .basic-wrapper-flex, .cal-footer .basic-wrapper-flex {
+.footer .basic-wrapper-flex {
   justify-content: space-around;
 }
 
-.footer .basic-wrapper-flex a, .cal-footer .basic-wrapper-flex a {
+.footer .basic-wrapper-flex a {
     color: whitesmoke;
 }
 
@@ -451,7 +451,7 @@ footer a {
     }
 
     /* footer  */
-    .footer, .cal-footer {
+    .footer {
         flex-direction: row;
         flex-wrap: wrap;
     }
@@ -513,7 +513,7 @@ footer a {
         width: 40%;
     }
 
-    .footer .basic-wrapper-flex, .cal-footer .basic-wrapper-flex {
+    .footer .basic-wrapper-flex {
         width: 40%;
     }
 

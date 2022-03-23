@@ -57,12 +57,12 @@ body {
 }
 
 .btn-secondary {
-    background-color: var(--green);
+    background-color: var(--orange);
     color: var(--off-white);
 }
 
 .btn-secondary:hover {
-    background-color: #4dca3a;
+    background-color: #ecab1e;
 }
 
 a {
