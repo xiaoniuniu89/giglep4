@@ -63,16 +63,6 @@
     border-bottom: 1px solid var(--dull-grey);
 }
 
-/* .notification-dropdown {
-    position: absolute;
-    background-color: var(--main-dark);
-    opacity: .8;
-    top: 0; right: 0;
-    height: 0px;
-    overflow: hidden;
-    z-index: 2;
-} */
-
 .notification_bell {
     color: var(--urgent);
 }

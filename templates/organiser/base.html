@@ -31,7 +31,7 @@
         <!-- search bar -->
         <div class="search-bar search-large">
             <form action="{% url 'search' %}" method="get">
-                <input id="al-search" type="text" placeholder="search user..."
+                <input id="al-search-l" type="text" placeholder="search user..."
                        name="user" value="{{ request.GET.account }}"
                        class="search-field" required/>
                 <button type="submit"
@@ -52,7 +52,7 @@
             <nav class="profile-dropdown">
                 <ul>
                     <li class="first-nav"><a class="rb-txt" href="{% url 'feed' %}"><i class="fas fa-icon fa-home"></i>Home</a></li>
-                    <li c><a class='rb-txt' href="{% url 'cal:calendar' %}"><i class="far fa-icon fa-calendar-alt"></i> Calendar</a></li>
+                    <li ><a class='rb-txt' href="{% url 'cal:calendar' %}"><i class="far fa-icon fa-calendar-alt"></i> Calendar</a></li>
                     <li><a class='rb-txt' href="{% url 'inbox' %}"><i class="far fa-icon fa-envelope"></i> Messages</a></li>
                     <li ><a class='rb-txt' href="{% url 'my-profile' %}"><i class="fas fa-icon fa-user"></i> Profile</a></li>
                     <li ><a class='rb-txt' href="{% url 'user-profile-list' %}"><i class="fas fa-icon fa-users"></i> Friends</a></li>
@@ -64,10 +64,10 @@
         <!-- navbar on bigger screen -->
         <div class="nav-container nav-big">
             <ul class="nav-list">
-                <li class="nav-item"><a href="{% url 'feed' %}"><i class="fas fa-icon fa-home"></i></a></li>
-                <li class="nav-item"><a href="{% url 'cal:calendar' %}"><i class="far fa-icon fa-calendar-alt"></i></a></li>
-                <li class="nav-item"><a href="{% url 'user-profile-list' %}"><i class="fas fa-icon fa-users"></i></a></li>
-                <li class="nav-item bell"><span ><i class="fas pointer notifications-dropdown-icon fa-icon notification_bell fa-bell"></i></span></li>
+                <li class="nav-item"><a href="{% url 'feed' %}"><span class='hover-underline'><i class="fas fa-icon fa-home"></i></span></a></li>
+                <li class="nav-item"><a href="{% url 'cal:calendar' %}"><span class='hover-underline'><i class="far fa-icon fa-calendar-alt"></i></span></a></li>
+                <li class="nav-item"><a href="{% url 'user-profile-list' %}"><span class='hover-underline'><i class="fas fa-icon fa-users"></i></span></a></li>
+                <li class="nav-item bell"><i class="fas pointer notifications-dropdown-icon fa-icon notification_bell fa-bell"></i></li>
                 <li class="nav-item "><a href="{% url 'inbox' %} "><span class='hover-underline'><i class="far fa-icon fa-envelope"></i></span></a></li>
                 <li class="nav-item "><a href="{% url 'my-profile'%}"><span class='hover-underline'><i class="fas fa-icon fa-user"></i></span></a></li>
                 <li class="nav-item "><a href="{% url 'logout' %}"><span class='hover-underline'><i class="fas fa-icon  fa-sign-out-alt"></i></span></a></li>
@@ -78,7 +78,7 @@
     </header>
     {% show_notifications %}
    
-
+    <!-- flash messages  -->
     {% if messages %}
         {% for message in messages  %}
             <div class="alert alert-{{message.tags}}">
@@ -86,7 +86,7 @@
             </div>
         {% endfor %}
     {% endif %}
-
+    <!-- searchbar mobile  -->
     <div class="search-bar search-small">
         <form action="{% url 'search' %}" method="get">
             <input id="al-search" type="text" placeholder="search user..."
@@ -98,6 +98,9 @@
     </div>
    
     {% block content %}{% endblock %}
+    <!-- the calendar page is a little special and creates a lot of css 
+    conflicts so the footer is rendered again down below with classes specific 
+    only to the footer on the calendar page -->
     {% if title != 'calendar' %}
         <footer class="footer">
             <div class="footer-site-nav">
@@ -106,10 +109,10 @@
                     <ul>
                         <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
                         <li class="nav-item"><a href="{% url 'cal:calendar' %}">Calendar</a></li>
-                        <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</li>
+                        <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</a></li>
                     </ul>
                     <ul>
-                        <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</span></a></li>
+                        <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</a></li>
                         <li class="nav-item "><a href="{% url 'my-profile'%}">Profile</a></li>
                         <li class="nav-item "><a href="{% url 'logout' %}">Logout</a></li>
                     </ul>
@@ -122,6 +125,7 @@
             </div>
         </footer>
     {% else %}
+    <!-- calendar footer  -->
         <footer class="cal-footer">
             <div class="footer-site-nav">
                 <h3 class="heading">Gigle</h3>
@@ -129,10 +133,10 @@
                     <ul>
                         <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
                         <li class="nav-item"><a href="{% url 'cal:calendar' %}">Calendar</a></li>
-                        <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</li>
+                        <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</a></li>
                     </ul>
                     <ul>
-                        <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</span></a></li>
+                        <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</a></li>
                         <li class="nav-item "><a href="{% url 'my-profile'%}">Profile</a></li>
                         <li class="nav-item "><a href="{% url 'logout' %}">Logout</a></li>
                     </ul>

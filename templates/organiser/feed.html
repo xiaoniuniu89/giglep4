@@ -2,19 +2,24 @@
 {% block content %}
 
 
-    <div class="post-btn"><a href="{% url 'post-create' %}"><button class="btn-small ">Create Post</button></a></div>
+    <div class="post-btn"><a class="btn-small btn-secondary" href="{% url 'post-create' %}">Create Post</a></div>
 
     <div class="feed-wrapper">
         <div class="posts-wrapper">
             <h1 class="heading feed-heading">Feed</h1>
+            {% if not posts %}
+            <div class="basic-wrapper">
+                <p class="rb-txt">Create a post or add friends to see what others are thinking!</p>
+            </div>
+            {% endif %}
             {% for post in posts %}
                 
                         <div class="post-wrapper card">
                             <div class="post-pic-wrapper">
                             {% if "placeholder" in post.author.musician.profile_pic.url %}
-                                <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                                <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png" alt="user {{post.author.username}}'s profile pic">
                             {% else %}
-                                <img class="profile-pic" src=" {{ post.author.musician.profile_pic.url }}">
+                                <img class="profile-pic" src=" {{ post.author.musician.profile_pic.url }} " alt="user {{post.author.username}}'s profile pic">
                             {% endif %}
                             </div>
                             <div class="post-author-wrapper">
@@ -99,13 +104,11 @@
                     {% else %}
                         <p class="rb-txt txt-height"><a href="{% url 'profile' user.pk %}">{{user.first_name}} {{user.last_name}}</a></p>
                     {% endif %}
-                    <a href="{% url 'change_friends' operation='add' pk=user.pk %}"><button class="btn-primary btn-small">Follow</button></a>
+                    <a class="btn-primary btn-small" href="{% url 'change_friends' operation='add' pk=user.pk %}">Follow</a>
                 {% endif %}
             {% endfor %}
-           
-            
-
-            
+            <br>
+            <br>
         </div>
     </div>    
 

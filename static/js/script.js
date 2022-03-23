@@ -8,16 +8,11 @@ $('.profile-dropdown-icon').on('click', function() {
 
 })
 
-
 // to open and close the notification menu
 $('.notifications-dropdown-icon').on('click', function() {
-    console.log('clicked')
     $('.notification-dropdown').toggleClass('notification-nav--open', 500)
     $('.bell').toggleClass('hide')
-    $('.cover-bell').toggleClass('hide')
 })
-
-
 
 // open and close modal to edit profile 
 

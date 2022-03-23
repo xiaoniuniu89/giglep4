@@ -1,56 +1,50 @@
 {% extends 'organiser/base.html' %}
 {% block content %}
-
 <main>
-
     <br>
     <p class='rb-txt txt-space'><a href="{% url 'feed' %}"><i class="fas fa-icon fa-chevron-left"></i>Back to feed</a></p>
 
     <div class="post-wrapper">
         <div class="post-pic-wrapper">
             {% if "placeholder" in post.author.musician.profile_pic.url %}
-                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png" alt="user {{post.author.username}}'s profile pic">
             {% else %}
-                <img class="profile-pic" src="{{ post.author.musician.profile_pic.url }}">
+                <img class="profile-pic" src="{{ post.author.musician.profile_pic.url }}" alt="user {{post.author.username}}'s profile pic">
             {% endif %}
         </div>
         <div class="post-author-wrapper">
-        {% if user.is_authenticated %}
-            {% if user.pk == post.author.pk %}
-                {% if user.first_name == '' %}
-                    <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.username}}</a></p>
+            {% if user.is_authenticated %}
+                {% if user.pk == post.author.pk %}
+                    {% if user.first_name == '' %}
+                        <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.username}}</a></p>
+                    {% else %}
+                        <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
+                    {% endif %}
                 {% else %}
-                    <p class="rb-txt"><a href="{% url 'my-profile' %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
-                {% endif %}
-            {% else %}
-                {% if user.first_name == '' %}
-                    <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.username}}</a></p>
-                {% else %}
-                    <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
+                    {% if user.first_name == '' %}
+                        <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.username}}</a></p>
+                    {% else %}
+                        <p class="rb-txt"><a href="{% url 'profile' post.author.pk %}">{{post.author.first_name}} {{post.author.last_name}}</a></p>
+                    {% endif %}
                 {% endif %}
             {% endif %}
-        {% endif %}
-        <small class="rb-txt">{{post.date_posted}}</small>
-        <br>
-        {% if user.pk == post.author.pk %}
-            <small><a href="{% url 'post-update' post.pk %}">Edit Post | </a></small>
-            <small><a href="{% url 'post-delete' post.pk %}">Delete Post</a></small>
-        {% endif %}
-
+            <small class="rb-txt">{{post.date_posted}}</small>
+            <br>
+            {% if user.pk == post.author.pk %}
+                <small><a href="{% url 'post-update' post.pk %}">Edit Post | </a></small>
+                <small><a href="{% url 'post-delete' post.pk %}">Delete Post</a></small>
+            {% endif %}
         </div>
         <div class="post-msg">
             <p class="rb-txt">{{post.content}}</p>
         </div>
-       
-            </div>
-        </div>
     </div>
     <div class='form-wrapper'>
         <div class="form">
-            <form action="" method="POST">
+            <form method="POST">
                 {% csrf_token %}
                 <div class="post-content">{{form.comment}}</div>
-                <button class="btn btn-primary" type="submit">Comment</button>
+                <button class="btn-small btn-secondary" type="submit">Comment</button>
             </form>
         </div>
     </div>
@@ -60,9 +54,9 @@
         <div class="post-wrapper">
             <div class="post-pic-wrapper">
                 {% if "placeholder" in comment.author.musician.profile_pic.url %}
-                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png" alt="user {{comment.author.username}}'s profile pic">
                 {% else %}
-                    <img class="profile-pic" src="{{ comment.author.musician.profile_pic.url }}">
+                    <img class="profile-pic" src="{{ comment.author.musician.profile_pic.url }}" alt="user {{comment.author.username}}'s profile pic">
                 {% endif %}
             </div>
             <div class="post-author-wrapper">

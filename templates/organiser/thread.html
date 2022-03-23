@@ -4,9 +4,9 @@
     <div class="basic-wrapper">
 
         {% if thread.receiver == request.user %}
-            <h1 class="heading">@{{thread.user}}</h1>
+            <h2 class="heading">@{{thread.user}}</h2>
         {% else %}
-            <h1 class='heading'>@{{thread.receiver}}</p>
+            <h2 class='heading'>@{{thread.receiver}}</h2>
         {% endif %}
 
     </div>
@@ -18,20 +18,10 @@
         <div id="chat" class="basic-wrapper chat-height card">
             {% for message in message_list  %}
                 {% if message.sender_user == request.user %}
-                    <!-- {% if message.image %}
-                        <div>
-                            <img src="{{ message.image.url }}" class='msg-img sent-img' alt="">
-                        </div>
-                    {% endif %} -->
                     <div class="sent-msg">
                         <span class='rb-txt txt-space txt-height'>{{message.body}}</span>
                     </div>
                 {% else %}
-                    <!-- {% if message.image %}
-                        <div class='msg-img-container'>
-                            <img src="{{ message.image.url }}" class='received-img msg-img' alt="">
-                        </div>
-                    {% endif %} -->
                     <div class="received-msg">
                         <span class='rb-txt txt-space txt-height'>{{message.body}}</span>
                     </div>

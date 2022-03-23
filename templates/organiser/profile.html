@@ -2,25 +2,25 @@
 {% block content %}
     <div class="basic-wrapper">
         {% if user.first_name == '' %}
-            <h2 class='heading'>{{user.username}}'s profile</h1>
+            <h2 class='heading'>{{user.username}}'s profile</h2>
         {% else %}
-            <h2 class='heading'>{{user.first_name}}'s profile</p>
+            <h2 class='heading'>{{user.first_name}}'s profile</h2>
         {% endif %}
     </div>
     <div class="profile-info card">
         <div class="card-wrapper ">
             <div class="profile-pic-wrapper">
                 {% if "placeholder" in user.musician.profile_pic.url %}
-                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png">
+                    <img class="profile-pic" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642328437/user-1633249_640_ogwtqg.png" alt="user {{user.username}}'s profile pic">
                 {% else %}
-                    <img class="profile-pic" src="{{ user.musician.profile_pic.url }}">
+                    <img class="profile-pic" src="{{ user.musician.profile_pic.url }}" alt="user {{user.username}}'s profile pic">
                 {% endif %}
             </div>
             <div class="profile-info-text-wrapper">
                 {% if user.first_name == '' %}
-                    <h1 class='rb-txt txt-space txt-height'>{{user.username}}</h1>
+                    <h3 class='rb-txt txt-space txt-height'>{{user.username}}</h3>
                 {% else %}
-                <h1 class='rb-txt txt-space'>{{user.first_name}} {{user.last_name}}</p>
+                <p class='rb-txt txt-space'>{{user.first_name}} {{user.last_name}}</p>
                 {% endif %}
                 {% if object.location != '' %}
                     <p class='rb-txt txt-space txt-height'>{{user.musician.location}}</p>
@@ -40,22 +40,18 @@
             {% if threads %}
                 {% for thread in threads %}
                     {% if thread.user == request.user and thread.receiver == user  %}
-                        <a href="{% url 'thread' thread.pk %}">
-                        <button class="btn-primary btn-small">Chat</button>
-                        </a>
+                        <a class="btn-secondary btn-small" href="{% url 'thread' thread.pk %}">Chat</a>
                     {% elif thread.receiver == request.user and thread.user == user %}
-                        <a href="{% url 'thread' thread.pk %}">
-                        <button class="btn-primary btn-small">Chat</button>
-                        </a>
+                        <a class="btn-secondary btn-small" href="{% url 'thread' thread.pk %}">Chat</a>
                     {% endif %}
                 {% endfor %}
                     
             {% endif %}
             
             {% if user in friends %}
-                <a href="{% url 'change_friends' operation='remove' pk=user.pk %}"><button class="btn-primary btn-small">Unfollow</button></a>
+                <a class="btn-primary btn-small" href="{% url 'change_friends' operation='remove' pk=user.pk %}">Unfollow</a>
             {% else %}
-                <a href="{% url 'change_friends' operation='add' pk=user.pk %}"><button class="btn-primary btn-small">Follow</button></a>
+                <a class="btn-secondary btn-small" href="{% url 'change_friends' operation='add' pk=user.pk %}">Follow</a>
             {% endif %}
         </div>
 
