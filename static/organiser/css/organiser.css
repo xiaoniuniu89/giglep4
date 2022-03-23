@@ -15,7 +15,6 @@
     --green: #44D62C;
   }
 
-
   .padding {
       padding: 1em;
   }
@@ -24,7 +23,7 @@
       text-align: center;
   }
 
-
+/* pushing footer down  */
   body {
       display: flex;
       flex-direction: column;
@@ -38,7 +37,6 @@
       display: none;
   }
 
-
 .fa-icon {
     font-size: 1.5rem;
 }
@@ -48,7 +46,7 @@
 }
 
 /* works in conjunction with js function*/
-/* organiser/js/script.js line 1  */
+/* static/js/script.js line 1  */
 .profile-dropdown {
     position: absolute;
     background-color: var(--main-dark);
@@ -100,6 +98,7 @@
     max-width: 80%;
 }
 
+/* extra bell for notifications and one for no notifications */
 .bell {
     position: absolute;
     top: 19px; right: 60px;
@@ -114,7 +113,6 @@
     position: initial;
     background-color: var(--yellow);
     opacity: .8;
-    /* top: 9%; right: 0; */
     height: 0px;
     overflow: hidden;
     z-index: 2;
@@ -123,10 +121,9 @@
 .notification-nav--open {
     height: auto ;
     width: 100%;
-    /* max-width: 70%; */
 }
 
-/* moves fa icon on top of drop down menu  */
+/* moves font awesome icon on top of drop down menu  */
 .move-forward {
     color: var(--off-white);
     z-index: 3;
@@ -137,7 +134,6 @@
 }
 
 /* end header style */
-
 
 .footer, .cal-footer {
     width: 100%;
@@ -185,6 +181,9 @@ footer a {
 .footer a:hover {
     color: var(--dull-grey);
 }
+
+/* end footer  */
+
 /* feed  */
 
 .feed-heading {
@@ -217,10 +216,6 @@ footer a {
     border-radius: 5px;
 }
 
-.profile-card {
-    margin: 3em auto 8em !important;
-}
-
 .post-author-wrapper {
     width: 70%;
     padding: 1em;
@@ -230,7 +225,6 @@ footer a {
 .post-author-wrapper:nth-child(1) {
     padding: .5em;
 }
-
 
 .post-msg {
     width: 100%;
@@ -255,7 +249,6 @@ footer a {
     text-align: center;
 }
 
-
 .pagination {
     width: 90%;
     display: flex;
@@ -263,8 +256,6 @@ footer a {
     margin: 0 auto;
     padding: 1em 0 3em;
 }
-
-
 
 /* end feed  */
 
@@ -277,7 +268,9 @@ footer a {
     max-width: 600px;
 }
 
-
+.profile-card {
+    margin: 3em auto 8em !important;
+}
 
 .card-wrapper {
     display: flex;
@@ -315,14 +308,16 @@ footer a {
     width: 90%;
 }
 
-
 .edit-profile {
     cursor: pointer;
 }
 
+/* end profile  */
+
 /* modal  */
 
 /* The Modal (background) */
+/* https://www.w3schools.com/howto/howto_css_modals.asp  */
 
 .modal {
     display: none; /* Hidden by default */
@@ -355,7 +350,7 @@ footer a {
   }
 
 /* msg threads  */
-
+/* sent msg on right in green  */
 .sent-msg {
     margin: 1.2em .5em;
     text-align: right;
@@ -370,7 +365,7 @@ footer a {
     padding: .2em 1em;
     
 }
-
+/* received msg on left in grey  */
 .received-msg {
     margin: 1.2em .5em;
     text-align: left;
@@ -380,6 +375,7 @@ footer a {
     color: var(--dull-grey);
 }
 
+/* chat box  */
 .chat-height {
     max-height: 60vh;
     overflow-y: scroll;
@@ -390,7 +386,6 @@ footer a {
 .msg-img {
     width: 70%;
     max-width: 300px;
-    max-height: auto;
     border: .5px solid var(--main-dark);
     border-radius: 25px;
 }
@@ -405,20 +400,21 @@ footer a {
 
 /* end msg threads  */
 
-
-
-  /* media query style */
+/* media query style */
 
 @media screen and (min-width: 1200px ) {
 
+    /* desktop styles  */
+
+    /* feed  */
 
     .feed-wrapper {
         width: 95%;
         max-width: none;
         margin: 0 1em;
         display: flex;
-        
     }
+
     .posts-wrapper {
         width: 80%;
     }
@@ -444,6 +440,9 @@ footer a {
         padding: 2em;
     }
 
+    /* end feed  */
+
+    /* messages  */
     .chat-height {
         max-height: 60vh;
         overflow-y: scroll;
@@ -451,6 +450,7 @@ footer a {
         margin: 0 auto;
     }
 
+    /* footer  */
     .footer, .cal-footer {
         flex-direction: row;
         flex-wrap: wrap;
@@ -458,6 +458,9 @@ footer a {
 }
 
 @media screen and (min-width: 700px ) {
+    /* tablet styles  */
+
+    /* navbar  */
     .nav-small {
         display: none;
     }
@@ -479,12 +482,6 @@ footer a {
         top: .2em; left: .2em;
     }
 
-    #close-modal {
-        float: none;
-        position: absolute;
-        right: 18%;
-    }
-
     .bell {
         top: 14px; right: 240px;
     }
@@ -494,9 +491,23 @@ footer a {
         left: 52px;
     }
 
+    /* end navbar  */
+
+    /* profile page - modal close button move left  */
+
+    #close-modal {
+        float: none;
+        position: absolute;
+        right: 18%;
+    }
+
+    /* messages  */
+
     .sent-img {
         margin-left: 45%;
     }
+
+    /* footer  */
 
     .footer-site-nav {
         width: 40%;
@@ -505,8 +516,6 @@ footer a {
     .footer .basic-wrapper-flex, .cal-footer .basic-wrapper-flex {
         width: 40%;
     }
-
-    
 
 }
 
@@ -519,13 +528,11 @@ footer a {
         margin: 3em auto;
         max-width: 600px;
     }
-
-    
 }
 
-
- /* for extra small screen  */
 @media screen and (max-width: 374px ) {
+    /* for extra small screen  */
+
     .grow {
         width: 95%;
     }
@@ -548,7 +555,5 @@ footer a {
     }
 
 }
-
-
 
 /* end media query style */
