@@ -46,6 +46,7 @@ class TestViews(TestCase):
 
     def test_sign_up_POST(self):
         """test sign up page post response code"""
+        # making a fake post
         response = self.client.post(self.sign_up_url, {
             'username': 'test1',
             'email': 'test@email.com',
@@ -58,6 +59,7 @@ class TestViews(TestCase):
 
     def test_sign_up_POST_no_data(self):
         """test sign up page no data response code"""
+        # make fake post with no data
         response = self.client.post(self.sign_up_url, {
             'username': '',
             'email': '',

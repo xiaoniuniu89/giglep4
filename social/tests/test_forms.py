@@ -1,6 +1,5 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from social.models import Musician
 from social.forms import (
     UserSignUpForm,
     UserLoginForm,
