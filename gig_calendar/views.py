@@ -99,6 +99,7 @@ class event_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = EventForm()
+        context['title'] = 'event'
         return context
 
 
@@ -208,6 +209,7 @@ class event_share(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         # get event id from url
         event = Event.objects.get(pk=kwargs['pk'])
         context['event'] = event
+        context['title'] = 'share event'
         # get friends list to choose who to pass event to
         # check has friends
         try:
@@ -269,7 +271,8 @@ class event_share_confirm(
             # kwargs are in the url
             'to_user': User.objects.get(pk=kwargs['user_pk']),
             'event': Event.objects.get(pk=kwargs['event_pk']),
-            'from_user': User.objects.get(id=self.request.user.id)
+            'from_user': User.objects.get(id=self.request.user.id),
+            'title': 'confirm share event'
         }
 
         return render(

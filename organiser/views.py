@@ -37,6 +37,7 @@ class feed(LoginRequiredMixin, ListView):
         context = super(feed, self).get_context_data(**kwargs)
         # step1 get users
         context['users'] = User.objects.exclude(id=self.request.user.id)
+        context['title'] = 'feed'
 
         try:
             # step2 try find any friends
@@ -91,6 +92,7 @@ class post_create(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = PostForm()
+        context['title'] = 'post'
         return context
 
     def form_valid(self, form):
@@ -447,6 +449,7 @@ def my_profile(request):
     context = {
         'user_form': user_form,
         'musician_form': musician_form,
+        'title': 'my profile'
     }
 
     return render(request, 'organiser/my-profile.html', context)
@@ -463,6 +466,7 @@ class user_profile_list(ListView):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(
             id=self.request.user.id)
+        context['title'] = 'friends'
 
         try:
             friend_obj = Friend.objects.get(
@@ -501,6 +505,8 @@ class user_profile(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.exclude(id=self.request.user.id)
+        user = User.objects.get(pk=self.kwargs['pk'])
+        context['title'] = f'{user.username}\'s profile'
         try:
             # if friends will display a chat button
             context['threads'] = Thread.objects.filter(
@@ -539,6 +545,7 @@ class list_thread(View):
         threads = paginator.get_page(page_number)
         context = {
             'threads': threads,
+            'title': 'inbox'
         }
 
         return render(request, 'organiser/inbox.html', context)
@@ -559,7 +566,8 @@ class thread_view(UserPassesTestMixin, View):
         context = {
             'thread': thread,
             'message_list': message_list,
-            'form': form
+            'form': form,
+            'title': 'chatbox'
         }
 
         return render(request, 'organiser/thread.html', context)
