@@ -269,7 +269,7 @@ footer a {
 }
 
 .profile-card {
-    margin: 3em auto 8em !important;
+    margin: 3em auto 10em !important;
 }
 
 .card-wrapper {
@@ -525,7 +525,7 @@ footer a {
     }
     
     .modal-form-bg {
-        margin: 3em auto;
+        margin: 1em auto;
         max-width: 600px;
     }
 }

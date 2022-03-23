@@ -56,15 +56,6 @@ body {
     background-color: #b61b23;
 }
 
-.btn-secondary {
-    background-color: var(--orange);
-    color: var(--off-white);
-}
-
-.btn-secondary:hover {
-    background-color: #ecab1e;
-}
-
 a {
     text-decoration: none;
     color: var(--main-dark);
@@ -219,10 +210,6 @@ a {
 .hover-underline:hover::before {
     visibility: visible;
     transform: scaleX(1);
-}
-
-a:hover {
-    color: initial;
 }
 
 li {
