@@ -1,14 +1,13 @@
 {% extends 'social/base.html' %}
 {% block content %}
     <main>
-
-     
-        
         <div class='form-wrapper'>
             <div class="form">
-                <form action="" method="POST">
+                <!-- custom styles on form  -->
+                <form method="POST">
                     {% csrf_token %}
                     <h1 class='heading'>Sign-up</h1>
+                    <!-- this is necessary to display errors in form in a custom style  -->
                     {% if form.errors %}
                         {% for field in form  %}
                             {% for error in field.errors  %}
@@ -26,6 +25,7 @@
                     {{form.password2}}
                     <button class="btn btn-primary" type="submit">Lets go!</button>
                     <div>
+                        <!-- login  -->
                         <small class="text-muted">
                             Already have an account? <a class='info' href="{% url 'login' %}"> Login</a>
                         </small>
@@ -33,7 +33,5 @@
                 </form>
             </div>
         </div>
-
     </main>
-
 {% endblock content %}

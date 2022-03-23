@@ -1,11 +1,10 @@
 {% extends 'social/base.html' %}
 {% block content %}
     <main>
-     
-        
         <div class='form-wrapper'>
+            <!-- custom styles on form  -->
             <div class="form">
-                <form action="" method="POST">
+                <form method="POST">
                     {% csrf_token %}
                     <h1 class='heading'>Login</h1>
                     {% for error in form.non_field_errors %}
@@ -17,20 +16,19 @@
                     {{form.password}}
                     <button class="btn btn-primary" type="submit">Sign me in!</button>
                     <div>
+                        <!-- password reset  -->
                         <small class="text-muted">
-                            <a class='info' href="{% url 'password_reset' %}">forgot password?</a>!
+                            <a class='info' href="{% url 'password_reset' %}">forgot password?</a>
                         </small>
                     </div>
                     <div>
+                        <!-- create an account   -->
                         <small class="text-muted">
-                            Need an account? <a class='info' href="{% url 'sign-up' %}"> Sign-up</a>!
+                            Need an account? <a class='info' href="{% url 'sign-up' %}"> Sign-up!</a>
                         </small>
                     </div>
                 </form>
             </div>
         </div>
-
-
     </main>
-
 {% endblock content %}

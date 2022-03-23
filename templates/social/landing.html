@@ -6,6 +6,7 @@
         <h1>Organize, Practice, Rehearse, Gig!</h1>
       </div>
       <div class="cta-hero">
+        <!-- different pictures for small and large screen -->
         <img class="cta-img-small" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642418843/hero-mobile_mnynkc.png" alt="A musician paying sax">
         <img class="cta-img-big" src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1642418830/hero-desktop_h6azib.png" alt="Two jazz musicians playing sax and trumpet">
       </div>
@@ -19,6 +20,7 @@
           </p>
         </div>
         {% if not user.is_authenticated %}
+          <!-- sign up button not displayed if user is already logged in and has an account  -->
           <div class="cta-buttons">
             <a class="btn btn-primary" href="{% url 'sign-up' %}">Sign-Up</a>
           </div>

@@ -16,14 +16,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {% if title  %}
-        <title>gig book - {{title}}</title>
+        <title>gigle - {{title}}</title>
     {% else %}
-        <title>gig book</title>
+        <title>gigle</title>
     {% endif %}
     
 </head>
 <body>
         <header class="header-container">
+            <!-- logo going back to home page -->
             <div class="logo-container">
                 {% if user.is_authenticated %}
                     <a href="{% url 'feed' %}"><span class="heading">Gigle</span></a>
@@ -33,6 +34,7 @@
             </div>
             <div class="nav-container">
                 <ul class="nav-list">
+                    <!-- user will see link to go back to feed page or logout if they are already logged in -->
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a href="{% url 'feed' %}"><i class="fas fa-icon fa-home"></i></a></li>
                         <li class="nav-item "><a href="{% url 'logout' %}"><span class='hover-underline'><i class="fas fa-icon  fa-sign-out-alt"></i></span></a></li>
@@ -43,6 +45,7 @@
                 </ul>
             </div>
         </header>
+        <!-- flash messages  -->
     {% if messages %}
         {% for message in messages  %}
             <div class="alert alert-{{message.tags}}">
@@ -53,6 +56,7 @@
     {% block content %}{% endblock %}
 
     {% if user.is_authenticated %}
+    <!-- footer only loads if user is logged in  -->
         <footer class="footer">
             <div class="footer-site-nav">
                 <h3 class="heading">Gigle</h3>

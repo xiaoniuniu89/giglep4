@@ -352,6 +352,14 @@ form button {
     padding: .5em;
 }
 
+.footer-nav-links {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-nav-links li {
+    padding: .5em .2em;
+}
 
 /* end error pages  */
 
