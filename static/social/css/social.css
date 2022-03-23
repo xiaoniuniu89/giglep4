@@ -35,12 +35,12 @@ body {
     font-size: 1rem;
     cursor: pointer;
 }
+
 .btn-null {
     background-color: var(--off-white);
     border: none;
     cursor: pointer;
 }
-
 
 .btn-small {
     padding: .6em 1.1em;
@@ -61,6 +61,13 @@ a {
     color: var(--main-dark);
 }
 
+/* covers h tags  */
+.heading {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 1.5rem;
+}
+
+/* covers p tags  */
 .rb-txt {
     font-family: 'Special Elite', cursive;
 }
@@ -78,11 +85,11 @@ a {
     letter-spacing: .1em;
 }
 
-
 .pointer {
     cursor: pointer;
 }
 
+/* for flash msg and warnings */
 .alert-info {
     background-color: var(--blue);
 }
@@ -90,8 +97,6 @@ a {
 .info {
     color: var(--blue);
 }
-
-
 
 .urgent-alert {
     background-color: var(--urgent);
@@ -123,6 +128,9 @@ a {
     padding: .8em;
 }
 
+/* end flash/warnings msg  */
+
+/* covers a lot of div tags  */
 .basic-wrapper {
     width: 95%;
     margin: 1em auto;
@@ -139,20 +147,16 @@ a {
     gap: 2.5em;
 }
 
-
 .white-card {
     background-color: white;
-    box-shadow: -2px 2px 2px var(grey);
+    box-shadow: -2px 2px 2px grey;
 }
-
- 
-
-
 
 /* ## end base style ##  */
 
 /* ## nav style ##  */
 
+/* searchbar  */
 .search-small{
     width: 95%;
     max-width: 600px;
@@ -164,20 +168,15 @@ a {
     width: 35%;
     max-width: 600px;
 }
+/* end searchbar */
 
-
-
+/* header  */
 .header-container {
     display: flex;
     border-bottom: 1px solid black;
     padding: 1.2em;
     justify-content: space-around;
     align-items: flex-start;
-}
-
-.heading {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 1.5rem;
 }
 
 .logo-container {
@@ -191,6 +190,7 @@ a {
     padding: 0 1em;
 }
 
+/* expanding underline on nav items animation */
 .hover-underline {
     position: relative;
 }
@@ -224,6 +224,7 @@ li {
 
 /* ## landing page cta style ##  */
 
+/* large screen pic  */
 .cta-big {
     display: none;
 }
@@ -240,7 +241,6 @@ li {
     font-size: 1.1rem;
     margin-bottom: .2em;
 }
-
 
 .cta-img-small {
     display: block;
@@ -261,7 +261,6 @@ li {
 }
 
 /* ## end landing page cta style ##  */
-
 
 /* forms - sign-up, login, update profile etc.  */
 
@@ -379,10 +378,6 @@ form button {
     .cta-buttons, .cta-txt {
         text-align: center;
     }
-
-   
-
-
 }
 
 /* ## desktop sizes ##  */
@@ -444,4 +439,3 @@ form button {
     }
 
 }
-
