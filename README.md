@@ -24,7 +24,7 @@
 # About 
 
  Gigle is a social media app for working musicians. Users can connect with other musicians, send provate messages, book events on their own calendar, post what they are thinking in the social feed and like/comment other user posts. 
-<span style="color:red">Gigle is still in development</span>.
+
 
  <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1643095598/Screenshot_from_2022-01-17_13-42-36_lz8lh0.png">
  
@@ -40,21 +40,54 @@
 
 # UX Design
 
+
 ## <p id="user-stories"> User Stories</p>
 
+- As a user I can create an account to access the site.
+- As a user I can reset my password incase I loose it or feel my current password is not secure.
+- As a user I can update the information on my profile to reflect my current circumstances.
+As a user I can post messages to let my followers know what I am thinking.
+- As a user I can comment and like other users posts to show I agree or show I'm interested in what the say.
+- As a user I can edit or delete my posts in case I change my mind about what I wanted to say.
+- As a user I can follow other users so I can receive their posts in my feed.
+- As a user I can DM other users to have a private conversation with them about work or other private matters.
+- As a user I can unfollow a user to stop receiving their posts in my feed.
+- As a user I can receive notifications when I'm followed, messaged, invited to events or post receives a comment or like so I can know who has tried to interact with me during the day.
+- As a user I can add events to my calendar to avoid scheduling conflicts in my week to week work. 
+- As a user I can send or recieve events to/from other users so I can send/receive relevant information for work or events.
+- As a user I can search for other users so I can find musicians who I might want to work with.
 
+
+## The Real Books
+
+Gigle is designed to look like a set of musical manuscripts that working musicians are very familiar with called Real Books and Fake Books. Real Books are manuscripts that contain hundreds of popular pop and jazz songs that musicians may need to reference on any show. They are published by [hal leonard](https://www.halleonard.com/feature/490/real-books). The term Fake Book are older versions of these books, usually collections of songs that are incomplete and are just an outline of a piece.
 
  ## <p id="typography">Typography</p> 
 
+- [Special Elite](https://fonts.google.com/specimen/Special+Elite) is used extensively in the site which is inspired by older style of Real Book, especially in the index and notes.
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648067774/special_elite_f5chka.jpg"/>
+
+- [Luckiest Guy](https://fonts.google.com/specimen/Luckiest+Guy) is used in the site and best reflects real books headings, titles and notation slashes.
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648067770/luckiest_guy_yg9lcp.jpg"/>
 
 
-## <p id="color">Color</p> 
+## <p id="color">Color</p>
 
+The color scheme is influenced a lot by the bright neon colors of the various iterations of real books over time.
 
+-  main-dark: #202020; 
+- off-white: #faf9f6;
+- off-grey: #615766;
+- urgent: #D22730;
+- yellow: #E0E722;
+- orange: #FFAD00;
+- red: #D22730;
+- green: #44D62C;
 
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648068040/Screenshot_from_2022-03-23_20-26-34_1_ktaj8q.png"/>
 
-
-</section>
 
 ## <p id="wireframes">Wireframes</p> 
 
