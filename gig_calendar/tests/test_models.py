@@ -25,3 +25,6 @@ class TestModels(TestCase):
         """test users can create events"""
         self.assertEquals(self.event.author, self.user1)
         self.assertEquals(Event.objects.all().count(), 1)
+        # test __str__
+        self.assertEquals(str(self.event), 'title - test')
+

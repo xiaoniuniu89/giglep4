@@ -17,3 +17,5 @@ class TestModels(TestCase):
     def test_user_has_profile(self):
         """tests signal to create musician profile works"""
         self.assertEquals(self.user1.musician.user.username, 'test')
+        # test __str__
+        self.assertEquals(str(self.user1.musician), 'test\'s profile')

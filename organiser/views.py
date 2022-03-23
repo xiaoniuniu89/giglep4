@@ -406,8 +406,6 @@ class search_user(ListView):
         return account_list
 
 
-
-
 @login_required
 def my_profile(request):
     """
