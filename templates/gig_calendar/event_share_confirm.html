@@ -4,7 +4,7 @@
    <main>
     <div class='form-wrapper'>
         <div class="form">
-            <form action="" method="POST">
+            <form method="POST">
                 {% csrf_token %}
                 {% if to_user.first_name == '' %}
                     <h1 class='heading'>Share Event with {{to_user}}</h1>
@@ -15,7 +15,7 @@
                     <h2 class="rb-txt txt-height txt-padding">{{event.title}}</h2>
                     <small class="rb-txt txt-height txt-padding">date: {{event.date}}</small>
                     <br>
-                    <p class="rb-txt txt-space txt-height txt-padding">{{event.description}}</p rb-txt>
+                    <p class="rb-txt txt-space txt-height txt-padding">{{event.description}}</p>
                 </div>
                 <button class="btn btn-primary" type="submit">Confirm</button>
                 <a href="{% url 'cal:calendar' %}" class="btn btn-primary" >Cancel</a>

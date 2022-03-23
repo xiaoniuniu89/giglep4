@@ -9,13 +9,13 @@
         <a href="{% url 'cal:event_share' event.pk %}">
             <i class="fas fa-icon fa-external-link-alt"></i>
         </a>
-        <h1 class="rb-txt txt-height txt-padding">{{object.title}}</h1>
+        <h2 class="rb-txt txt-height txt-padding">{{object.title}}</h2>
         <small class="rb-txt"><a href="{% url 'cal:event-update' event.pk %}">Edit | </a></small>
         <small class="rb-txt"><a href="{% url 'cal:event-delete' event.pk %}">Delete</a></small>
         <br>
         <small class="rb-txt txt-height txt-padding">date: {{object.date}}</small>
         <br>
-        <p class="rb-txt txt-space txt-height txt-padding">{{object.description}}</p rb-txt>
+        <p class="rb-txt txt-space txt-height txt-padding">{{object.description}}</p>
     </div>
 </main>
 
