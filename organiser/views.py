@@ -201,18 +201,20 @@ class post_detail(LoginRequiredMixin, View):
             new_comment.author = request.user
             new_comment.post = post
             new_comment.save()
+            # to give 1 notification for multiple unseen comments
+            # from same user on same post
+            if not Notification.objects.filter(Q(post=post) & Q(
+                from_user=request.user) & Q(
+                    user_has_seen=False) & Q(
+                    notification_type=2)).exists():
+                Notification.objects.create(
+                    notification_type=2,
+                    from_user=request.user,
+                    to_user=post.author,
+                    post=post)
             return redirect('post-detail', pk=post.pk)
 
-        # to give 1 notification for multiple unseen comments
-        # from same user on same post
-        if not Notification.objects.filter(Q(post=post) & Q(
-            from_user=request.user) & Q(
-                user_has_seen=False)).exists():
-            notification = Notification.objects.create(
-                notification_type=2,
-                from_user=request.user,
-                to_user=post.author,
-                post=post)
+       
 
         return render(request, 'organiser/post_detail.html', context)
 
@@ -278,6 +280,18 @@ class add_like(LoginRequiredMixin, View):
 
         if not is_like:
             post.likes.add(request.user)
+            # checks if user already has a like notification about
+            # post in question from the same user
+            # that has not been seen yet
+            if not Notification.objects.filter(Q(post=post) & Q(
+                from_user=request.user) & Q(
+                    user_has_seen=False) & Q(
+                    notification_type=1)).exists():
+                Notification.objects.create(
+                    notification_type=1,
+                    from_user=request.user,
+                    to_user=post.author,
+                    post=post)
 
         if is_like:
             post.likes.remove(request.user)

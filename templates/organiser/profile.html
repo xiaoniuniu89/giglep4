@@ -51,7 +51,7 @@
             {% if user in friends %}
                 <a class="btn-primary btn-small" href="{% url 'change_friends' operation='remove' pk=user.pk %}">Unfollow</a>
             {% else %}
-                <a class="btn-secondary btn-small" href="{% url 'change_friends' operation='add' pk=user.pk %}">Follow</a>
+                <a class="btn-primary btn-small" href="{% url 'change_friends' operation='add' pk=user.pk %}">Follow</a>
             {% endif %}
         </div>
 
