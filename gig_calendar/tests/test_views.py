@@ -23,20 +23,21 @@ class TestViews(TestCase):
         """ set up test variables """
         self.client = Client()
         self.user1 = User.objects.create(
-            username = 'test',
-            email = 'test@email.com',
-            password = 'test12344321',
+            username='test',
+            email='test@email.com',
+            password='test12344321',
         )
+        # to share events with
         self.user2 = User.objects.create(
-            username = 'test2',
-            email = 'test2@email.com',
-            password = 'test12344321',
+            username='test2',
+            email='test2@email.com',
+            password='test12344321',
         )
         self.event = Event.objects.create(
-            author = self.user1,
-            title = 'title',
-            description = 'test',
-            date = '2022-01-01'
+            author=self.user1,
+            title='title',
+            description='test',
+            date='2022-01-01'
         )
         Friend.make_friend(self.user1, self.user2)
         self.client.force_login(self.user1)
@@ -46,13 +47,20 @@ class TestViews(TestCase):
         self.event_detail_url = reverse('cal:event_detail', args=[1])
         self.event_update_url = reverse('cal:event-update', args=[1])
         self.event_delete_url = reverse('cal:event-delete', args=[1])
-        self.event_list_url = reverse('cal:event-list', kwargs={'slug_year': 2022, 'slug_month':1, 'slug_day': 1})
+        self.event_list_url = reverse(
+            'cal:event-list', kwargs={
+                'slug_year': 2022,
+                'slug_month': 1,
+                'slug_day': 1
+            }
+        )
         self.event_share_url = reverse('cal:event_share', args=[1])
-        self.event_share_confirm_url = reverse('cal:event_share_confirm', kwargs={'event_pk': self.event.pk, 'user_pk': self.user1.pk})
+        self.event_share_confirm_url = reverse(
+            'cal:event_share_confirm',
+            kwargs={'event_pk': self.event.pk, 'user_pk': self.user1.pk})
         self.event_invite_url = reverse('cal:event_invite', args=[1])
         self.factory = RequestFactory()
-       
-      
+
     def test_calendar_view_GET(self):
         """test calendar view results in 200 status code"""
         request = self.factory.get(self.calendar_url)
@@ -72,7 +80,7 @@ class TestViews(TestCase):
         response = self.client.post(self.create_event_url, {
             'author': self.user1,
             'title': 'test2',
-            'description':'test description',
+            'description': 'test description',
             'date': '2022-01-01'}, pk=self.event.pk, follow=True)
         self.assertEquals(response.status_code, 200)
         # 1 from setup and 1 just created
@@ -97,11 +105,13 @@ class TestViews(TestCase):
         response = self.client.post(self.event_update_url, {
             'author': self.user1,
             'title': 'updated title',
-            'description':'test description',
+            'description': 'test description',
             'date': '2022-01-01'}, pk=self.event.pk, follow=True)
         self.assertEquals(response.status_code, 200)
         # check title has been updated
-        self.assertEquals(Event.objects.get(pk=self.event.pk).title, 'updated title')
+        self.assertEquals(
+            Event.objects.get(
+                pk=self.event.pk).title, 'updated title')
 
     def test_event_delete_view_GET(self):
         """test calendar event delete results in 200 status code"""
@@ -140,7 +150,7 @@ class TestViews(TestCase):
         response = self.client.post(self.event_invite_url, {
             'author': self.user2,
             'title': self.event.title,
-            'description':self.event.description,
+            'description': self.event.description,
             'date': self.event.date}, pk=self.event.pk, follow=True)
         self.assertEquals(response.status_code, 200)
         # 1 from setup and 1 just saved

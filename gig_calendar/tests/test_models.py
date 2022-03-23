@@ -27,4 +27,3 @@ class TestModels(TestCase):
         self.assertEquals(Event.objects.all().count(), 1)
         # test __str__
         self.assertEquals(str(self.event), 'title - test')
-
