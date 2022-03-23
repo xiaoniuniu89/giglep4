@@ -39,6 +39,8 @@ class TestViews(TestCase):
             date = '2022-01-01'
         )
         Friend.make_friend(self.user1, self.user2)
+        self.client.force_login(self.user1)
+
         self.calendar_url = reverse('cal:calendar')
         self.create_event_url = reverse('cal:event-create')
         self.event_detail_url = reverse('cal:event_detail', args=[1])
@@ -65,6 +67,17 @@ class TestViews(TestCase):
         response = event_create.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
+    def test_create_event_post(self):
+        """ test create a new event post """
+        response = self.client.post(self.create_event_url, {
+            'author': self.user1,
+            'title': 'test2',
+            'description':'test description',
+            'date': '2022-01-01'}, pk=self.event.pk, follow=True)
+        self.assertEquals(response.status_code, 200)
+        # 1 from setup and 1 just created
+        self.assertEquals(Event.objects.filter(author=self.user1).count(), 2)
+
     def test_event_detail_view_GET(self):
         """test calendar event detail results in 200 status code"""
         request = self.factory.get(self.event_detail_url)
@@ -79,6 +92,17 @@ class TestViews(TestCase):
         response = event_update.as_view()(request, pk=self.event.pk)
         self.assertEquals(response.status_code, 200)
 
+    def test_event_update_post(self):
+        """ test update event post """
+        response = self.client.post(self.event_update_url, {
+            'author': self.user1,
+            'title': 'updated title',
+            'description':'test description',
+            'date': '2022-01-01'}, pk=self.event.pk, follow=True)
+        self.assertEquals(response.status_code, 200)
+        # check title has been updated
+        self.assertEquals(Event.objects.get(pk=self.event.pk).title, 'updated title')
+
     def test_event_delete_view_GET(self):
         """test calendar event delete results in 200 status code"""
         request = self.factory.get(self.event_delete_url)
@@ -87,9 +111,9 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
 
     def test_event_list_view_GET(self):
-        """test calendar event list results in 302 status code"""
+        """test calendar event list results in 200 status code"""
         response = self.client.get(self.event_list_url)
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 200)
 
     def test_event_share_view_GET(self):
         """test calendar event share results in 200 status code"""
@@ -110,3 +134,14 @@ class TestViews(TestCase):
         response = event_invite.as_view()(request, pk=self.event.pk)
         self.assertEquals(response.status_code, 200)
 
+    def test_event_invite_post(self):
+        """ test event invite post """
+        self.client.force_login(self.user2)
+        response = self.client.post(self.event_invite_url, {
+            'author': self.user2,
+            'title': self.event.title,
+            'description':self.event.description,
+            'date': self.event.date}, pk=self.event.pk, follow=True)
+        self.assertEquals(response.status_code, 200)
+        # 1 from setup and 1 just saved
+        self.assertEquals(Event.objects.all().count(), 2)

@@ -87,6 +87,7 @@ class TestViews(TestCase):
             body="this is a test message",
             is_read=False
         )
+        
         # event to interact with
         self.event = Event.objects.create(
             author=self.user1,
