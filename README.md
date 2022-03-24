@@ -6,11 +6,13 @@
   - <a href="#color">Color</a>
   - <a href="#wireframes">Wireframes</a>
 - <a href="#features">Features</a>
+  - <a href="#nav">Nav/Footer</a>
   - <a href="#landing">Sign-Up/Login</a>
   - <a href="#feed">Social Feed</a>
-  - <a href="#calendar">Calendar</a>
-  - <a href="#msg">Messages</a>
   - <a href="#profile">User Profile</a>
+  - <a href="#msg">Messages</a>
+  - <a href="#calendar">Calendar</a>
+  - <a href="#error">Error Pages</a>
   - <a href="#features-left">Features Left to Impliment</a>
 - <a href="#tech">Technologies Used</a>
 - <a href="#test">Testing</a>
@@ -99,6 +101,29 @@ Wireframes can be found [here]()
 
 # Features
 
+This is an app I would have liked to use when I was working as a musician in my 20's. A lot of the functionality comes from problems I encountered often. The project is very big however. In some areas I don't have time to impliment a feature, in others I don't have the skills yet. Here is a breakdown of how I decided on the minimal viable product fot the first release.
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648111832/Screenshot_from_2022-03-24_08-49-35_vzrkna.png"/>
+
+ ## <p id="nav">Nav / Footer</p> 
+The navbar features a logo to the feed page, font awesome icons for all of the different pages a user can visit, a searchbar, and a notification bell. Any flash messages will also be displayed under the navbar. The footer again provides links to any useful pages and links to social media sites.
+
+- navbar
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648109810/Screenshot_from_2022-03-24_08-15-47_qhaaoe.png"/>
+
+- notifications
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648110091/Screenshot_from_2022-03-24_08-20-54_age9z0.png"/>
+
+- Flash messages
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648110229/Screenshot_from_2022-03-24_08-23-16_rrtyzw.png"/>
+
+- Footer
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648110277/Screenshot_from_2022-03-24_08-15-55_f8fgfv.png"/>
+
  ## <p id="landing">Sign-up / Login</p> 
 
  The sign-up, login and password reset all use built-in features of the django webframework to handle authentication and form validation. 
@@ -181,6 +206,21 @@ The social page is the page the user sees when they log into the site. From here
 
  <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071916/Screenshot_from_2022-03-23_21-44-45_iwl6ov.png"/>
 
+
+ ## <p id="error">Error Pages </p>
+There are 4 custom error pages. I think these are important as the inbuilt error pages are not tonaly consistant with the design of the site.
+
+- 404 (also very similar to 400 bad request)
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648110517/Screenshot_from_2022-03-24_08-27-59_riziey.png">
+
+ - 403 
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648110676/Screenshot_from_2022-03-24_08-30-51_l4qgxc.png">
+
+ - 500
+
+ <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648110743/Screenshot_from_2022-03-23_16-32-08_1_fv8dbb.png">
 
 
 ## <p id="features-left">Features left to impliment</p>
