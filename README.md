@@ -93,7 +93,7 @@ The color scheme is influenced a lot by the bright neon colors of the various it
 
 ## <p id="wireframes">Wireframes</p> 
 
-Wireframes can be found <a href="p4-wireframes.pdf">here</a>
+Wireframes can be found [here]()
 
 </section>
 
@@ -247,31 +247,35 @@ There are 4 custom error pages. I think these are important as the inbuilt error
 [Github](https://www.github.com)
 - remote repository hosting platform
 
-[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) | [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | [Jquery](https://jquery.com/) | [python](https://www.python.org/) | [django](https://www.djangoproject.com/)
+[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) | [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) |  [python](https://www.python.org/) 
 
-- Languages, libraries and framework
- Used to make the site
+- Languages Used to make the site
+
+[Jquery](https://jquery.com/) | [JqueryUI](https://jqueryui.com/) | [django](https://www.djangoproject.com/) | [coverage](https://coverage.readthedocs.io/en/6.3.2/) 
+
+- libraries and framework used to make the site
 
 [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/)
 - Used to check site responsiveness
 
+[HTML Validator](https://validator.w3.org/)
+- Check for HTML errors
+
 [Jigsaw](https://jigsaw.w3.org/css-validator/)
 - Check for CSS errors
 
-[HTML Validator](https://validator.w3.org/)
-- Check for HTML errors
+[PEP8](http://pep8online.com/)
+- Check for python errors
 
 [jshint](https://jshint.com/)
 - check for JavaScript errors
 
 [Font Awesome](https://fontawesome.com/)
-- for Icons 
+- for Icons
 
 [Balsamiq](https://balsamiq.com/)
 - to make wireframes
 
-[Website Responsive Test](http://responsivetesttool.com/)
-- to check responsivness on different devices
 
 # Testing <p id="test"></p>
 
