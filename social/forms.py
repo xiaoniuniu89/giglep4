@@ -48,10 +48,10 @@ class UserUpdateForm(forms.ModelForm):
     """
     first_name = forms.CharField(
         required=False, widget=forms.TextInput(
-            attrs={'class': 'form-field'}))
+            attrs={'class': 'form-field', 'maxlength': '15'}))
     last_name = forms.CharField(
         required=False, widget=forms.TextInput(
-            attrs={'class': 'form-field'}))
+            attrs={'class': 'form-field', 'maxlength': '15'}))
 
     class Meta:
         """ form fields """
