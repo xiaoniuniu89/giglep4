@@ -285,16 +285,43 @@ Testing can be found in this file: [Testing](TESTING.md)
 
 # Deployment <p id="deployment"></p>
 
-The site is deployed on git hub pages. The link is here:
+The site is deployed on [Heroku](https://www.heroku.com/). The link is here:
 
-https://xiaoniuniu89.github.io/santa-letters/
+https://p4gigle.herokuapp.com/
 
-Steps to deploy the site:
+Steps to deploy the site on Heroku:
+
+- in code editor add requirements for heroku to install by typing the following ocmmand into the terminal:
+  - pip3 freeze > requirements.txt
+
+- create a Procfile in same directory as manage.py and paste in the following:
+  - web: gunicorn gigle.wsgi
+
+- in settings.py add heroku to allowed hosts
+  
+- commit and push changes
+
+- log into heroku or make an account
+- click create a new app in top right corner
+- name your app and choose the region you live in
+- in the resources tab of your app dashboard add the postgres database resource
+- in the settings tab click reveal config vars and add the following
+  - CLOUDINARY_URL - get from [cloudinary](https://cloudinary.com/)
+  - DATABASE_URL (added automatically)
+  - EMAIL_PASS - app uses google, steps to set up app passwords found [here](https://support.google.com/accounts/answer/185833?hl=en)
+  - EMAIL_USER - Email account address
+  - SECRET_KEY - can be anything
+
+- go to the deploy tab and choose github as deploy method
+- search for the repo and connect
+- click deploy branch
+- if the build fails in top right corner click the 'more' button and check logs to get indication of problem
+- click view app button to see the app
 
 
 How to fork the repository
 - Go to [github.com](https://www.github.com) and login.
-- Click santa-letters
+- Click giglep4
 - in the top right of the page click the "fork" button
 - you will now have a copy of the repository in your github account.
 
@@ -302,7 +329,7 @@ How to clone the repository
 - Go to [github.com](https://www.github.com)
 - Log in to account
 - Click repositories
-- Click santa-letters fork
+- Click giglep4
 - Click the green code button that says Clone or download 
 - to copy from HTTPS copy URL link "HTTPS". 
 - open terminal
