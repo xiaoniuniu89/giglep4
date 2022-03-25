@@ -1,8 +1,8 @@
 # Automated Testing
 
-* NB*  - To run the automated steps you must use the commented out SQL lite database in settings.py as the Postgres database on Heroku lacks the necessary permission to create database tables.
+* NB*  - To run the automated tets you must use the commented out SQL lite database in settings.py as the Postgres database on Heroku lacks the necessary permission to create database tables.
 
-The app useses Djangos inuilt test module to test the sites code
+The app uses Djangos inbuilt test module to test the site's code
 
 To run tests, in command line type:
 - python3 manage.py test
