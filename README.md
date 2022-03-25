@@ -48,7 +48,7 @@ Gigle is a social media app for working musicians. Users can connect with other 
 - As a user, I can create an account to access the site.
 - As a user, I can reset my password in case I lose it or feel my current password is not secure.
 - As a user, I can update the information on my profile to reflect my current circumstances.
-As a user, I can post messages to let my followers know what I am thinking.
+- As a user, I can post messages to let my followers know what I am thinking.
 - As a user, I can comment and like other users' posts to show I agree or show I'm interested in what they say.
 - As a user, I can edit or delete my posts in case I change my mind about what I wanted to say.
 - As a user, I can follow other users so I can receive their posts in my feed.
