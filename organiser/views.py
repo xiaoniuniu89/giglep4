@@ -73,7 +73,6 @@ class feed(LoginRequiredMixin, ListView):
             friend_suggestion = User.objects.exclude(id=self.request.user.id)
             context['user_you_may_know'] = friend_suggestion.all()[:4]
             context['posts'] = Post.objects.filter(author=self.request.user)
-            print('no friends')
         return context
 
 
