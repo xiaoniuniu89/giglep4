@@ -343,24 +343,35 @@ More detailed instructions can be found [here](https://docs.github.com/en/github
 
 # Credits <p id="credits"></p>
 
-## Content
-
-### Media
-<br>
+## Media
 
 #### Images
+I found the black silhouettes of different musicianson [pixabay](https://pixabay.com/) and were mostly taken from a user called [Mohoamed Hassan](https://pixabay.com/users/mohamed_hassan-5229782/)
 
+- landing page
+    - [desktop](https://pixabay.com/vectors/jazz-silhouette-musician-trumpet-3662296/)
+    - [mobile](https://pixabay.com/vectors/saxophone-saxophonist-silhouette-4455933/)
 
+- 404 and 400
+  - https://pngset.com/download-free-png-evwwm
+- 403 page
+  - https://pixabay.com/vectors/hand-print-grey-fingers-thumbs-307728/
+- 500
+  - https://pixabay.com/vectors/breaking-guitar-music-musician-2858673/
 
 <br>
 
+## Code and Tutorials
+
+- [Corey Schafer blog series](https://www.youtube.com/watch?v=-s7e_Fy6NRU&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=10)
+
+  - This series was great for how to use django's built in views and authentication especially CRUD functionality.
 
 
-#### Videos
+- [Legion Script](https://www.youtube.com/watch?v=_JKWYkz597c)
+  - This series helped a lot to get the DM and notifications functionality working. 
 
 
-<br>
-
-### Text
-
-- text written by
+- [Hui Wen](https://www.huiwenteo.com/normal/2018/07/24/django-calendar.html)
+  - This tutorial was very useful and I don't think they calendar app would have worked without it. It describes how to make a calendar in a utils.py file and render to template.
+  
