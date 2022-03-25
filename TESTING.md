@@ -102,3 +102,45 @@ A coverage report shows a total of 1461 statements tested with 87 untested, a 94
     - In the search bar type the name, first or last, or the username of the user you would like to search for.
     - You will be redirected to a results page with any users matching your query.
 
+## Browser Testing
+
+The website was tested on the following browser:
+- Chrome
+- Firefox
+- Opera
+- Safari
+- Edge
+
+### Chrome
+- The scrollbar on the chatbox in the DM page is not very nice in Chrome.
+
+
+### Firefox
+- Chatbox looks much nicer on this browser
+
+### Opera
+- No issues
+
+### Safari
+
+
+### Edge
+
+# Bugs
+
+## Solved Bugs
+### No friends and Empty Friends object
+- A lot of logic depends on whether the user has a friend or not, eg: feed posts, friend lists, share an event, etc
+- Following someone, then unfollowing someone left a situation that the user would have a friend object that was empty as compared to having no friends. This broke a lot of the site at first.
+- It was fixed by using try and except blocks in the views and handling a user having no friends and an empty friend objects as the same.
+
+
+
+## Unsolved Bugs
+### User passes test robustness
+- It is difficult to write a test robust enough to prevent a user from, for example, changing the URL when sharing an event on the event share confirm page. As long as the user is friends with the person's id used in the URL parameters and the user also wrote the event, the app will allow the user to do this. It's not great for the user experience and I will try to fix it in the future.
+
+### Threads of the unfriended
+- A thread is created as soon as one user follows another. This is necessary to create a chat button between those two people.
+-After unfriending a person it is difficult to get rid of the thread. Also, I did not like the idea of following, chatting, unfollowing, following again, and not having access to the past DM's.
+- So for now, when you unfriend someone, you can still have a conversation with them and the thread will still appear in your inbox.
