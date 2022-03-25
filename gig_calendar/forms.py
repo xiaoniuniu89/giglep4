@@ -13,7 +13,7 @@ class EventForm(forms.ModelForm):
     add event form
     """
     title = forms.CharField(
-        max_length=20,
+        max_length=15,
         required=True,
         widget=forms.TextInput(
             attrs={'class': 'form-field'}

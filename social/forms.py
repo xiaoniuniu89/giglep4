@@ -14,7 +14,7 @@ class UserSignUpForm(UserCreationForm):
     override widget and add class
     """
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-field'}))
+        attrs={'class': 'form-field', 'maxlength': '15'}))
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={'class': 'form-field'}))
     password1 = forms.CharField(widget=forms.PasswordInput(

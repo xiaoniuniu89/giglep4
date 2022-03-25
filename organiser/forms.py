@@ -11,10 +11,10 @@ class MusicianUpdateForm(forms.ModelForm):
     """
     instrument = forms.CharField(
         required=False, widget=forms.TextInput(
-            attrs={'class': 'form-field'}))
+            attrs={'class': 'form-field', 'maxlength': '15'}))
     location = forms.CharField(
         required=False, widget=forms.TextInput(
-            attrs={'class': 'form-field'}))
+            attrs={'class': 'form-field', 'maxlength': '15'}))
     blurb = forms.CharField(
         max_length=100,
         required=False,
