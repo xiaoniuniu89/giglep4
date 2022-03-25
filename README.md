@@ -25,7 +25,7 @@
 
 # About 
 
- Gigle is a social media app for working musicians. Users can connect with other musicians, send provate messages, book events on their own calendar, post what they are thinking in the social feed and like/comment other user posts. 
+Gigle is a social media app for working musicians. Users can connect with other musicians, send private messages, book events on their own calendar, post what they are thinking in the social feed, and like/comment on other user posts. 
 
 
  <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1643095598/Screenshot_from_2022-01-17_13-42-36_lz8lh0.png">
@@ -45,24 +45,24 @@
 
 ## <p id="user-stories"> User Stories</p>
 
-- As a user I can create an account to access the site.
-- As a user I can reset my password incase I loose it or feel my current password is not secure.
-- As a user I can update the information on my profile to reflect my current circumstances.
-As a user I can post messages to let my followers know what I am thinking.
-- As a user I can comment and like other users posts to show I agree or show I'm interested in what the say.
-- As a user I can edit or delete my posts in case I change my mind about what I wanted to say.
-- As a user I can follow other users so I can receive their posts in my feed.
-- As a user I can DM other users to have a private conversation with them about work or other private matters.
-- As a user I can unfollow a user to stop receiving their posts in my feed.
-- As a user I can receive notifications when I'm followed, messaged, invited to events or post receives a comment or like so I can know who has tried to interact with me during the day.
-- As a user I can add events to my calendar to avoid scheduling conflicts in my week to week work. 
-- As a user I can send or recieve events to/from other users so I can send/receive relevant information for work or events.
-- As a user I can search for other users so I can find musicians who I might want to work with.
+- As a user, I can create an account to access the site.
+- As a user, I can reset my password in case I lose it or feel my current password is not secure.
+- As a user, I can update the information on my profile to reflect my current circumstances.
+As a user, I can post messages to let my followers know what I am thinking.
+- As a user, I can comment and like other users' posts to show I agree or show I'm interested in what they say.
+- As a user, I can edit or delete my posts in case I change my mind about what I wanted to say.
+- As a user, I can follow other users so I can receive their posts in my feed.
+- As a user, I can DM other users to have a private conversation with them about work or other private matters.
+- As a user, I can unfollow a user to stop receiving their posts in my feed.
+- As a user, I can receive notifications when I'm followed, messaged, invited to events or post receives a comment or like so I can know who has tried to interact with me during the day.
+- As a user, I can add events to my calendar to avoid scheduling conflicts in my week-to-week work. 
+- As a user, I can send or receive events to/from other users so I can send/receive relevant information for work or events.
+- As a user, I can search for other users so I can find musicians who I might want to work with.
 
 
 ## The Real Books
 
-Gigle is designed to look like a set of musical manuscripts that working musicians are very familiar with called Real Books and Fake Books. Real Books are manuscripts that contain hundreds of popular pop and jazz songs that musicians may need to reference on any show. They are published by [hal leonard](https://www.halleonard.com/feature/490/real-books). The term Fake Book are older versions of these books, usually collections of songs that are incomplete and are just an outline of a piece.
+Gigle is designed to look like a set of musical manuscripts that working musicians are very familiar with called Real Books and Fake Books. Real Books are manuscripts that contain hundreds of popular pop and jazz songs that musicians may need to reference on any show. They are published by [hal leonard](https://www.halleonard.com/feature/490/real-books). The term Fake Book is for older versions of these books, usually collections of songs that are incomplete and are just an outline of a piece.
 
  ## <p id="typography">Typography</p> 
 
@@ -70,7 +70,7 @@ Gigle is designed to look like a set of musical manuscripts that working musicia
 
 <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648067774/special_elite_f5chka.jpg"/>
 
-- [Luckiest Guy](https://fonts.google.com/specimen/Luckiest+Guy) is used in the site and best reflects real books headings, titles and notation slashes.
+- [Luckiest Guy](https://fonts.google.com/specimen/Luckiest+Guy) is used in the site and best reflects real books headings, titles, and notation slashes.
 
 <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648067770/luckiest_guy_yg9lcp.jpg"/>
 
@@ -101,12 +101,12 @@ Wireframes can be found [here]()
 
 # Features
 
-This is an app I would have liked to use when I was working as a musician in my 20's. A lot of the functionality comes from problems I encountered often. The project is very big however. In some areas I don't have time to impliment a feature, in others I don't have the skills yet. Here is a breakdown of how I decided on the minimal viable product fot the first release.
+This is an app I would have liked to use when I was working as a musician in my 20s. A lot of the functionality comes from problems I encountered often. The project is very big, however. In some areas, I don't have time to implement a feature, in others I don't have the skills yet. Here is a breakdown of how I decided on the minimal viable product for the first release.
 
 <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648111832/Screenshot_from_2022-03-24_08-49-35_vzrkna.png"/>
 
  ## <p id="nav">Nav / Footer</p> 
-The navbar features a logo to the feed page, font awesome icons for all of the different pages a user can visit, a searchbar, and a notification bell. Any flash messages will also be displayed under the navbar. The footer again provides links to any useful pages and links to social media sites.
+The navbar features a logo to the feed page, font awesome icons for all of the different pages a user can visit, a search bar, and a notification bell. Any flash messages will also be displayed under the navbar. The footer again provides links to any useful pages and links to social media sites.
 
 - navbar
 
@@ -126,7 +126,7 @@ The navbar features a logo to the feed page, font awesome icons for all of the d
 
  ## <p id="landing">Sign-up / Login</p> 
 
- The sign-up, login and password reset all use built-in features of the django webframework to handle authentication and form validation. 
+ The sign-up, login, and password reset all use built-in features of the Django web framework to handle authentication and form validation. 
 
  The styles of the forms are all custom styles.
 
@@ -146,7 +146,7 @@ The navbar features a logo to the feed page, font awesome icons for all of the d
 
 ## <p id="feed">Social Feed </p> 
 
-The social page is the page the user sees when they log into the site. From here users can create posts, get friend suggestions and see posts of other users in their feed which they can like/dislike.
+The social page is the page the user sees when they log into the site. From here users can create posts, get friend suggestions, and see posts of other users in their feed that they can like/dislike.
 
 - feed page
 
@@ -173,14 +173,14 @@ The social page is the page the user sees when they log into the site. From here
 
  <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648070944/Screenshot_from_2022-03-23_21-28-38_kjksja.png"/>
 
- - This is the users friend list. The design of this page is very similar to the inbox displaying conversations between the user and friends and also the search results page.
+ - This is the users' friend list. The design of this page is very similar to the inbox displaying conversations between the user and friends and also the search results page.
 
 - user list display 
 
  <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648071093/Screenshot_from_2022-03-23_21-30-46_u2cwzf.png"/>
 
  ## <p id="msg">Messages </p>
- Users who are friend can have private conversations. The logged in user is displayed on the right in green text.
+ Users who are friends can have private conversations. The logged-in user is displayed on the right in green text.
 
  - DM page
 
@@ -188,7 +188,7 @@ The social page is the page the user sees when they log into the site. From here
 
 
  ## <p id="calendar">Calendar </p>
- The calendar acs a schedular. Users can add events, multiple events in a single day create a list view of the events. Users can share events to other users also.
+ The calendar acts as a schedular. Users can add events, multiple events in a single day create a list view of the events. Users can share events with other users also.
 
 
 - calendar
@@ -208,7 +208,7 @@ The social page is the page the user sees when they log into the site. From here
 
 
  ## <p id="error">Error Pages </p>
-There are 4 custom error pages. I think these are important as the inbuilt error pages are not tonaly consistant with the design of the site.
+There are 4 custom error pages. I think these are important as the inbuilt error pages are not tonally consistent with the design of the site.
 
 - 404 (also very similar to 400 bad request)
 
@@ -225,14 +225,14 @@ There are 4 custom error pages. I think these are important as the inbuilt error
 
 ## <p id="features-left">Features left to impliment</p>
 
-- ability to send and display pdf's of music charts.
-- set list maker with pdf's, optimised for tablet view.
-- band manager page were pdfs can be updated in real time and added to the users set list.
-- kanban board for every event should user need to organise their practice.
+- ability to send and display pdfs of music charts.
+- setlist maker with PDFs, optimized for tablet view.
+- band manager page where pdfs can be updated in real-time and added to the users' setlist.
+- Kanban board for every event should the user need to organize their practice.
 - group chats for bands.
-- ability to store press materials such as pdf of bio and photos that canbe shared with agents.
+- the ability to store press materials such as pdf of bio and photos that can be shared with agents.
 - application to issue statements and bills
-- geo locations and google maps to link eents to venue
+- geo locations and google maps to link events to venue
 
 
 </section>
@@ -291,39 +291,39 @@ https://p4gigle.herokuapp.com/
 
 Steps to deploy the site on Heroku:
 
-- in code editor add requirements for heroku to install by typing the following ocmmand into the terminal:
+- in code editor add requirements for Heroku to install by typing the following commands into the terminal:
   - pip3 freeze > requirements.txt
 
-- create a Procfile in same directory as manage.py and paste in the following:
+- create a Procfile in the same directory as manage.py and paste in the following:
   - web: gunicorn gigle.wsgi
 
-- in settings.py add heroku to allowed hosts
+- in settings.py add Heroku to allowed hosts
   
 - commit and push changes
 
-- log into heroku or make an account
-- click create a new app in top right corner
+- log in to Heroku or make an account
+- click create a new app in the top right corner
 - name your app and choose the region you live in
-- in the resources tab of your app dashboard add the postgres database resource
+- in the resources tab of your app dashboard add the Postgres database resource
 - in the settings tab click reveal config vars and add the following
   - CLOUDINARY_URL - get from [cloudinary](https://cloudinary.com/)
   - DATABASE_URL (added automatically)
-  - EMAIL_PASS - app uses google, steps to set up app passwords found [here](https://support.google.com/accounts/answer/185833?hl=en)
+  - EMAIL_PASS - the app uses google, steps to set up app passwords found [here](https://support.google.com/accounts/answer/185833?hl=en)
   - EMAIL_USER - Email account address
   - SECRET_KEY - can be anything
 
-- go to the deploy tab and choose github as deploy method
+- go to the deploy tab and choose GitHub as deploy method
 - search for the repo and connect
 - click deploy branch
-- if the build fails in top right corner click the 'more' button and check logs to get indication of problem
-- click view app button to see the app
+- if the build fails in the top right corner click the 'more' button and check logs to get an indication of the problem
+- Click the view app button to see the app
 
 
 How to fork the repository
-- Go to [github.com](https://www.github.com) and login.
+- Go to [github.com](https://www.github.com) and log in.
 - Click giglep4
 - in the top right of the page click the "fork" button
-- you will now have a copy of the repository in your github account.
+- you will now have a copy of the repository in your GitHub account.
 
 How to clone the repository
 - Go to [github.com](https://www.github.com)
@@ -333,9 +333,9 @@ How to clone the repository
 - Click the green code button that says Clone or download 
 - to copy from HTTPS copy URL link "HTTPS". 
 - open terminal
-- go to directory where you want to save the files
+- go to the directory where you want to save the files
 - type git clone and paste the link
-- press enter and the clone will be created
+- Press enter and the clone will be created
 
 
 More detailed instructions can be found [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository#cloning-a-repository-to-github-desktop)
@@ -346,7 +346,7 @@ More detailed instructions can be found [here](https://docs.github.com/en/github
 ## Media
 
 #### Images
-I found the black silhouettes of different musicianson [pixabay](https://pixabay.com/) and were mostly taken from a user called [Mohoamed Hassan](https://pixabay.com/users/mohamed_hassan-5229782/)
+I found the black silhouettes of different musicians on [pixabay](https://pixabay.com/) and were mostly taken from a user called [Mohoamed Hassan](https://pixabay.com/users/mohamed_hassan-5229782/)
 
 - landing page
     - [desktop](https://pixabay.com/vectors/jazz-silhouette-musician-trumpet-3662296/)
@@ -365,7 +365,7 @@ I found the black silhouettes of different musicianson [pixabay](https://pixabay
 
 - [Corey Schafer blog series](https://www.youtube.com/watch?v=-s7e_Fy6NRU&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=10)
 
-  - This series was great for how to use django's built in views and authentication especially CRUD functionality.
+  - This series was great for how to use Django's built-in views and authentication especially CRUD functionality.
 
 
 - [Legion Script](https://www.youtube.com/watch?v=_JKWYkz597c)
@@ -373,5 +373,5 @@ I found the black silhouettes of different musicianson [pixabay](https://pixabay
 
 
 - [Hui Wen](https://www.huiwenteo.com/normal/2018/07/24/django-calendar.html)
-  - This tutorial was very useful and I don't think they calendar app would have worked without it. It describes how to make a calendar in a utils.py file and render to template.
+  - This tutorial was very useful and I don't think the calendar app would not have worked without it. It describes how to make a calendar in a utils.py file and render it to the template.
   
