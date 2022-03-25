@@ -144,3 +144,6 @@ The website was tested on the following browser:
 - A thread is created as soon as one user follows another. This is necessary to create a chat button between those two people.
 -After unfriending a person it is difficult to get rid of the thread. Also, I did not like the idea of following, chatting, unfollowing, following again, and not having access to the past DM's.
 - So for now, when you unfriend someone, you can still have a conversation with them and the thread will still appear in your inbox.
+
+### Static files
+- The static files are served from Cloudinary and sometimes, but not often, there is a problem with Cloudinary. I have had 2 occasions in the past where the files were not serving and the site was without any styling for 5-10 minutes at a time.
