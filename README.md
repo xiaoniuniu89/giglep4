@@ -336,6 +336,20 @@ How to clone the repository
 - go to the directory where you want to save the files
 - type git clone and paste the link
 - Press enter and the clone will be created
+- To install the dependencies required to run the app, in the terminal type: pip3 install -r requirements.txt
+- create a .env file in the root directory and in it, import os
+- add the following environment variables in the .env file:
+  - os.environ["SECRET_KEY"] = <'yourrandomsecretkeyhere'>
+  - os.environ["EMAIL_USER"] = <'youremailaddresshere'>
+  - os.environ["EMAIL_PASS"] = <'emaipassword'>
+  - for the database there are two options:
+    - 1) In settings.py use the commented out sql lite database
+    - 2) os.environ["DATABASE_URL"] = <'postgresdatabaseurlhere'>
+  - os.environ["CLOUDINARY_URL"] = <'yourcloudinaryurlhere'>
+- create a superuser in the terminal by typing: python3 manage.py createsuperuser
+- run the server by typing: python3 manage.py runserver
+- use the superuser credentials to log into the site
+
 
 
 More detailed instructions can be found [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository#cloning-a-repository-to-github-desktop)
