@@ -86,7 +86,7 @@ A coverage report shows a total of 1461 statements tested with 87 untested, a 94
     - You will no longer see their posts in your feed.
 - As a user, I can receive notifications when I'm followed, messaged, invited to events or post receives a comment or like so I can know who has tried to interact with me during the day.
     - If you receive a like or comment on your post, someone follows you, you receive a DM, are invited to an invent - you will receive a notification.
-    - The notification bell in the navbar will turn read if you have any unread notifications.
+    - The notification bell in the navbar will turn red if you have any unread notifications.
     - Click the bell and a notifications dropdown will appear under the navbar.
     - Click on the notification you want and you will be redirected to the page concerning that notification.
 - As a user, I can add events to my calendar to avoid scheduling conflicts in my week-to-week work. 
@@ -112,7 +112,7 @@ The website was tested on the following browser:
 - Edge
 
 ### Chrome
-- The scrollbar on the chatbox in the DM page is not very nice in Chrome.
+- The scrollbar on the chatbox in the DM page is not very nice in Chrome. Other than this the app works as expected
 
 
 ### Firefox
