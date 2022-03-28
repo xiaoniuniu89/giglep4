@@ -435,3 +435,14 @@ form button {
     }
 
 }
+
+/* for extremely small mobile devices  */
+@media screen and (max-width: 300px ) {
+  .cta-img-small {
+      width: 90%;
+      height: 150px;
+  }
+  .header-container .nav-item {
+      padding-inline: .2em;
+  }
+}
