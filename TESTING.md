@@ -116,16 +116,16 @@ The website was tested on the following browser:
 
 
 ### Firefox
-- Chatbox looks much nicer on this browser
+- Chatbox looks much nicer on this browser. No major issues on this browser. 
 
 ### Opera
-- No issues
+- The Neon stle colors of the website are darker on Opera.
 
 ### Safari
-
+- The padding space between profile pic and name on some cards eg. the inbox thread cards is missing on this browser.
 
 ### Edge
-
+- no issues on the edge browser
 # Bugs
 
 ## Solved Bugs
@@ -137,7 +137,7 @@ The website was tested on the following browser:
 
 
 ## Unsolved Bugs
-### User passes test robustness
+### User passes test robustness on event share
 - It is difficult to write a test robust enough to prevent a user from, for example, changing the URL when sharing an event on the event share confirm page. As long as the user is friends with the person's id used in the URL parameters and the user also wrote the event, the app will allow the user to do this. It's not great for the user experience and I will try to fix it in the future.
 
 ### Threads of the unfriended
@@ -147,3 +147,8 @@ The website was tested on the following browser:
 
 ### Static files
 - The static files are served from Cloudinary and sometimes, but not often, there is a problem with Cloudinary. I have had 2 occasions in the past where the files were not serving and the site was without any styling for 5-10 minutes at a time.
+
+### password reset
+- Password reset only seems to work for users who are using a gmail address.
+
+
