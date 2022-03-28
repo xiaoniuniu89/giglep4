@@ -5,6 +5,11 @@ $('.profile-dropdown-icon').on('click', function() {
     $('.close-dropdown').toggleClass('hide');
     $('.close-dropdown').toggleClass('move-forward');
     $('.nav-list li:nth-child(2)').toggleClass('hide');
+    // if notifications are open, close them 
+    if($('.notification-dropdown').hasClass('notification-nav--open')){
+        $('.notification-dropdown').toggleClass('notification-nav--open', 300)
+        $('.bell').toggleClass('hide');
+    }
 
 });
 
