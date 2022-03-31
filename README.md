@@ -48,11 +48,10 @@ The project is very big, however. In some areas, I don't have time to implement 
 
 <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648111832/Screenshot_from_2022-03-24_08-49-35_vzrkna.png"/>
 
-This greatly affected the implimentation of user stories.
 
 ## <p id="user-stories"> User Stories</p>
 
-This is a breakdown of which user stories I decided to impliment based on my analysis of what features the minimum viable project must have. It shows the three main epics I came up with dor the scope of the site and the user stories associated with each one.
+This is a breakdown of the user stories I decided to impliment based on my analysis of what features the minimum viable project must have. It shows the three main epics I came up with for the scope of the site and the user stories associated with each one.
 
 
 <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648737781/Screenshot_from_2022-03-31_15-41-34_i9kwij.png"/>
