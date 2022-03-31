@@ -7,7 +7,7 @@ $('.profile-dropdown-icon').on('click', function() {
     $('.nav-list li:nth-child(2)').toggleClass('hide');
     // if notifications are open, close them 
     if($('.notification-dropdown').hasClass('notification-nav--open')){
-        $('.notification-dropdown').toggleClass('notification-nav--open', 300)
+        $('.notification-dropdown').toggleClass('notification-nav--open', 300);
         $('.bell').toggleClass('hide');
     }
 
