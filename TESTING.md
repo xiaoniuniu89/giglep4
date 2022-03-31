@@ -104,28 +104,32 @@ A coverage report shows a total of 1461 statements tested with 87 untested, a 94
 
 ## Browser Testing
 
-The website was tested on the following browser:
-- Chrome
-- Firefox
-- Opera
-- Safari
-- Edge
+The app was tested on the following browsers:
+
+- [Google Chrome](https://www.google.com/chrome/?brand=FHFK&gclid=CjwKCAjw092IBhAwEiwAxR1lRnrDJkW2rc2m-_DsqG2ISAAChH0tbKgopfm-3BMuide3ikPssZgvWhoCsVUQAvD_BwE&gclsrc=aw.ds)
+
+- [Firefox](https://www.mozilla.org/en-US/firefox/) 
+
+- [Opera](www.opera.com) 
+
+- [Safari](https://www.apple.com/uk/safari/)
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648720621/Screenshot_from_2022-03-31_10-56-11_joskcb.png"/>
 
 ### Chrome
-- The scrollbar on the chatbox in the DM page is not very nice in Chrome. Other than this the app works as expected
-
+- No issues on this browser, the app works as expected.
 
 ### Firefox
-- Chatbox looks much nicer on this browser. No major issues on this browser. 
+- Chatbox looks much nicer on this browser. No major issues on this browser, the app works as expected.
 
 ### Opera
-- The Neon stle colors of the website are darker on Opera.
+- There are no major issues on the Opera browser and the app works as expected.
 
 ### Safari
-- The padding space between profile pic and name on some cards eg. the inbox thread cards is missing on this browser.
+- The padding on some elements, eg: name and profile pic, like and dislike on posts is much less on this browser. Especially noticable on Iphone.
 
-### Edge
-- no issues on the edge browser
+
+
 # Bugs
 
 ## Solved Bugs
