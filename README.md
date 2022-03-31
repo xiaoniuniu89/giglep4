@@ -42,24 +42,20 @@ Gigle is a social media app for working musicians. Users can connect with other 
 <section id="ux">
 
 # UX Design
+This is an app I would have liked to use when I was working as a musician in my 20s. A lot of the functionality comes from problems I encountered often. I would play 8-9 shows a week. Different shows had different band members and different songs. Sometimes conflicts in bookings would happen with 2 bass players being booked for a show or might have a band leader who did not communicate with the band or send any materials to practice.
 
+The project is very big, however. In some areas, I don't have time to implement a feature, in others I don't have the skills yet. Here is a breakdown of how I decided on the minimal viable product for the first release.
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648111832/Screenshot_from_2022-03-24_08-49-35_vzrkna.png"/>
+
+This greatly affected the implimentation of user stories.
 
 ## <p id="user-stories"> User Stories</p>
 
-- As a user, I can create an account to access the site.
-- As a user, I can reset my password in case I lose it or feel my current password is not secure.
-- As a user, I can update the information on my profile to reflect my current circumstances.
-- As a user, I can post messages to let my followers know what I am thinking.
-- As a user, I can comment and like other users' posts to show I agree or show I'm interested in what they say.
-- As a user, I can edit or delete my posts in case I change my mind about what I wanted to say.
-- As a user, I can follow other users so I can receive their posts in my feed.
-- As a user, I can DM other users to have a private conversation with them about work or other private matters.
-- As a user, I can unfollow a user to stop receiving their posts in my feed.
-- As a user, I can receive notifications when I'm followed, messaged, invited to events or post receives a comment or like so I can know who has tried to interact with me during the day.
-- As a user, I can add events to my calendar to avoid scheduling conflicts in my week-to-week work. 
-- As a user, I can send or receive events to/from other users so I can send/receive relevant information for work or events.
-- As a user, I can search for other users so I can find musicians who I might want to work with.
+This is a breakdown of which user stories I decided to impliment based on my analysis of what features the minimum viable project must have. It shows the three main epics I came up with dor the scope of the site and the user stories associated with each one.
 
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648737781/Screenshot_from_2022-03-31_15-41-34_i9kwij.png"/>
 
 ## The Real Books
 
@@ -106,10 +102,6 @@ This is a map of how the database models relate to each other
 <section id="features">
 
 # Features
-
-This is an app I would have liked to use when I was working as a musician in my 20s. A lot of the functionality comes from problems I encountered often. The project is very big, however. In some areas, I don't have time to implement a feature, in others I don't have the skills yet. Here is a breakdown of how I decided on the minimal viable product for the first release.
-
-<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648111832/Screenshot_from_2022-03-24_08-49-35_vzrkna.png"/>
 
  ## <p id="nav">Nav / Footer</p> 
 The navbar features a logo to the feed page, font awesome icons for all of the different pages a user can visit, a search bar, and a notification bell. Any flash messages will also be displayed under the navbar. The footer again provides links to any useful pages and links to social media sites.
