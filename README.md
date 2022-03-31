@@ -5,6 +5,7 @@
   - <a href="#typography">Typography</a>
   - <a href="#color">Color</a>
   - <a href="#wireframes">Wireframes</a>
+  - <a href="#database-schema">Database Schema</a>
 - <a href="#features">Features</a>
   - <a href="#nav">Nav/Footer</a>
   - <a href="#landing">Sign-Up/Login</a>
@@ -94,6 +95,11 @@ The color scheme is influenced a lot by the bright neon colors of the various it
 ## <p id="wireframes">Wireframes</p> 
 
 Wireframes can be found <a href="p4-wireframes.pdf">here</a>
+
+## <p id="database-schema">Database Schema</p>
+This is a map of how the database models relate to each other
+
+<img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648733405/Screenshot_from_2022-03-31_14-29-17_bmoe7o.png"/>
 
 </section>
 
