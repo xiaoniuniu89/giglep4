@@ -1,3 +1,22 @@
+# Code Validation
+- HTML
+    - No errors were returned when passing through the official[W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fp4gigle.herokuapp.com%2F)
+        - To check any individual page, right click -> view source -> copy and paste the html [here](https://validator.w3.org/#validate_by_input)
+   
+- CSS 
+     - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/)(https://jigsaw.w3.org/css-validator/)
+        - [social.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fres.cloudinary.com%2Fdaniel-callaghan%2Fraw%2Fupload%2Fv1648465339%2Fstatic%2Fsocial%2Fcss%2Fsocial.a93544dc56c0.css)
+        - [organiser.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fres.cloudinary.com%2Fdaniel-callaghan%2Fraw%2Fupload%2Fv1648045081%2Fstatic%2Forganiser%2Fcss%2Forganiser.29dc225f0882.css)
+        - [gig_calendar.css](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fres.cloudinary.com%2Fdaniel-callaghan%2Fraw%2Fupload%2Fv1648045082%2Fstatic%2Fgig_calendar%2Fcss%2Fcalendar.2e52ae3e2f90.css)
+
+
+- JavaScript
+    - No errors were found when passing through [Jshint](https://jshint.com/)
+
+<img src='https://res.cloudinary.com/daniel-callaghan/image/upload/v1648730753/Screenshot_from_2022-03-31_13-45-03_zcmnzb.png'/>
+
+- Python
+    - No errors were found when passing through [PEP8](http://pep8online.com/)
 # Automated Testing
 
 * NB*  - To run the automated tets you must use the commented out SQL lite database in settings.py as the Postgres database on Heroku lacks the necessary permission to create database tables.
