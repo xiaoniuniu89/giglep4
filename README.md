@@ -42,7 +42,7 @@ Gigle is a social media app for working musicians. Users can connect with other 
 <section id="ux">
 
 # UX Design
-This is an app I would have liked to use when I was working as a musician in my 20s. A lot of the functionality comes from problems I encountered often. I would play 8-9 shows a week. Different shows had different band members and different songs. Sometimes conflicts in bookings would happen with 2 bass players being booked for a show or might have a band leader who did not communicate with the band or send any materials to practice.
+This is an app I would have liked to use when I was working as a musician in my 20s. A lot of the functionality comes from problems I encountered often. Sometimes, I would play 8-9 shows a week. Different shows had different band members and different songs. Sometimes conflicts in bookings would happen with 2 bass players being booked for a show or might have a band leader who did not communicate with the band or send any materials to practice.
 
 The project is very big, however. In some areas, I don't have time to implement a feature, in others I don't have the skills yet. Here is a breakdown of how I decided on the minimal viable product for the first release.
 
