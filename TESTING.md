@@ -21,7 +21,7 @@
 
 * NB*  - To run the automated tets you must use the commented out SQL lite database in settings.py as the Postgres database on Heroku lacks the necessary permission to create database tables.
 
-The app uses Djangos inbuilt test module to test the site's code
+The app uses Django's inbuilt test module to test the site's code
 
 To run tests, in command line type:
 - python3 manage.py test
@@ -53,14 +53,14 @@ A coverage report shows a total of 1461 statements tested with 87 untested, a 94
 
 - As a user, I can create an account to access the site.
     - From the landing page, click the sign-up button on the page or in the navbar.
-    - Fill in username, email, and confirm password.
+    - Fill in your username, email, and confirm your password.
     - you will be automatically redirected to the login page and can now use your username and password to log in.
 
 - As a user, I can reset my password in case I lose it or feel my current password is not secure.
     - From the Login page, click forgot password under the login button.
     - Enter an email address.
-    - Check mail and follow the link
-    - reset password.
+    - Check your mail and follow the link
+    - reset the password.
     - log in with the new password.
 
 - As a user, I can update the information on my profile to reflect my current circumstances.
@@ -95,7 +95,7 @@ A coverage report shows a total of 1461 statements tested with 87 untested, a 94
     - When you click follow, the user is immediately added to your friends and their posts will appear in your feed.
 - As a user, I can DM other users to have a private conversation with them about work or other private matters.
     - From Profile:
-        - On the users' profile, if you are friends, click the chat button available to you.
+        - On the users' profiles, if you are friends, click the chat button available to you.
     - From Inbox:
         - Find the user with whom you would like to DM and click the thread to open the DM
     - In the message box input your message and submit it.
@@ -136,7 +136,7 @@ The app was tested on the following browsers:
 <img src="https://res.cloudinary.com/daniel-callaghan/image/upload/v1648720621/Screenshot_from_2022-03-31_10-56-11_joskcb.png"/>
 
 ### Chrome
-- No issues on this browser, the app works as expected.
+- No issues with this browser, the app works as expected.
 
 ### Firefox
 - Chatbox looks much nicer on this browser. No major issues on this browser, the app works as expected.
@@ -145,7 +145,7 @@ The app was tested on the following browsers:
 - There are no major issues on the Opera browser and the app works as expected.
 
 ### Safari
-- The padding on some elements, eg: name and profile pic, like and dislike on posts is much less on this browser. Especially noticable on Iphone.
+- The padding on some elements, eg: name, profile pic, like and dislike on posts is much less on this browser. Especially noticeable on iPhone.
 
 
 
@@ -153,8 +153,8 @@ The app was tested on the following browsers:
 
 ## Solved Bugs
 ### No friends and Empty Friends object
-- A lot of logic depends on whether the user has a friend or not, eg: feed posts, friend lists, share an event, etc
-- Following someone, then unfollowing someone left a situation that the user would have a friend object that was empty as compared to having no friends. This broke a lot of the site at first.
+- A lot of logic depends on whether the user has a friend or not, eg: feed posts, friend lists, sharing an event, etc
+- Following someone, then unfollowing someone left a situation where the user would have a friend object that was empty as compared to having no friends. This broke a lot of the site at first.
 - It was fixed by using try and except blocks in the views and handling a user having no friends and an empty friend objects as the same.
 
 
@@ -172,6 +172,6 @@ The app was tested on the following browsers:
 - The static files are served from Cloudinary and sometimes, but not often, there is a problem with Cloudinary. I have had 2 occasions in the past where the files were not serving and the site was without any styling for 5-10 minutes at a time.
 
 ### password reset
-- Password reset only seems to work for users who are using a gmail address.
+- Password reset only seems to work for users who are using a Gmail address.
 
 
