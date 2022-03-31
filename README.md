@@ -384,5 +384,5 @@ I found the black silhouettes of different musicians on [pixabay](https://pixaba
 
 
 - [Hui Wen](https://www.huiwenteo.com/normal/2018/07/24/django-calendar.html)
-  - This tutorial was very useful and I don't think the calendar app would not have worked without it. It describes how to make a calendar in a utils.py file and render it to the template.
+  - This tutorial was very useful and I don't think the calendar app would have worked without it. It describes how to make a calendar in a utils.py file and render it to the template.
   
