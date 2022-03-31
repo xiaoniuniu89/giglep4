@@ -61,27 +61,27 @@
     {% if user.is_authenticated %}
     <!-- footer only loads if user is logged in  -->
         <footer class="footer">
-            <div class="footer-site-nav">
-                <h3 class="heading">Gigle</h3>
-                <div class="footer-nav-links">
-                    <ul>
-                        <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
-                        <li class="nav-item"><a href="{% url 'cal:calendar' %}">Calendar</a></li>
-                        <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</li>
-                    </ul>
-                    <ul>
-                        <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</span></a></li>
-                        <li class="nav-item "><a href="{% url 'my-profile'%}">Profile</a></li>
-                        <li class="nav-item "><a href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                </div>
+        <div class="footer-site-nav">
+            <h3 class="heading">Gigle</h3>
+            <div class="footer-nav-links">
+                <ul>
+                    <li class="nav-item"><a href="{% url 'feed' %}">Feed</a></li>
+                    <li class="nav-item"><a href="{% url 'cal:calendar' %}">Calendar</a></li>
+                    <li class="nav-item"><a href="{% url 'user-profile-list' %}">Friends</a></li>
+                </ul>
+                <ul>
+                    <li class="nav-item "><a href="{% url 'inbox' %} ">Messages</a></li>
+                    <li class="nav-item "><a href="{% url 'my-profile'%}">Profile</a></li>
+                    <li class="nav-item "><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
             </div>
-            <div class="basic-wrapper-flex">
-                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-icon fa-facebook"></i></a>
-                <a href="https://twitter.com/?lang=en" target="_blank"><i class="fab fa-icon fa-twitter"></i></a>
-                <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-icon fa-youtube"></i></a>
-            </div>
-        </footer>
+        </div>
+        <div class="basic-wrapper-flex">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-icon fa-facebook"></i></a>
+            <a href="https://twitter.com/?lang=en" target="_blank"><i class="fab fa-icon fa-twitter"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-icon fa-youtube"></i></a>
+        </div>
+    </footer>
     {% endif %}
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
